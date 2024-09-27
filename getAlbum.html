@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina principal DAW</title>
 </head>
-
+<style>
+    table, tr,th,td{
+        border: 1px solid black;
+    }
+</style>
 <body>
     <header>
         <a href="index.html"><img src="img/system/Logo.png" alt="">
@@ -15,7 +19,8 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="register.html">Create account</a></li>
+			<li><a href="userProfile.html">User Name</a></li>
+			<li><a href="index.html">Log out</a></li>
             <li><a href="search.html">Search</a></li>
         </ul>
     </nav>
@@ -59,12 +64,61 @@
                 <td>1.8$ por página</td>
             </tr>
         </table>
-    </main>
-    
 
+        <h3>Formulario de solicitud</h3>
+        <p>LOREM IPSUM</p>
+        <p>Los campos con (*) son obligatorios</p>
+
+        <form action="getAlbumResponse.html" method="get">
+            
+            <p><label for="name">Name: </label>
+            <input type="text" id="name" name="name" maxlength="200" required>*</p>
+
+            <p><label for="title">Album title: </label>
+            <input type="text" id="title" name="title" maxlength="200" required>*</p>
+
+            <p><label for="addText">Additional text: </label>
+            <textarea id="addText" name="addText" maxlength="4000"></textarea></p>
+
+            <p><label for="email">Email: </label>
+            <input type="email" id="email" name="email" maxlength="200" required>*</p>
+
+            DIRECCION
+
+            <p><label for="phone">Phone: </label>
+            <input type="tel" id="phone" name="phone"></p>
+
+            <p><label for="color">Color: </label>
+            <input type="color" id="color" name="color" value="black"></p>
+
+            <p><label for="cNumber">Copy number: </label>
+            <input type="number" id="cNumber" name="cNumber" min="1" max="99" value="1"></p>
+           
+            <p><label for="resolution">Resolution: </label>
+            <input type="range" id="resolution" name="resolution" min="150" max="900" step="150" value="150" onchange="getValue()">
+            <output id="rangeValue">150</output></p>
+
+            <p><label for="userAlbum">User Album: </label>
+            <input type="text" id="userAlbum" name="userAlbum"></p>
+
+            <p><label for="aproxDate">Date: </label>
+            <input type="date" id="aproxDate" name="aproxDate"></p>
+            
+            <p><input type="radio">color
+            <input type="radio">B/N</p>
+            
+            <input type="submit" value="Solicitar!">
+        </form>
+
+    </main>
 
     <footer>
         <p>&copy; Develop by Tomas Woodward Marin y Alex Valdelvira Muñoz 2024 </p>
     </footer>
+    <script>
+        function getValue(){
+            document.getElementById("rangeValue").value = document.getElementById("resolution").value;
+        }
+    </script>
 </body>
 </html>
