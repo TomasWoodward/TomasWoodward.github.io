@@ -1,3 +1,32 @@
-h1{
+body{
+   margin: 9em;
+}
+body,a,a:hover,a:active, a:visited, a:link{
+    color: #666;
+}
+
+a:active{
+    color:aqua;
+}
+
+a{
     text-decoration: none;
+}
+
+nav>ul{
+    padding-left:0;
+}
+nav>ul>li{
+    display: inline;
+    background-color: aquamarine;
+    font-size: 20px;
+    padding:0;
+    border-bottom: 5px dotted #666;
+}
+
+
+@media (max-width: 1024px) { /**breakpoint yeah**/
+    body {
+        margin:3em;
+    }
 }
