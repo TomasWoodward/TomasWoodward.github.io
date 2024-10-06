@@ -109,8 +109,14 @@
             <p><label for="email">Email: </label>
             <input type="email" id="email" name="email" maxlength="200" required>*</p>
 
-            DIRECCION
-
+            <p><label for="direc">Direction: </label>
+                <input type="text" id="direct" name="direc" placeholder="Street" maxlength="300" required>
+                <input type="number" id="number" name="number" placeholder="Nº" required>
+                <input type="text" id="PostalCode" name="PostalCode" pattern="\d{1,5}" maxlength="5" placeholder="CP" required>
+                <input type="text" id="city" name="city" placeholder="City" maxlength="25" required>
+                <input type="text" id="province" name="province" placeholder="province" max="25" required>*
+            </p>
+                
             <p><label for="phone">Phone: </label>
             <input type="tel" id="phone" name="phone"></p>
 
@@ -122,7 +128,7 @@
            
             <p><label for="resolution">Resolution: </label>
             <input type="range" id="resolution" name="resolution" min="150" max="900" step="150" value="150" onchange="getValue()">
-            <output id="rangeValue">150</output></p>
+            <output id="rangeValue">150 DPI</output></p>
 
             <p><label for="userAlbum">User Album: </label>
             <input type="text" id="userAlbum" name="userAlbum"></p>
@@ -143,7 +149,7 @@
     </footer>
     <script>
         function getValue(){
-            document.getElementById("rangeValue").value = document.getElementById("resolution").value;
+            document.getElementById("rangeValue").value = document.getElementById("resolution").value + " DPI";
         }
     </script>
 </body>
