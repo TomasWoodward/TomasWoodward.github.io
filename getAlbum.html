@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get albulm</title>
 </head>
-<style>
+<!-- <style>
     table, tr,th,td{
         border: 1px solid black;
     }
-</style>
+</style> -->
 <body>
     <header>
         <a href="index.html"><img src="img/system/Logo.png" alt="">
@@ -44,8 +44,8 @@
 
         <table>
             <tr>
-                <th>Concept</td>
-                <th>Rate</td>
+                <th>Concept</th>
+                <th>Rate</th>
             </tr>
 
             <tr>
@@ -122,14 +122,14 @@
                 <input type="text" id="city" name="city"  maxlength="25" required>
                 
                 <label for="province">Province: </label>
-                <input type="text" id="province" name="province"  max="25" required>*
+                <input type="text" id="province" name="province"  maxlength="25" required>*
             </p>
                 
             <p><label for="phone">Phone: </label>
             <input type="tel" id="phone" name="phone"></p>
 
             <p><label for="color">Color: </label>
-            <input type="color" id="color" name="color" value="black"></p>
+            <input type="color" id="color" name="color" value="#FF0000" disabled></p>
 
             <p><label for="cNumber">Copy number: </label>
             <input type="number" id="cNumber" name="cNumber" min="1" max="99" value="1"></p>
