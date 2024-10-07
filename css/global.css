@@ -4,6 +4,8 @@
     
 }
 body{
+
+    min-width: 360px;
     background-color: #f5f5eb;
     header{
         text-align: center;
@@ -28,10 +30,17 @@ body{
         text-align: center;
         border-radius: .5em;
         margin:0;
-        
-        ul{
-            display: flex;
+        padding: 0;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+
+        ul{            
+            list-style: none;
+            overflow: hidden;
             justify-content: space-evenly;
+            transition: max-height .5s;
+            margin: 0;
             li{
                 display: inline-block;
                 font-size: 30px;
@@ -53,7 +62,9 @@ body{
     }
 
     main{
-
+        display:grid;
+        grid-template-columns: repeat(auto-fit,minmax(360px,1fr));
+        gap:.5em;
     }
 }
 
