@@ -1,32 +1,37 @@
-main{
-	display:grid;
-	grid-template-columns: repeat(auto-fit,minmax(360px,1fr));
-	gap:.5em;
+main {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+	gap: .5em;
 
-	h2{
-		grid-column: 1 / -1; /* Hace que el h2 ocupe toda la fila */
-    	text-align: center; /* Ajusta la alineación del texto según sea necesario */
+	h2 {
+		grid-column: 1 / -1;
+		text-align: center;
 	}
 
-	figure{
+	figure {
 		padding: .5em;
-		display: flex; 
+		display: flex;
 		flex-direction: column;
-		a{
+		background-color: #b1aaaa;
+		border-radius: 5px;
+		
+		a {
 			text-decoration: none;
 			color: #333;
-		h3{
-			color: black;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow:ellipsis;
-			&:hover{
-				background-color: #b1aaaa;
-			 }
-		   
+			h3 {
+				color: #121629;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+
+				&:hover {
+					background-color: #b1aaaa;
+				}
+
 			}
 		}
-		p{
+
+		p {
 			margin: 0;
 			flex-grow: 1;
 		}
