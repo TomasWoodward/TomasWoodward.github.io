@@ -1,75 +1,83 @@
-*{
+* {
     box-sizing: border-box;
     font-family: 'Roboto';
-    
+
 }
-body{
+
+body {
 
     min-width: 360px;
     background-color: #f5f5eb;
-    header{
+
+    header {
         text-align: center;
-        background-color: #169094 ;
+        background-color: #169094;
         margin: 0;
         padding: .5em;
         border-radius: 1em;
 
-        a{
+        a {
             text-decoration: none;
-            h1{
+
+            h1 {
                 color: #8b9090;
                 display: inline-block;
             }
         }
 
-        
+
     }
 
-    nav{
+    nav {
         background-color: #004041;
-        text-align: center;
         border-radius: .5em;
-        margin:0;
+        margin: 0;
         padding: 0;
         position: sticky;
         top: 0;
         z-index: 1;
 
-        ul{            
+        ul {
+            display: flex;
             list-style: none;
-            overflow: hidden;
-            justify-content: space-evenly;
-            transition: max-height .5s;
+            justify-content: space-around;
             margin: 0;
-            li{
-                display: inline-block;
-                font-size: 30px;
-                
-                a{
+
+            li {
+                a {
                     text-decoration: none;
-                    color:#8b9090;
-                    
+                    color: #8b9090;
+
                 }
-        
+
             }
         }
 
     }
 
 
-    aside{
+    aside {
+        display: flex;
+        justify-content: flex-end;
 
+        form {
+            background-color: #2e8082;
+            color: #8b9090;
+            border-radius: .5em;
+            margin: 0.25em;
+            padding: 1em;
+            width: auto;
+            text-align: right;
+        }
     }
 
-    main{
-        display:grid;
-        grid-template-columns: repeat(auto-fit,minmax(360px,1fr));
-        gap:.5em;
-    }
+
 }
 
-@media (max-width: 1024px) { /**breakpoint yeah**/
+@media (max-width: 1024px) {
+
+    /**breakpoint yeah**/
     body {
-        margin:3em;
+        margin: 3em;
     }
 }
