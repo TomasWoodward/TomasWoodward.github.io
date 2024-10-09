@@ -13,14 +13,14 @@ main {
 		display: flex;
 		flex-direction: column;
 		text-align: center;
-		background-color: #b1aaaa;
+		background-color: #2f3b52;
 		border-radius: 5px;
-		
+		color: #f0f0f0;
 		a {
 			text-decoration: none;
-			color: #333;
+			
 			h3 {
-				color: #121629;
+				color: #f0f0f0;
 				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;

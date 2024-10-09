@@ -1,19 +1,30 @@
 main{
 	text-align: center;
+	
 	form{
+		background-color:#f0f0f0;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		margin: .25em  auto;
+		max-width: 400px;
 		border: 2px #333 solid;
 		label{
 			margin: .5em;
 		}
 		
-		input{
+		input,select{
+			background-color: #e0e0e0;
 			margin: .5em;
 			padding: .5em;
 			border-radius: 5px;
 			border: 1px #333 solid;
+			
+		}
+
+		input:hover, input:focus {
+			background-color: #a5a5a5;
+			cursor: pointer;
 		}
 	}
 }
