@@ -1,0 +1,19 @@
+main{
+	text-align: center;
+	form{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		border: 2px #333 solid;
+		label{
+			margin: .5em;
+		}
+		
+		input{
+			margin: .5em;
+			padding: .5em;
+			border-radius: 5px;
+			border: 1px #333 solid;
+		}
+	}
+}
