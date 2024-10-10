@@ -2,14 +2,18 @@ main{
 	text-align: center;
 	
 	form{
-		background-color:#a8a8a8;
+		
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: 1em  auto;
-		max-width: 400px;
-		border: 2px #7b7a7a solid;
-		border-radius: .5em;
+		max-width: 600px;
+		margin: 20px auto;
+		padding: 20px;
+		background-color: #f8f9fa;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		color: #333;
+	
 		label{	
 			margin: .5em;
 		}

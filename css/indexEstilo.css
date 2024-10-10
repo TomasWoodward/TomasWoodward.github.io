@@ -13,12 +13,12 @@ main {
 		display: flex;
 		flex-direction: column;
 		text-align: center;
-		background-color: #2f3b52;
+		background-color: #f0cc96;
 		border-radius: 5px;
 		color: #f0f0f0;
 		a {
 			text-decoration: none;
-			
+			color: #f0f0f0;
 			h3 {
 				color: #f0f0f0;
 				overflow: hidden;
