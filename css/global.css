@@ -69,26 +69,19 @@ body {
                 a:hover, a:active, a:focus {
                     background-color: #474747;
                 }
+
+            }
+            form{
+
+                label{
+                    color: white;
+                }
             }
         }
 
     }
 
 
-    aside {
-        display: flex;
-        justify-content: flex-end;
-
-        form {
-            background-color: #3b4b61;
-            color: #fff;
-            border-radius: .5em;
-            margin: 0.25em;
-            padding: 1em;
-            width: auto;
-            text-align: right;
-        }
-    }
 
     footer {
         background-color: #232946; 
