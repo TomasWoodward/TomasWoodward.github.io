@@ -31,5 +31,17 @@ main{
 			background-color: #a5a5a5;
 			cursor: pointer;
 		}
+
+		input[type="submit"]{
+			background-color: #007bff;
+			color: white;
+			border: none;
+			padding: .5em;
+			border-radius: 5px;
+			cursor: pointer;
+			&:hover {
+				background-color: #0365ce;
+			}
+		}
 	}
 }
