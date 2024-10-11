@@ -2,6 +2,7 @@
 @import url("./global.css");
 
 
-body{
-    background-color: #333;
+:root{
+    --background-color: #333;
+
 }
