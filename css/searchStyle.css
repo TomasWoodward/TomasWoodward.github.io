@@ -1,46 +1,57 @@
-main{
-	text-align: center;
-	
-	form{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		max-width: 600px;
-		margin: 20px auto;
-		padding: 20px;
-		background-color: #f8f9fa;
-		border-radius: 10px;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		color: #333;
-	
-		label{	
-			margin: .5em;
-		}
-		
-		input,select{
-			background-color: #e0e0e0;
-			margin: .5em;
-			padding: .5em;
-			border-radius: 5px;
-			border: 1px #333 solid;
-			
-		}
+/* :root {
+    --form-background-color: #f8f9fa;
+    --form-text-color: #333;
+    --input-background-color: #e0e0e0;
+    --input-hover-background-color: #a5a5a5;
+    --input-border-color: #333;
+    --submit-button-background-color: #007bff;
+    --submit-button-hover-background-color: #0365ce;
+    --submit-button-text-color: white;
+} */
+@import url("./variables.css");
+main {
+    text-align: center;
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: var(--form-background-color);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: var(--form-text-color);
+    
+        label {	
+            margin: .5em;
+        }
+        
+        input, select {
+            background-color: var(--input-background-color);
+            margin: .5em;
+            padding: .5em;
+            border-radius: 5px;
+            border: 1px solid var(--input-border-color);
+        }
 
-		input:hover, input:focus {
-			background-color: #a5a5a5;
-			cursor: pointer;
-		}
+        input:hover, input:focus {
+            background-color: var(--input-hover-background-color);
+            cursor: pointer;
+        }
 
-		input[type="submit"]{
-			background-color: #007bff;
-			color: white;
-			border: none;
-			padding: .5em;
-			border-radius: 5px;
-			cursor: pointer;
-			&:hover {
-				background-color: #0365ce;
-			}
-		}
-	}
+        input[type="submit"] {
+            background-color: var(--submit-button-background-color);
+            color: var(--submit-button-text-color);
+            border: none;
+            padding: .5em;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--submit-button-hover-background-color);
+            }
+        }
+    }
 }

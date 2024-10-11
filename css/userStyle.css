@@ -1,60 +1,70 @@
+/* :root {
+    --main-background-color: #f0f4f8;
+    --list-item-background-color: #333;
+    --list-item-hover-background-color: #007bff;
+    --list-item-text-color: #f0f0f0;
+    --list-item-hover-text-color: #fff;
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
+} */
+@import url("./variables.css");
 main {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2em;
-    background-color: #f0f4f8;
-	ul {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-		gap: 1em;
-		width: 100%;
-		max-width: 800px;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-
-		li {
-			background-color: #333;
-			padding: 1em;
-			text-align: center;
-			border-radius: 8px;
-			transition: transform 0.3s, background-color 0.3s;
-			color: #f0f0f0;
-			font-size: 16px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			&:hover {
-				transform: translateY(-5px);
-				background-color: #007bff;
-			}
-
-			a {
-				text-decoration: none;
-				color: #f0f0f0;
-				display: block;
-				&:hover {
-					color: #fff;
-				}
-			}
-
-			img {
-				width: 225px;
-				height: auto;
-				max-width: 100%;
-				display: inline;
-				transition: transform 0.5s ease-in-out;
-				&:hover {
-					transform: scale(1.05);
-				}
-			}
-			
-		}
-		
-	}
+    background-color: var(--main-background-color);
 	
-p {
-    margin: 0;
-    flex-grow: 1;
-}
-	
+    ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1em;
+        width: 100%;
+        max-width: 800px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            background-color: var(--list-item-background-color);
+            padding: 1em;
+            text-align: center;
+            border-radius: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+            color: var(--list-item-text-color);
+            font-size: 16px;
+            box-shadow: 0 4px 6px var(--box-shadow-color);
+            
+            &:hover {
+                transform: translateY(-5px);
+                background-color: var(--list-item-hover-background-color);
+            }
+
+            a {
+                text-decoration: none;
+                color: var(--list-item-text-color);
+                display: block;
+
+                &:hover {
+                    color: var(--list-item-hover-text-color);
+                }
+            }
+
+            img {
+                width: 225px;
+                height: auto;
+                max-width: 100%;
+                display: inline;
+                transition: transform 0.5s ease-in-out;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+    
+    p {
+        margin: 0;
+        flex-grow: 1;
+    }
 }
