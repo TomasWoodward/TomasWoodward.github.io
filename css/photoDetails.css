@@ -1,0 +1,78 @@
+
+@import url("./variables.css");
+
+main {
+    background-color: var(--main-background-color);
+    color: var(--main-text-color);
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--box-shadow-color);
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center; /* Para centrar el texto */
+
+    h2 {
+        color: var(--heading2-color);
+        font-size: 2.5rem; /* Aumentar tamaño del título */
+        margin-bottom: 1.5em;
+    }
+
+    figure {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Centrar el contenido */
+        padding: 1.5em;
+        background-color: var(--form-background-color);
+        border-radius: 10px;
+        box-shadow: 0 6px 10px var(--box-shadow-color);
+        margin: 0 auto;
+        max-width: 800px; /* Limitar el ancho del figure */
+        text-align: left; /* Para mantener alineación del texto en figcaption */
+
+        img {
+            max-width: 450px; /* Incrementar el tamaño de la imagen */
+            height: auto;
+            border-radius: 10px;
+            margin-right: 2em;
+        }
+
+        figcaption {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1em;
+            color: var(--form-text-color); /* Texto blanco para contraste */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--box-shadow-color); /* Sombra para resaltar */
+            transition: background-color 0.3s;
+
+            time {
+                color: var(--figure-text-color);
+                font-size: 1.25rem;
+                margin-bottom: 1em;
+            }
+
+            p {
+                color:var(--form-text-color); /* Texto blanco */
+                font-size: 1.1rem;
+                margin: 0.5em 0;
+            }
+
+            a {
+                color: var(--form-text-color);
+                font-size: 1.1rem;
+                text-decoration: none;
+                transition: background-color 0.3s, color 0.3s;
+                padding: 0.5em 0.75em;
+                border-radius: 5px;
+                background-color: var(--button-background-color); /* Botón estilo */
+                box-shadow: 0 2px 4px var(--box-shadow-color);
+
+                &:hover {
+                    background-color: var(--submit-button-hover-background-color);
+                    color: var(--submit-button-text-color);
+                }
+            }
+        }
+    }
+}
