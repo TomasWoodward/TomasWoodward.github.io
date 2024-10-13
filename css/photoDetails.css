@@ -86,6 +86,7 @@ main {
     figure img {
         margin-right: 0;
         margin-bottom: 1em;
+        width: 100%;
     }
 }
 
