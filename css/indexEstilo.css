@@ -65,3 +65,10 @@ main {
         }
     }
 }
+
+
+@media (max-width: 480px) {
+    main {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}

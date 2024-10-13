@@ -67,6 +67,7 @@ body {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     
         ul {
+
             display: flex;
             list-style: none;
             justify-content: space-around;
@@ -77,6 +78,7 @@ body {
     
             li {
                 a {
+                    font-size: 0 !important;
                     padding: 0.5em 1em;
                     text-decoration: none;
                     color: var(--header-text-color);
@@ -88,35 +90,17 @@ body {
                         background-color: var(--nav-link-hover-background-color);
                         color: var(--nav-link-hover-color);
                     }
+                    i{
+                        font-size: 16px;
+                    }
+
                 }
+            }
+            form{
+                display: none;
             }
         }
 
-        form {
-            display: flex;
-            align-items: center;
-
-            input[type="text"] {
-                padding: 0.5em;
-                border: 1px solid var(--input-border-color);
-                border-radius: 5px 0 0 5px;
-                outline: none;
-            }
-
-            input[type="submit"] {
-                padding: 0.5em 1em;
-                background-color: var(--button-background-color);
-                border: none;
-                color: var(--header-text-color);
-                cursor: pointer;
-                border-radius: 0 5px 5px 0;
-                transition: background-color 0.3s;
-
-                &:hover {
-                    background-color: var(--button-hover-background-color);
-                }
-            }
-        }
     }
 
     footer {
@@ -128,8 +112,40 @@ body {
     }
 }
 
-@media (max-width: 1024px) {
+@media all and (width>=780px) {
     body {
-        margin: 3em;
+        nav>ul>li>a{
+            font-size: 16px !important;     
+        }
     }
+
+    body>nav>ul>form {
+            
+        display:flex;
+        align-items: center;
+
+        input[type="text"] {
+            padding: 0.5em;
+            border: 1px solid var(--input-border-color);
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            padding: 0.5em 1em;
+            background-color: var(--button-background-color);
+            border: none;
+            color: var(--header-text-color);
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: var(--button-hover-background-color);
+            }
+        }
+    }
+
 }
+
+
