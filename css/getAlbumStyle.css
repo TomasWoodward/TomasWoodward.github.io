@@ -47,9 +47,10 @@ main {
     }
 
     form {
+        margin-top: 20px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         max-width: 100%;
         padding: 20px;
         background-color: var(--form-background-color);
@@ -94,5 +95,10 @@ main {
         display: flex;
         justify-content: space-between;
         margin: 20px;
+
+        form {
+            margin-top: 0;
+
+        }
     }
 }
