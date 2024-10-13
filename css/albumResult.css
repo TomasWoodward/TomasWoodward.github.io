@@ -1,11 +1,4 @@
-/*:root {
-    --main-background-color: #f8f9fa;
-    --main-text-color: #333;
-    --heading2-color: #007bff;
-    --heading3-color: #495057;
-    --paragraph-color: #343a40;
-    --box-shadow-color: rgba(0, 0, 0, 0.1);
-}*/
+
 
 @import url("./variables.css");
 main {

@@ -23,7 +23,7 @@ main {
         text-align: center;
         background-color: var(--main-background-color); 
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px var(--box-shadow-color);
         transition: transform 0.3s, box-shadow 0.3s;
         color: var(--main-text-color);
         margin: 20px;

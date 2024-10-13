@@ -1,13 +1,4 @@
-/* :root {
-    --form-background-color: #f8f9fa;
-    --form-text-color: #333;
-    --input-background-color: #e0e0e0;
-    --input-hover-background-color: #a5a5a5;
-    --input-border-color: #333;
-    --submit-button-background-color: #007bff;
-    --submit-button-hover-background-color: #0365ce;
-    --submit-button-text-color: white;
-} */
+
 @import url("./variables.css");
 main {
     text-align: center;

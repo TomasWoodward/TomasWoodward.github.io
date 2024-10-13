@@ -1,18 +1,4 @@
-/* :root {
-    --background-color: #F3F4F6;
-    --text-color: #121629;
-    --header-background-color: #232946;
-    --header-text-color: white;
-    --link-color: #121629;
-    --nav-background-color: #232946;
-    --nav-link-hover-background-color: #474747;
-    --nav-link-hover-color: #f0f0f0;
-    --input-border-color: #ddd;
-    --button-background-color: #007bff;
-    --button-hover-background-color: #0056b3;
-    --footer-background-color: #232946;
-    --footer-text-color: white;
-} */
+
 @import url("./variables.css");
 * {
     box-sizing: border-box;
@@ -92,6 +78,7 @@ body {
                     }
                     i{
                         font-size: 16px;
+                        margin-right: 5px;
                     }
 
                 }
@@ -112,7 +99,7 @@ body {
     }
 }
 
-@media all and (width>=780px) {
+@media all and (width>=825px) {
     body {
         nav>ul>li>a{
             font-size: 16px !important;     
@@ -147,5 +134,3 @@ body {
     }
 
 }
-
-

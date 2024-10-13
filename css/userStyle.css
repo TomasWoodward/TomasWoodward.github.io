@@ -1,11 +1,4 @@
-/* :root {
-    --main-background-color: #f0f4f8;
-    --list-item-background-color: #333;
-    --list-item-hover-background-color: #007bff;
-    --list-item-text-color: #f0f0f0;
-    --list-item-hover-text-color: #fff;
-    --box-shadow-color: rgba(0, 0, 0, 0.1);
-} */
+
 @import url("./variables.css");
 main {
     display: flex;
