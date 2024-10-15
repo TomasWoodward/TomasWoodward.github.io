@@ -32,12 +32,12 @@ main {
             }
 
             th {
-                background-color: #007bff;
-                color: white;
+                background-color: var(--list-item-hover-background-color);
+                color: var(--footer-text-color);
             }
 
             td {
-                background-color: #f8f9fa;
+                background-color: var(--form-background-color);
             }
         }
     }

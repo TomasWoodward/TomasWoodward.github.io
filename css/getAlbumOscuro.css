@@ -1,0 +1,6 @@
+@import url("./getAlbumStyle.css");
+@import url("./variablesOscuro.css");
+
+.provinces, .aproxDate, .cNumber{
+	color: var(--form-text-color);
+}

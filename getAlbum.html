@@ -6,6 +6,7 @@
     <title>Get albulm</title>
     <link rel="stylesheet" href="css/global.css" media="screen">
     <link rel="stylesheet" href="css/getAlbumStyle.css">
+    <link rel=" alternate stylesheet" href="css/getAlbumOscuro.css" title="dark theme">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -122,7 +123,7 @@
                 <input type="text" id="city" name="city"  maxlength="25" required>
                 
                 <label for="provinces" >Seleccione su provincia:</label>
-                    <select id="provinces" name="provinces" required>
+                    <select id="provinces" class="provinces" name="provinces" required>
                     <option value="">-- Select a province --</option>
                     <option value="alava">Alava</option>
                     <option value="albacete">Albacete</option>
@@ -185,7 +186,7 @@
             <input type="color" id="color" name="color" value="#FF0000" disabled></p>
 
             <p><label for="cNumber">Copy number: </label>
-            <input type="number" id="cNumber" name="cNumber" min="1" max="99" value="1"></p>
+            <input type="number" id="cNumber" class="cNumber" name="cNumber" min="1" max="99" value="1"></p>
            
             <p><label for="resolution">Resolution: </label>
             <input type="range" id="resolution" name="resolution" min="150" max="900" step="150" value="150" onchange="getValue()">
@@ -195,7 +196,7 @@
             <input type="text" id="userAlbum" name="userAlbum"></p>
 
             <p><label for="aproxDate">Date: </label>
-            <input type="date" id="aproxDate" name="aproxDate"></p>
+            <input type="date" id="aproxDate" class="aproxDate" name="aproxDate"></p>
             
             <p><input type="radio">color
             <input type="radio" checked>B/N</p>
