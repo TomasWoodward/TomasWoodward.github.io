@@ -1,4 +1,4 @@
-@import url("./global.css");
+@import url("../default/global.css");
     :root {
         /* Colores para body, header, nav y footer (tema oscuro) */
         --background-color: #1e1e1e; /* Fondo oscuro */
