@@ -3,6 +3,7 @@
 
 main {
     margin: 20px;
+    font-size: var(--font-size-small); /* Fuente pequeña para el contenido de 'main' */
 
     aside {
         display: flex;
@@ -14,9 +15,11 @@ main {
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         color: var(--form-text-color);
+        font-size: var(--font-size-small); /* Fuente pequeña para 'aside' */
 
         h2, h3 {
             margin-bottom: 15px;
+            font-size: var(--font-size-small); /* Tamaño medio para h2 y h3 */
         }
 
         table {
@@ -25,6 +28,8 @@ main {
             margin-bottom: 20px;
             border-radius: 10px;
             overflow: hidden;
+            font-size: var(--font-size-small); /* Fuente pequeña para las tablas */
+
             th, td {
                 border: 1px solid #333;
                 padding: 10px;
@@ -34,10 +39,12 @@ main {
             th {
                 background-color: var(--list-item-hover-background-color);
                 color: var(--footer-text-color);
+                font-size: var(--font-size-small); /* Fuente pequeña para los encabezados de tabla */
             }
 
             td {
                 background-color: var(--form-background-color);
+                font-size: var(--font-size-small); /* Fuente pequeña para las celdas de tabla */
             }
         }
     }
@@ -53,9 +60,11 @@ main {
         border-radius: 10px;
         box-shadow: 0 4px 8px var(--box-shadow-color);
         color: var(--form-text-color);
+        font-size: var(--font-size-small); /* Fuente pequeña para 'form' */
 
         label {
             margin: 0.5em;
+            font-size: var(--font-size-small); /* Fuente pequeña para etiquetas */
         }
 
         input, select, textarea {
@@ -64,6 +73,7 @@ main {
             padding: 0.5em;
             border-radius: 5px;
             border: 1px solid var(--input-border-color);
+            font-size: var(--font-size-small); /* Fuente pequeña para campos de entrada */
         }
 
         input:hover, input:focus {
@@ -78,6 +88,7 @@ main {
             padding: 0.5em;
             border-radius: 5px;
             cursor: pointer;
+            font-size: var(--font-size-small); /* Fuente pequeña para el botón submit */
 
             &:hover {
                 background-color: var(--submit-button-hover-background-color);
@@ -86,15 +97,14 @@ main {
     }
 }
 
-@media all and (width>= 870px) {
-    body>main{
+@media all and (width >= 870px) {
+    body > main {
         display: flex;
         justify-content: space-between;
         margin: 20px;
 
         form {
             margin-top: 0;
-
         }
     }
 }

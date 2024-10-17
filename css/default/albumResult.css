@@ -1,6 +1,7 @@
 
 
 @import url("./variables.css");
+
 main {
     max-width: 600px;
     margin: 20px auto;
@@ -9,21 +10,25 @@ main {
     border-radius: 10px;
     box-shadow: 0 4px 8px var(--box-shadow-color);
     color: var(--main-text-color);
+    font-size: var(--font-size-small); /* Fuente pequeña para el contenido de 'main' */
 
     h2 {
         color: var(--heading2-color);
         text-align: center;
         margin-bottom: 15px;
+        font-size: var(--font-size-small); /* Tamaño medio para los títulos h2 */
     }
     
     h3 {
         color: var(--heading3-color);
         margin-bottom: 10px;
+        font-size: var(--font-size-small); /* Tamaño base para los títulos h3 */
     }
     
     p {
         margin: 8px 0;
-        line-height: 1.5;
+        line-height: var(--line-height-base);
         color: var(--paragraph-color);
+        font-size: var(--font-size-small); /* Fuente pequeña para los párrafos */
     }
 }

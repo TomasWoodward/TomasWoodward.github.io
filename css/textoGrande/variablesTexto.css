@@ -1,3 +1,4 @@
+@import url("../default/global.css");
 :root {
     /* Colores para body, header, nav y footer */
     --background-color: #F3F4F6;
@@ -43,8 +44,7 @@
     --paragraph-color: #343a40;
 
     /* Tamaños de fuentes */
-    --font-size-small: 1rem;
-    --font-size-big: 2rem;
+    --font-size-small: 1.15rem;
     --font-size-icon: 1.125rem; /* Tamaño de los íconos */
     --line-height-base: 1.6;
 }

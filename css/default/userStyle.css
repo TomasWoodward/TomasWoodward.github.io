@@ -1,12 +1,13 @@
-
 @import url("./variables.css");
+
 main {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2em;
     background-color: var(--main-background-color);
-	
+    font-size: var(--font-size-small); /* Tamaño de fuente predeterminado para main */
+
     ul {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -24,7 +25,7 @@ main {
             border-radius: 8px;
             transition: transform 0.3s, background-color 0.3s;
             color: var(--list-item-text-color);
-            font-size: 16px;
+            font-size: var(--font-size-small); /* Tamaño de fuente para los ítems de la lista */
             box-shadow: 0 4px 6px var(--box-shadow-color);
             
             &:hover {
@@ -36,6 +37,7 @@ main {
                 text-decoration: none;
                 color: var(--list-item-text-color);
                 display: block;
+                font-size: var(--font-size-small); /* Tamaño de fuente para enlaces */
 
                 &:hover {
                     color: var(--list-item-hover-text-color);
@@ -59,5 +61,6 @@ main {
     p {
         margin: 0;
         flex-grow: 1;
+        font-size: var(--font-size-small); /* Tamaño de fuente para los párrafos */
     }
 }
