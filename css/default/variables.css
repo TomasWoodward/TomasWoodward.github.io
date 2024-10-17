@@ -45,6 +45,6 @@
     /* Tamaños de fuentes */
     --font-size-small: 1rem;
     --font-size-big: 2rem;
-    --font-size-icon: 1.125rem; /* Tamaño de los íconos */
+    --font-size-icon: 1rem; /* Tamaño de los íconos */
     --line-height-base: 1.6;
 }

@@ -47,4 +47,8 @@
     --font-size-small: 1.15rem;
     --font-size-icon: 1.125rem; /* Tamaño de los íconos */
     --line-height-base: 1.6;
+
+}
+input[type="text"],input[type="submit"]{
+    padding: 0.75em 1.5em;
 }
