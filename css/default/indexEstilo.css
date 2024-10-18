@@ -74,6 +74,19 @@ main {
 }
 
 @media print {
+    * {
+        font-family: sans-serif;
+    }
+
+    /* Mostrar el contenido del atributo data-content antes del main */
+    main::after {
+        content:"pagina impresa desde:" " "attr(data-url); /* Mostrar la URL del atributo */
+        display: block;
+        font-size: var(--font-size-big);
+        text-align: center;
+        margin-bottom: 1em;
+    }
+
     /* Ocultar la barra de navegación */
     nav {
         display: none;
@@ -81,8 +94,9 @@ main {
 
     /* Ajustar el main para que ocupe todo el ancho al imprimir */
     main {
-        grid-template-columns: 3fr;
-        font-size: var(--font-size-medium); /* Ajusta el tamaño de fuente si es necesario */
+        grid-template-columns: 2fr;
+        font-size: var(--font-size-big)
+
     }
 
     /* Ajustar los márgenes para impresión */
@@ -92,21 +106,25 @@ main {
     }
 
     /* Ocultar elementos que no son relevantes para impresión */
-    header, footer {
+    header img, footer {
         display: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--main-text-color);
     }
 
     /* Eliminar sombras y efectos visuales que no se imprimen bien */
     figure {
         box-shadow: none;
-        border: 1px solid #000; /* Añadir bordes si lo prefieres */
+        border: 1px solid #000;
     }
 
     /* Ajustar las imágenes para que se vean bien impresas */
     img {
         width: 100%;
-        height: 225px; /* Fijar un alto consistente */
-        object-fit: contain; /* Mantener el enfoque central y cortar si es necesario */
+        height: 225px;
+        object-fit: contain;
     }
-    
 }
