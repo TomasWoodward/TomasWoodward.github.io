@@ -98,6 +98,16 @@ body {
         text-align: center;
         margin-top: .5em;
         font-size: var(--font-size-small); /* Usando variable */
+
+        a{
+            text-decoration: none;
+            color: var(--list-item-text-color);
+            font-size: var(--font-size-small);
+
+            &:hover {
+                color: var(--link-hover-background-color);
+            }
+        }
     }
 }
 

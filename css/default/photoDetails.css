@@ -98,8 +98,8 @@ main {
     }
 
     /* Mostrar el contenido del atributo data-content antes del main */
-    main::after {
-        content:"pagina impresa desde:" " "attr(data-url); /* Mostrar la URL del atributo */
+    footer::after {
+        content:"Printed from:" " "attr(data-url); /* Mostrar la URL del atributo */
         display: block;
         font-size: var(--font-size-big);
         text-align: center;
@@ -132,7 +132,7 @@ main {
     }
 
     /* Ocultar elementos que no son relevantes para impresión */
-    header img, footer {
+    header img{
         display: none;
     }
 

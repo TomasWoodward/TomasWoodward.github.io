@@ -1,4 +1,6 @@
 @import url("../default/variables.css");
+@import url("../default/global.css");
+
 :root {
     /* Colores para body, header, nav y footer (página principal) */
     --background-color: #ffffff; /* Fondo blanco suave */
