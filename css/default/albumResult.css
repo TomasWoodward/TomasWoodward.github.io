@@ -87,6 +87,11 @@ main {
         color: var(--main-text-color);
     }
 
+    a::after {
+        content: " (" attr(href) ")"; /* Mostrar la URL del enlace */
+        font-size: var(--font-size-small);
+    }
+
     /* Eliminar sombras y efectos visuales que no se imprimen bien */
     figure {
         box-shadow: none;
