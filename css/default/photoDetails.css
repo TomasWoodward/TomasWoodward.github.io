@@ -104,6 +104,7 @@ main {
         font-size: var(--font-size-big);
         text-align: center;
         margin-bottom: 1em;
+        text-decoration: underline;
     }
 
     /* Ocultar la barra de navegación */
@@ -116,6 +117,12 @@ main {
         grid-template-columns: 2fr;
         font-size: var(--font-size-small);
         box-shadow: none;
+        
+        h2{
+            color: var(--main-text-color);
+        }
+
+    
     }
 
     /* Ajustar los márgenes para impresión */
