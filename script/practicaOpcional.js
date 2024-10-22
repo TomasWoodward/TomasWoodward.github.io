@@ -1,3 +1,9 @@
+/*-------------------------------------------------------*/
+/*--------Fichero para la practica opcional de JS-------*/
+/*-----------------------------------------------------*/
+
+/*Cambiar la ruta del fichero de script en el register.html*/
+
 document.addEventListener("DOMContentLoaded", function () {
 	let form = document.querySelector("#formRegister");
 	form.addEventListener("submit", comprobarRegister);
