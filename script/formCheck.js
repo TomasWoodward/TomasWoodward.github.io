@@ -9,8 +9,12 @@ document.addEventListener("DOMContentLoaded", function(){
 function comprobarLogin(event){
 	/*--------VARIABLES PARA COMPROBAR----------*/
 	let mensaje = "";
-	let name = document.querySelector("#userName").value;
-	let password = document.querySelector("#pass").value;
+	let nameInput = document.querySelector("#userName");
+	let name = nameInput.value;
+
+	let passwordInput = document.querySelector("#pass");
+	let password = passwordInput.value;
+
 	let form = document.querySelector("#formLogin");
 	
 	/*--------QUITAR ESPACIOS EN BLANCO Y TABULACIONES----------*/
@@ -21,9 +25,16 @@ function comprobarLogin(event){
 	
 	if (name == "" ) {
 		mensaje += "El campo nombre no puede estar vacio\n";
+		nameInput.style.backgroundColor = 'red';
+	}else{
+		nameInput.style.backgroundColor = '#e0e0e0';
 	}
+
 	if (password == "") {
 		mensaje += "El campo contraseña no puede estar vacio\n";
+		passwordInput.style.backgroundColor = 'red';
+	}else{
+		passwordInput.style.backgroundColor = '#e0e0e0';
 	}
 
 	/*--------MOSTRAR MENSAJE DE ERROR----------*/
