@@ -44,111 +44,262 @@ function comprobarRegister(event) {
 	email = email.replaceAll(/\s/g, "");
 	email = email.replaceAll(/\t/g, "");
 
-	/*--------COMPROBAR NOMBRE Y CONTRASEÑA----------*/
-	if (name == "" || name.length < 3 || name.length > 15 || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(name)) {
-		mensaje += "El nombre sólo puede contener letras del alfabeto inglés (en mayúsculas y minúsculas) y números; no puede comenzar con un número; longitud mínima 3 caracteres y máxima 15\n";
+
+	/*-----------------------------------*/
+	/*--------COMPROBAR NOMBRE----------*/
+	/*---------------------------------*/
+	if (name == "" || name.length < 3 || name.length > 15) {
+		mensaje += "El nombre debe tener entre 3 y 15 caracteres.\n";
 		nameInput.style.backgroundColor = 'red';
-	}else{
-		nameInput.style.backgroundColor = '#e0e0e0';
+	} else {
+		let esValido = true;
+		let primerCaracter = name.charAt(0);
+
+		// Verificar que el primer carácter sea una letra
+		if (!((primerCaracter >= 'A' && primerCaracter <= 'Z') || (primerCaracter >= 'a' && primerCaracter <= 'z'))) {
+			mensaje += "El nombre debe comenzar con una letra.\n";
+			esValido = false;
+		}
+
+		// Verificar que los caracteres sean letras o dígitos
+		for (let i = 1; i < name.length && esValido; i++) {
+			let caracter = name.charAt(i);
+			if (!((caracter >= 'A' && caracter <= 'Z') ||
+				(caracter >= 'a' && caracter <= 'z') ||
+				(caracter >= '0' && caracter <= '9'))) {
+				mensaje += "El nombre solo puede contener letras y números.\n";
+				esValido = false;
+			}
+		}
+
+		// Cambiar el color de fondo del input según la validez
+		if (esValido) {
+			nameInput.style.backgroundColor = '#e0e0e0'; // Válido
+		} else {
+			nameInput.style.backgroundColor = 'red'; // Inválido
+		}
 	}
 
-	if (password == "" || password.length < 6 || password.length > 15 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{6,15}$/.test(password)) {
-		mensaje += "El campo contraseña sólo puede contener letras del alfabeto inglés (en mayúsculas y minúsculas),números, el guion y el guion bajo(subrayado); al menos debe contener una letra en mayúscula,una letra en minúscula y un número; longitud mínima 6 caracteres y máxima 15\n";
+	
+	/*-------------------------------------*/
+	/*--------COMPROBAR CONTRASEÑA--------*/
+	/*-----------------------------------*/
+	// Verificar si la contraseña está vacía o no cumple con la longitud mínima/máxima
+	if (password == "" || password.length < 6 || password.length > 15) {
+		mensaje += "La contraseña debe tener entre 6 y 15 caracteres.\n";
 		passwordInput.style.backgroundColor = 'red';
-	}else{
-		passwordInput.style.backgroundColor = '#e0e0e0';
+	} else {
+		let tieneMayuscula = false;
+		let tieneMinuscula = false;
+		let tieneNumero = false;
+		let caracteresValidos = true;
+
+		// Iterar sobre cada carácter para verificar condiciones
+		for (let i = 0; i < password.length && caracteresValidos; i++) {
+			let caracter = password.charAt(i);
+
+			// Verificar si es una letra mayúscula
+			if (caracter >= 'A' && caracter <= 'Z') {
+				tieneMayuscula = true;
+			}
+
+			// Verificar si es una letra minúscula
+			if (caracter >= 'a' && caracter <= 'z') {
+				tieneMinuscula = true;
+			}
+
+			// Verificar si es un número
+			if (caracter >= '0' && caracter <= '9') {
+				tieneNumero = true;
+			}
+
+			// Verificar si el carácter es válido (letras, números, guion o guion bajo)
+			if (!((caracter >= 'A' && caracter <= 'Z') ||
+				(caracter >= 'a' && caracter <= 'z') ||
+				(caracter >= '0' && caracter <= '9') ||
+				caracter === '-' || caracter === '_')) {
+				caracteresValidos = false;
+			}
+		}
+
+		// Verificar que contenga al menos una mayúscula, una minúscula y un número
+		if (!tieneMayuscula) {
+			mensaje += "La contraseña debe contener al menos una letra mayúscula.\n";
+		}
+
+		if (!tieneMinuscula) {
+			mensaje += "La contraseña debe contener al menos una letra minúscula.\n";
+		}
+
+		if (!tieneNumero) {
+			mensaje += "La contraseña debe contener al menos un número.\n";
+		}
+
+		if (!caracteresValidos) {
+			mensaje += "La contraseña solo puede contener letras, números, guion y guion bajo.\n";
+		}
+
+		// Cambiar el color de fondo del input según la validez
+		if (mensaje) {
+			passwordInput.style.backgroundColor = 'red';
+		} else {
+			passwordInput.style.backgroundColor = '#e0e0e0'; // Válido
+		}
 	}
+
+
 
 	if (password2 != password) {
 		mensaje += "Las contraseñas no coinciden\n";
 		password2Input.style.backgroundColor = 'red';
-	}else{
+	} else {
 		password2Input.style.backgroundColor = '#e0e0e0';
 	}
 
-	/*--------SEPARAR EL EMAIL EN LOCAL Y DOMINO----------*/
+
+	/*-----------------------------------*/
+	/*--------COMPROBAR EMAIL-----------*/
+	/*---------------------------------*/
 	let mal = false;
-	if (email) {
+	if (email && email.length < 255) {
 		let partes = email.split("@");
 		let parteLocal = partes[0];
 		let dominio = partes[1];
-		
+
 		/*comprobar que el formato es correcto*/
 		if (partes.length !== 2 || partes[0].length < 1 || partes[1].length < 1) {
 			mensaje += "El email debe contener una parte-local y un dominio separados por '@'.\n";
 			mal = true;
-		}else{
+		} else {
 			// validar parte-local (1 a 64 caracteres, con caracteres permitidos, sin puntos al inicio/final, sin "..")
-			if (parteLocal.length > 64 || !/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+$/.test(parteLocal) || parteLocal.startsWith('.') || parteLocal.endsWith('.') || parteLocal.includes('..')) {
-				mensaje += "La parte-local no es válida. Debe tener entre 1 y 64 caracteres, puede contener letras, dígitos y ciertos caracteres especiales, pero no puede empezar o terminar con un punto, ni tener puntos consecutivos.\n";
+			if (parteLocal.length === 0 || parteLocal.length > 64) {
+				mensaje += "La parte-local debe tener entre 1 y 64 caracteres.\n";
 				mal = true;
-			}
+			} else {
+				let caracteresValidos = true;
+				let caracteresPermitidos = "!#$%&'*+/=?^_`{|}~.-"; // Caracteres especiales permitidos
 
-			let subdominios = dominio.split(".");
-
-			// Comprobar longitud total del dominio
-			if (email.length > 255) {
-				mensaje += "El email no puede tener más de 255 caracteres.\n";
-				mal = true;
-			}
-
-			// Comprobar cada subdominio
-			for (let subdominio of subdominios) {
-				if (subdominio.length < 1 || subdominio.length > 63 || !/^[a-zA-Z0-9-]+$/.test(subdominio) || subdominio.startsWith('-') || subdominio.endsWith('-')) {
-					mensaje += `El subdominio no es válido. Cada subdominio debe tener entre 1 y 63 caracteres, puede contener letras, dígitos y guiones, pero no puede empezar o terminar con un guion.\n`;
+				// Verificar si empieza o termina con un punto
+				if (parteLocal.startsWith('.') || parteLocal.endsWith('.')) {
+					mensaje += "La parte-local no puede empezar o terminar con un punto.\n";
 					mal = true;
+				}
+
+				// Verificar si contiene ".." (dos puntos consecutivos)
+				if (parteLocal.includes('..')) {
+					mensaje += "La parte-local no puede contener puntos consecutivos.\n";
+					mal = true;
+				}
+
+				// Verificar que todos los caracteres sean válidos (letras, dígitos o caracteres especiales permitidos)
+				for (let i = 0; i < parteLocal.length && caracteresValidos; i++) {
+					let caracter = parteLocal.charAt(i);
+					if (!((caracter >= 'A' && caracter <= 'Z') ||
+						(caracter >= 'a' && caracter <= 'z') ||
+						(caracter >= '0' && caracter <= '9') ||
+						caracteresPermitidos.includes(caracter))) {
+						caracteresValidos = false;
+
+					}
+				}
+
+				if (!caracteresValidos) {
+					mensaje += "La parte-local contiene caracteres no permitidos. Solo se permiten letras, dígitos y los caracteres especiales !#$%&'*+/=?^_`{|}~.-.\n";
+					mal = true;
+				}
+			}
+
+	
+			// Comprobar cada subdominio
+			let subdominios = dominio.split(".");
+			for (let subdominio of subdominios) {
+				// Verificar la longitud de cada subdominio (1 a 63 caracteres)
+				if (subdominio.length < 1 || subdominio.length > 63) {
+					mensaje += "Cada subdominio debe tener entre 1 y 63 caracteres.\n";
+					mal = true;
+				} else {
+					let caracteresValidos = true;
+		
+					// Verificar si el subdominio empieza o termina con un guion
+					if (subdominio.startsWith('-') || subdominio.endsWith('-')) {
+						mensaje += "Los subdominios no pueden empezar o terminar con un guion.\n";
+						mal = true;
+						break;
+					}
+		
+					// Verificar que cada carácter sea válido (letras, dígitos o guion)
+					for (let i = 0; i < subdominio.length; i++) {
+						let caracter = subdominio.charAt(i);
+						if (!((caracter >= 'A' && caracter <= 'Z') || 
+							  (caracter >= 'a' && caracter <= 'z') || 
+							  (caracter >= '0' && caracter <= '9') || 
+							  caracter === '-')) {
+							caracteresValidos = false;
+							break; // Salir del bucle si se encuentra un carácter inválido
+						}
+					}
+					if (!caracteresValidos) {
+						mensaje += "Los subdominios solo pueden contener letras, dígitos y guiones.\n";
+						mal = true;
+
+					}
 				}
 			}
 		}
 	}
 	if (mal) {
 		emailInput.style.backgroundColor = 'red';
-	}else{
+	} else {
 		emailInput.style.backgroundColor
 	}
+
+	/*---------------------------------*/
 	/*--------COMPROBAR SEXO----------*/
+	/*-------------------------------*/
 	if (sex == "") {
 		mensaje += "El campo sexo no puede estar vacio\n";
 		sexInput.style.backgroundColor = 'red';
-	}else{
+	} else {
 		sexInput.style.backgroundColor = '#e0e0e0';
 	}
 
+	/*------------------------------------------------*/
 	/*--------COMPROBAR FECHA DE NACIMIENTO----------*/
+	/*----------------------------------------------*/
 	mal = false;
 	if (!birth) {
-        mensaje += "La fecha de nacimiento no puede estar vacía.\n";
-        mal = true;
-    } else {
-        let birthdate = new Date(birth);
+		mensaje += "La fecha de nacimiento no puede estar vacía.\n";
+		mal = true;
+	} else {
+		let birthdate = new Date(birth);
 
-        // Verificar si la fecha es válida
-        if (isNaN(birthdate.getTime())) {
-            mensaje += "La fecha de nacimiento no es válida.\n";
-            mal = true;
-        } else {
-            let today = new Date();
+		// Verificar si la fecha es válida
+		if (isNaN(birthdate.getTime())) {
+			mensaje += "La fecha de nacimiento no es válida.\n";
+			mal = true;
+		} else {
+			let today = new Date();
 
-            // Verificar si la fecha de nacimiento es mayor que la actual
-            if (birthdate > today) {
-                mensaje += "La fecha de nacimiento no puede ser mayor que la fecha actual.\n";
-                mal = true;
-            } else {
-                const differenceInMilliseconds = today - birthdate;
-                const millisecondsInAYear = 1000 * 60 * 60 * 24 * 365.25;
-                const age = differenceInMilliseconds / millisecondsInAYear;
+			// Verificar si la fecha de nacimiento es mayor que la actual
+			if (birthdate > today) {
+				mensaje += "La fecha de nacimiento no puede ser mayor que la fecha actual.\n";
+				mal = true;
+			} else {
+				const differenceInMilliseconds = today - birthdate;
+				const millisecondsInAYear = 1000 * 60 * 60 * 24 * 365.25;
+				const age = differenceInMilliseconds / millisecondsInAYear;
 				console.log(age);
-                // Comprobar si el usuario tiene 18 años o más
-                if (age < 18) {
-                    mensaje += "No tienes 18 años.\n";
-                    mal = true;
-                }
-            }
-        }
-    }
+				// Comprobar si el usuario tiene 18 años o más
+				if (age < 18) {
+					mensaje += "No tienes 18 años.\n";
+					mal = true;
+				}
+			}
+		}
+	}
 	if (mal) {
 		birthInput.style.backgroundColor = 'red';
-	}else{
+	} else {
 		birthInput.style.backgroundColor = '#e0e0e0';
 	}
 	/*--------MOSTRAR MENSAJE DE ERROR----------*/
