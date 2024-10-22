@@ -20,7 +20,11 @@ function comprobarLogin(event){
 		mensaje += "El campo contraseña no puede estar vacio\n";
 	}
 	if (mensaje != "") {
+		if (document.querySelector("#mensaje") != null) {
+			document.querySelector("#mensaje").remove();
+		}
 		let p = document.createElement("p");
+		p.setAttribute("id", "mensaje");
 		p.innerHTML = mensaje.replace(/\n/g, "<br>");
 		form.prepend(p);
 		event.preventDefault();
