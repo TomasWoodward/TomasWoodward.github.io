@@ -266,37 +266,63 @@ function comprobarRegister(event) {
 	/*------------------------------------------------*/
 	/*--------COMPROBAR FECHA DE NACIMIENTO----------*/
 	/*----------------------------------------------*/
+
 	mal = false;
-	if (!birth) {
-		mensaje += "La fecha de nacimiento no puede estar vacía.\n";
-		mal = true;
-	} else {
-		let birthdate = new Date(birth);
+	    // Verificar que el campo no esté vacío
+    if (birth === "") {
+        mensaje += "El campo de la fecha no puede estar vacío.\n";
+        mal = true;
+    } else {
+        // Separar la fecha en día, mes y año usando el formato dd/mm/AAAA
+        let partesFecha = birth.split("/");
+        if (partesFecha.length !== 3) {
+            mensaje += "El formato de la fecha debe ser dd/mm/AAAA.\n";
+            mal = true;
+        } else {
+            let dia = parseInt(partesFecha[0], 10);
+            let mes = parseInt(partesFecha[1], 10);
+            let anio = parseInt(partesFecha[2], 10);
 
-		// Verificar si la fecha es válida
-		if (isNaN(birthdate.getTime())) {
-			mensaje += "La fecha de nacimiento no es válida.\n";
-			mal = true;
-		} else {
-			let today = new Date();
+            // Verificar que día, mes y año sean números válidos
+            if (isNaN(dia) || isNaN(mes) || isNaN(anio)) {
+                mensaje += "El día, mes o año no son válidos.\n";
+                mal = true;
+            } else {
+                // Verificar que el mes esté entre 1 y 12
+                if (mes < 1 || mes > 12) {
+                    mensaje += "El mes debe estar entre 1 y 12.\n";
+                    mal = true;
+                } else {
+                    // Verificar los días máximos de cada mes (considerando años bisiestos para febrero)
+                    let diasMaximos = [31, (anio % 4 === 0 && anio % 100 !== 0 || anio % 400 === 0) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-			// Verificar si la fecha de nacimiento es mayor que la actual
-			if (birthdate > today) {
-				mensaje += "La fecha de nacimiento no puede ser mayor que la fecha actual.\n";
-				mal = true;
-			} else {
-				const differenceInMilliseconds = today - birthdate;
-				const millisecondsInAYear = 1000 * 60 * 60 * 24 * 365.25;
-				const age = differenceInMilliseconds / millisecondsInAYear;
-				console.log(age);
-				// Comprobar si el usuario tiene 18 años o más
-				if (age < 18) {
-					mensaje += "No tienes 18 años.\n";
-					mal = true;
-				}
-			}
-		}
-	}
+                    if (dia < 1 || dia > diasMaximos[mes - 1]) {
+                        mensaje += "El día no es válido para el mes dado.\n";
+                        mal = true;
+                    } else {
+                        // Crear objeto de fecha y comparar con la fecha actual
+                        let birthdate = new Date(anio, mes - 1, dia); // Restar 1 al mes porque Date usa índices de 0 a 11
+                        let today = new Date();
+
+                        if (birthdate > today) {
+                            mensaje += "La fecha de nacimiento no puede ser mayor que la fecha actual.\n";
+                            mal = true;
+                        } else {
+                            const differenceInMilliseconds = today - birthdate;
+                            const millisecondsInAYear = 1000 * 60 * 60 * 24 * 365.25;
+                            const age = differenceInMilliseconds / millisecondsInAYear;
+
+                            // Comprobar si el usuario tiene 18 años o más
+                            if (age < 18) {
+                                mensaje += "No tienes 18 años.\n";
+                                mal = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 	if (mal) {
 		birthInput.style.backgroundColor = 'red';
 	} else {
