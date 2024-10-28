@@ -142,6 +142,12 @@ function comprobarRegister(event) {
 		// Cambiar el color de fondo del input según la validez
 		if (mensaje) {
 			passwordInput.style.backgroundColor = 'red';
+			if (password2 != password || password2 == "") {
+				mensaje += "Las contraseñas no coinciden\n";
+				password2Input.style.backgroundColor = 'red';
+			} else {
+				password2Input.style.backgroundColor = '#e0e0e0';
+			}
 		} else {
 			passwordInput.style.backgroundColor = '#e0e0e0'; // Válido
 		}
@@ -149,18 +155,17 @@ function comprobarRegister(event) {
 
 
 
-	if (password2 != password) {
-		mensaje += "Las contraseñas no coinciden\n";
-		password2Input.style.backgroundColor = 'red';
-	} else {
-		password2Input.style.backgroundColor = '#e0e0e0';
-	}
+	
 
 
 	/*-----------------------------------*/
 	/*--------COMPROBAR EMAIL-----------*/
 	/*---------------------------------*/
 	let mal = false;
+	if (email == "") {
+		mensaje += "El email no puede estar vacío.\n";
+		mal = true;
+	} 
 	if (email && email.length < 255) {
 		let partes = email.split("@");
 		let parteLocal = partes[0];
@@ -250,7 +255,7 @@ function comprobarRegister(event) {
 	if (mal) {
 		emailInput.style.backgroundColor = 'red';
 	} else {
-		emailInput.style.backgroundColor
+		emailInput.style.backgroundColor = '#e0e0e0';
 	}
 
 	/*---------------------------------*/

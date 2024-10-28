@@ -22,7 +22,7 @@ main {
             font-size: var(--font-size-small); /* Tamaño medio para h2 y h3 */
         }
 
-        table {
+        table , .tablaDesplegable {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
@@ -94,6 +94,37 @@ main {
                 background-color: var(--submit-button-hover-background-color);
             }
         }
+        
+        #hiddenBoard{
+            display: none;
+        }
+
+        .tablaDesplegable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            font-size: var(--font-size-small); /* Fuente pequeña para las tablas */
+
+            th, td {
+                border: 1px solid #333;
+                padding: 10px;
+                text-align: left;
+            }
+
+            th {
+                background-color: var(--list-item-hover-background-color);
+                color: var(--footer-text-color);
+                font-size: var(--font-size-small); /* Fuente pequeña para los encabezados de tabla */
+            }
+
+            td {
+                background-color: var(--form-background-color);
+                font-size: var(--font-size-small); /* Fuente pequeña para las celdas de tabla */
+            }
+        }
+
     }
 }
 

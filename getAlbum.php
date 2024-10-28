@@ -43,10 +43,6 @@
     </nav> -->
 
     <main>
-    
-        
- 
-
         <aside>
             <h2>Album Print Request</h2>
             <p>Using this option......</p>
@@ -215,16 +211,11 @@
             
 
             <input type="button" id="show" value="Show price table">
+        <table id="hiddenBoard" >
 
-            <div id="hiddenBoard" style="display: none;">
-                <p>Esto es una prueba del desplegable oculto de la tabla</p>
-            </div>
-
+        </table> 
             <input type="submit" value="Request!">
         </form>
-
-        
-        
     </main>
 
     <script>

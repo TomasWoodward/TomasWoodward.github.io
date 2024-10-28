@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     function calcPrice() {
-        let board = document.createElement("table");
-
+        let board = document.getElementById("hiddenBoard");
+        
         let headers = ["Num pags","num fotos","B/N 150-300 dpi","B/N 450-900 dpi","Color 150-300 dpi","Color 450-900 dpi"];
         headers.forEach(function (header) {
             let th = document.createElement("th");
@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             board.appendChild(newRow);
         }
-        console.log("Se creó la tabla");
-        hiddenBoard.appendChild(board);  
+        console.log("Se creó la tabla"); 
+        board.classList.add("tablaDesplegable");
     }
 
 
@@ -60,5 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
             hiddenBoard.style.display = 'none';
             buttonShow.value = 'Show price table';
         }
+        hiddenBoard.classList.add("tablaDesplegable");
     });
 });
