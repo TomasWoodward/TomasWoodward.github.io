@@ -15,7 +15,14 @@
 </head>
 
 <body>
-    <header>
+
+<?php
+    $htmlTitle = 'Get Album Response';
+    include 'inc/start.php';
+    include 'inc/header.php';
+    include 'inc/nav.php';
+?>
+    <!-- <header>
         <a href="index.html"><img src="img/system/Logo.png" alt="">
         <h1>PI-Pictures &amp; Images</h1></a>
     </header>
@@ -32,14 +39,14 @@
                <input type="submit" value="Search">
            </form>
         </ul>
-    </nav>
+    </nav> -->
 
     <main >
         <h2>Correct Album Print Request!!!</h2>
 		<h3>Application details: </h3>
-		<p>Name: Evaristo</p>
-		<p>Album title: Harry Potter</p>
-		<p>Additional text: hola</p>
+		<p>Name: <?=$_POST["name"]?></p>
+		<p>Album title: <?=$_POST["title"]?></p>
+		<p>Additional text:<?=$_POST["addText"]?></p>
 		<p>Email: ev@gmail.com</p>
 		<p>Adress: C/ Salamanca n4 3z 03610 Alicante España</p>
 		<p>Phone: 98383413</p>
@@ -51,9 +58,13 @@
 		<p>Price: 15$</p>
     </main>
 
-    <footer  data-url="htpps://dawua.free.nf/">
+    <?php
+    include 'inc/footer.php';
+    include 'inc/end.php';
+    ?>
+    <!-- <footer  data-url="htpps://dawua.free.nf/">
         <p><a href="https://creativecommons.org/licenses/">&copy;</a> Develop by Tomas Woodward Marin y Alex Valdelvira Muñoz 2024. All rights reserved </p>
         <p><a href="accesibility.html">Accesibility statements</a></p>
     </footer>
 </body>
-</html>
+</html> -->

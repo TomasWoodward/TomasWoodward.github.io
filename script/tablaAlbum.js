@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         let minFee = 10;
         let rows = [
-            
             [1, 3, (minFee + 1 * 2) + " €", (minFee + 1 * 2 + 3 * 0.2).toFixed(2) + " €", (minFee + 1 * 2 + 3 * 0.5).toFixed(2) + " €", (minFee + 1 * 2 + 3 * 0.5 + 3 * 0.2).toFixed(2) + " €"],
             [2, 6, (minFee + 2 * 2) + " €", (minFee + 2 * 2 + 6 * 0.2).toFixed(2) + " €", (minFee + 2 * 2 + 6 * 0.5).toFixed(2) + " €", (minFee + 2 * 2 + 6 * 0.5 + 6 * 0.2).toFixed(2) + " €"],
             [3, 9, (minFee + 3 * 2) + " €", (minFee + 3 * 2 + 9 * 0.2).toFixed(2) + " €", (minFee + 3 * 2 + 9 * 0.5).toFixed(2) + " €", (minFee + 3 * 2 + 9 * 0.5 + 9 * 0.2).toFixed(2) + " €"],
