@@ -42,7 +42,7 @@ function comprobarRegister(event) {
 	// Confirmación de contraseña
 	let password2Input = document.querySelector("#pass2");
 	let password2 = password2Input.value.trim();
-	if (password2 !== password) {
+	if (password2 != password || password2 === "") {
 		showErrorMessage(password2Input, "Las contraseñas no coinciden.");
 		hasErrors = true;
 	}
@@ -75,6 +75,8 @@ function comprobarRegister(event) {
 
 	if (!hasErrors) {
 		form.submit(); // Si no hay errores, enviar el formulario
+	}else{
+		form.preventDefault();
 	}
 }
 
