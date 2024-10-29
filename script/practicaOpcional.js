@@ -1,8 +1,6 @@
 /*-------------------------------------------------------*/
-/*--------Fichero para la practica opcional de JS-------*/
-/*-----------------------------------------------------*/
-
-/*Cambiar la ruta del fichero de script en el register.html*/
+/*--------Fichero para la practica opcional de JS--------*/
+/*-------------------------------------------------------*/
 
 document.addEventListener("DOMContentLoaded", function () {
 	let form = document.querySelector("#formRegister");
@@ -10,159 +8,168 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function comprobarRegister(event) {
-	/*--------VARIABLES PARA COMPROBAR----------*/
-	let mensaje = "";
-	console.log("Comprobando formulario de registro...");
+	let isFormValid = true; 
 
-
+	// Variables de los inputs
 	let nameInput = document.querySelector("#userName");
-	let name = nameInput.value;
+	let name = nameInput.value.trim();
 
 	let passwordInput = document.querySelector("#pass");
-	let password = passwordInput.value;
+	let password = passwordInput.value.trim();
 
 	let password2Input = document.querySelector("#pass2");
-	let password2 = password2Input.value;
+	let password2 = password2Input.value.trim();
 
 	let emailInput = document.querySelector("#email");
-	let email = emailInput.value;
+	let email = emailInput.value.trim();
 
 	let sexInput = document.querySelector("#sex");
-	let sex = sexInput.value;
+	let sex = sexInput.value.trim();
 
 	let birthInput = document.querySelector("#birth");
-	let birth = birthInput.value;
+	let birth = birthInput.value.trim();
 
-	let form = document.querySelector("#formRegister");
+	// Función para mostrar un mensaje de error sobre un input específico
+	function mostrarError(input, mensaje) {
+		let error = document.createElement("p");
+		error.className = "error-message";
+		error.innerText = mensaje;
+		input.before(error);
+		input.style.backgroundColor = 'red';
+		error.style.color = 'red';
+		isFormValid = false;
+	}
 
-	/*--------QUITAR ESPACIOS EN BLANCO Y TABULACIONES----------*/
-	name = name.replaceAll(/\s/g, "");
-	name = name.replaceAll(/\t/g, "");
-	password = password.replaceAll(/\s/g, "");
-	password = password.replaceAll(/\t/g, "");
-	password2 = password2.replaceAll(/\s/g, "");
-	password2 = password2.replaceAll(/\t/g, "");
-	sex = sex.replaceAll(/\s/g, "");
-	sex = sex.replaceAll(/\t/g, "");
-	email = email.replaceAll(/\s/g, "");
-	email = email.replaceAll(/\t/g, "");
+	// Función para limpiar los mensajes de error de un input específico
+	function limpiarError(input) {
+		let error = input.previousElementSibling;
+		if (error && error.classList.contains("error-message")) {
+			error.remove();
+		}
+		input.style.backgroundColor = '#e6e6e6';
+	}
 
-
+	// Limpiar mensajes de error anteriores
+	document.querySelectorAll(".error-message").forEach((msg) => msg.remove());
 
 	/*-----------------------------------*/
 	/*--------COMPROBAR NOMBRE----------*/
-	/*---------------------------------*/
-	if (name == "" || name.length < 3 || name.length > 15 || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(name)) {
-		mensaje += "El nombre sólo puede contener letras del alfabeto inglés (en mayúsculas y minúsculas) y números; no puede comenzar con un número; longitud mínima 3 caracteres y máxima 15\n";
-		nameInput.style.backgroundColor = 'red';
+	/*-----------------------------------*/
+	if (name === "" || name.length < 3 || name.length > 15 || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(name)) {
+		mostrarError(nameInput, "El nombre solo puede contener letras y números; no puede comenzar con un número; mínimo 3 caracteres y máximo 15.");
 	} else {
-		nameInput.style.backgroundColor = '#e0e0e0';
+		limpiarError(nameInput);
 	}
 
 	/*-------------------------------------*/
 	/*--------COMPROBAR CONTRASEÑA--------*/
-	/*-----------------------------------*/
-	if (password == "" || password.length < 6 || password.length > 15 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{6,15}$/.test(password)) {
-		mensaje += "El campo contraseña sólo puede contener letras del alfabeto inglés (en mayúsculas y minúsculas),números, el guion y el guion bajo(subrayado); al menos debe contener una letra en mayúscula,una letra en minúscula y un número; longitud mínima 6 caracteres y máxima 15\n";
-		passwordInput.style.backgroundColor = 'red';
-	}else{
-		passwordInput.style.backgroundColor = '#e0e0e0';
+	/*-------------------------------------*/
+	if (password === "" || password.length < 6 || password.length > 15 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d_-]{6,15}$/.test(password)) {
+		mostrarError(passwordInput, "La contraseña debe tener una letra mayúscula, una minúscula y un número; mínimo 6 caracteres y máximo 15.");
+	} else {
+		limpiarError(passwordInput);
 	}
 
+	/*-----------------------------------------*/
+	/*--------COMPROBAR CONFIRMACIÓN CONTRASEÑA*/
+	/*-----------------------------------------*/
+	if (password2 !== password || password2 === "") {
+		mostrarError(password2Input, "Las contraseñas no coinciden.");
+	} else {
+		limpiarError(password2Input);
+	}
 
 	/*-----------------------------------*/
 	/*--------COMPROBAR EMAIL-----------*/
-	/*---------------------------------*/
-	if (email && email.length < 255) {
+	/*-----------------------------------*/
+	let mal = false;  // Variable auxiliar para detectar errores en el email
+	if (email && email.length <= 254) {
 		let partes = email.split("@");
-		let parteLocal = partes[0];
-		let dominio = partes[1];
-
-		/*comprobar que el formato es correcto*/
-		if (partes.length !== 2 || partes[0].length < 1 || partes[1].length < 1) {
-			mensaje += "El email debe contener una parte-local y un dominio separados por '@'.\n";
+		if (partes.length !== 2) {
+			mostrarError(emailInput, "El email debe tener una parte local y un dominio separados por '@'.");
 			mal = true;
 		} else {
-			// validar parte-local (1 a 64 caracteres, con caracteres permitidos, sin puntos al inicio/final, sin "..")
-			if (parteLocal.length > 64 || !/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+$/.test(parteLocal) || parteLocal.startsWith('.') || parteLocal.endsWith('.') || parteLocal.includes('..')) {
-				mensaje += "La parte-local no es válida. Debe tener entre 1 y 64 caracteres, puede contener letras, dígitos y ciertos caracteres especiales, pero no puede empezar o terminar con un punto, ni tener puntos consecutivos.\n";
-				mal = true;
-			}
+			let [parteLocal, dominio] = partes;
 
-			let subdominios = dominio.split(".");
-			// Comprobar cada subdominio
-			for (let subdominio of subdominios) {
-				if (subdominio.length < 1 || subdominio.length > 63 || !/^[a-zA-Z0-9-]+$/.test(subdominio) || subdominio.startsWith('-') || subdominio.endsWith('-')) {
-					mensaje += `El subdominio no es válido. Cada subdominio debe tener entre 1 y 63 caracteres, puede contener letras, dígitos y guiones, pero no puede empezar o terminar con un guion.\n`;
-					mal = true;
+			// Validación de la parte local
+			if (
+				parteLocal.length < 1 ||
+				parteLocal.length > 64 ||
+				!/^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+$/.test(parteLocal) ||
+				parteLocal.startsWith('.') ||
+				parteLocal.endsWith('.') ||
+				parteLocal.includes('..')
+			) {
+				mostrarError(emailInput, "La parte local no es válida: debe tener entre 1 y 64 caracteres, sin puntos al inicio o final ni consecutivos.");
+				mal = true;
+			} else {
+				// Validación del dominio
+				let subdominios = dominio.split(".");
+				for (let subdominio of subdominios) {
+					if (
+						subdominio.length < 1 ||
+						subdominio.length > 63 ||
+						!/^[a-zA-Z0-9-]+$/.test(subdominio) ||
+						subdominio.startsWith('-') ||
+						subdominio.endsWith('-')
+					) {
+						mostrarError(emailInput, "Cada subdominio debe tener entre 1 y 63 caracteres sin guiones al inicio o final.");
+						mal = true;
+						break;
+					}
 				}
 			}
 		}
-	}
-	if (mal) {
-		emailInput.style.backgroundColor = 'red';
 	} else {
-		emailInput.style.backgroundColor
+		mostrarError(emailInput, "El email no es válido o excede la longitud máxima de 254 caracteres.");
+		mal = true;
 	}
+
+	if (!mal) limpiarError(emailInput);
 
 	/*---------------------------------*/
 	/*--------COMPROBAR SEXO----------*/
-	/*-------------------------------*/
-	if (sex == "") {
-		mensaje += "El campo sexo no puede estar vacio\n";
-		sexInput.style.backgroundColor = 'red';
+	/*---------------------------------*/
+	if (sex === "") {
+		mostrarError(sexInput, "El campo sexo no puede estar vacío.");
 	} else {
-		sexInput.style.backgroundColor = '#e0e0e0';
+		limpiarError(sexInput);
 	}
 
 	/*------------------------------------------------*/
 	/*--------COMPROBAR FECHA DE NACIMIENTO----------*/
-	/*----------------------------------------------*/
-	mal = false;
+	/*------------------------------------------------*/
+	let birthDateInvalid = false;
 	if (!birth) {
-		mensaje += "La fecha de nacimiento no puede estar vacía.\n";
-		mal = true;
+		mostrarError(birthInput, "La fecha de nacimiento no puede estar vacía.");
+		birthDateInvalid = true;
 	} else {
 		let birthdate = new Date(birth);
 
 		// Verificar si la fecha es válida
 		if (isNaN(birthdate.getTime())) {
-			mensaje += "La fecha de nacimiento no es válida.\n";
-			mal = true;
+			mostrarError(birthInput, "La fecha de nacimiento no es válida debe seguir el formato dd/mm/AAAA.");
+			birthDateInvalid = true;
 		} else {
 			let today = new Date();
-
-			// Verificar si la fecha de nacimiento es mayor que la actual
 			if (birthdate > today) {
-				mensaje += "La fecha de nacimiento no puede ser mayor que la fecha actual.\n";
-				mal = true;
+				mostrarError(birthInput, "La fecha de nacimiento no puede ser mayor que la fecha actual.");
+				birthDateInvalid = true;
 			} else {
 				const differenceInMilliseconds = today - birthdate;
 				const millisecondsInAYear = 1000 * 60 * 60 * 24 * 365.25;
 				const age = differenceInMilliseconds / millisecondsInAYear;
-				console.log(age);
-				// Comprobar si el usuario tiene 18 años o más
+
 				if (age < 18) {
-					mensaje += "No tienes 18 años.\n";
-					mal = true;
+					mostrarError(birthInput, "Debes tener al menos 18 años.");
+					birthDateInvalid = true;
 				}
 			}
 		}
 	}
-	if (mal) {
-		birthInput.style.backgroundColor = 'red';
-	} else {
-		birthInput.style.backgroundColor = '#e0e0e0';
-	}
-	/*--------MOSTRAR MENSAJE DE ERROR----------*/
-	if (mensaje != "") {
-		if (document.querySelector("#mensaje") != null) {
-			document.querySelector("#mensaje").remove();
-		}
-		let p = document.createElement("p");
-		p.setAttribute("id", "mensaje");
-		p.innerHTML = mensaje.replace(/\n/g, "<br>");
-		form.prepend(p);
-		event.preventDefault();
-	}
+
+	if (!birthDateInvalid) limpiarError(birthInput);
+
+	/*--------EVITAR EL ENVÍO SI HAY ERRORES----------*/
+	if (!isFormValid) event.preventDefault();
 }
