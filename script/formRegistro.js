@@ -79,7 +79,7 @@ function comprobarRegister(event) {
 }
 
 function showErrorMessage(input, message) {
-	const errorMessage = `<div  style="color: red; margin-bottom: 4px;">${message}</div>`;
+	const errorMessage = `<div class="error-message" style="color: red; margin-bottom: 4px;">${message}</div>`;
 	input.insertAdjacentHTML("beforebegin", errorMessage);
 	input.style.backgroundColor = 'red';
 }
