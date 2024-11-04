@@ -1,7 +1,3 @@
-/*-------------------------------------------------------*/
-/*--------Fichero para la practica opcional de JS--------*/
-/*-------------------------------------------------------*/
-
 document.addEventListener("DOMContentLoaded", function () {
 	let form = document.querySelector("#formRegister");
 	form.addEventListener("submit", comprobarRegister);
@@ -31,10 +27,11 @@ function comprobarRegister(event) {
 
 	// Función para mostrar un mensaje de error sobre un input específico
 	function mostrarError(input, mensaje) {
+		limpiarError(input); // Eliminar cualquier error previo en el mismo campo
 		let error = document.createElement("p");
 		error.className = "error-message";
 		error.innerText = mensaje;
-		input.before(error);
+		input.parentNode.insertBefore(error, input); // Insertar el mensaje antes del input
 		input.style.backgroundColor = 'red';
 		error.style.color = 'red';
 		isFormValid = false;

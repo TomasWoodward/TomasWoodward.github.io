@@ -7,29 +7,30 @@ $cssGrande = "indexGrande";
 $cssGrandeContraste = "indexHighBig";
 include 'inc/start.php';
 include 'inc/header.php';
-include 'inc/nav.php';
+include 'inc/navAuth.php';
 ?>
+
 <main>
     <h2>Latest photos</h2>
 
     <figure>
-        <a href="photoDetails.php?id=1 ">
+        <a href="photoDetails.php">
             <h3>Photo title</h3>
         </a>
         <a href="photoDetails.php"><img src="img/users/photo1.png" alt="Photo1"></a>
         <figcaption>
-            <p>Aqui en la playa pasandolo bien con los colegas</p>
+            <p>Photo desc</p>
             <p>Photo by: <a href="userDetails.php">User</a></p>
         </figcaption>
     </figure>
 
     <figure>
-        <a href="errorPage.php">
+        <a href="photoDetails.php">
             <h3>Photo title</h3>
         </a>
-        <a href="errorPage.php"><img src="img/users/photo2.png" alt="Photo2"></a>
+        <a href="photoDetails.php"><img src="img/users/photo2.png" alt="Photo2"></a>
         <figcaption>
-            <p>Mi nuevo porche caiman de 300cv y 1000kg de peso</p>
+            <p>Photo desc</p>
             <p>Photo by: <a href="userDetails.php">User</a></p>
         </figcaption>
     </figure>
@@ -40,7 +41,7 @@ include 'inc/nav.php';
         </a>
         <a href="photoDetails.php"><img src="img/users/photo3.png" alt="Photo3"></a>
         <figcaption>
-            <p>Mi nuevo porche caiman de 300cv y 1000kg de peso</p>
+            <p>Photo desc</p>
             <p>Photo by: <a href="userDetails.php">User</a></p>
         </figcaption>
     </figure>
@@ -51,7 +52,7 @@ include 'inc/nav.php';
         </a>
         <a href="photoDetails.php"><img src="img/users/photo4.png" alt="Photo4"></a>
         <figcaption>
-            <p>Prueba de descripcion para la practica 1 de diseño de aplicaciones web</p>
+            <p>Photo desc</p>
             <p>Photo by: <a href="userDetails.php">User</a></p>
         </figcaption>
     </figure>
@@ -62,12 +63,12 @@ include 'inc/nav.php';
         </a>
         <a href="photoDetails.php"><img src="img/users/photo5.png" alt="Photo5"></a>
         <figcaption>
-            <p>Ultima descripcion para verificar que todo se ve correctamente </p>
+            <p>Photo desc</p>
             <p>Photo by: <a href="userDetails.php">User</a></p>
         </figcaption>
     </figure>
-</main>
 
+</main>
 <?php
 include 'inc/footer.php';
 include 'inc/end.php';

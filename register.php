@@ -1,97 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="css/default/global.css" media="screen">
-    <link rel="stylesheet" href="css/default/searchStyle.css">
-    <link rel="alternate stylesheet" href="css/darkTheme/searchOscuro.css" title="dark theme">
-    <link rel="alternate stylesheet" href="css/highContrast/searchContraste.css" title="high Contrast">
-    <link rel="alternate stylesheet" href="css/textoGrande/searchGrande.css" title="big font">
-    <link rel="alternate stylesheet" title="big Font + high contrast" href="css/highBig/searchHb.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="script/formRegistro.js"></script>
-</head>
+<?php
+$htmlTitle = 'Register';
+$cssDefault = "searchStyle";
+$cssOscuro = "searchOscuro";
+$cssContraste = "searchContraste";
+$cssGrande = "searchGrande";
+$cssGrandeContraste = "searchHb";
+include "inc/start.php";
+include 'inc/header.php';
+include 'inc/nav.php';
+?>
 
-<body>
-    <?php
-        $htmlTitle = 'Register'; // esto habra que cambiarlo posteriormente al quitar la cabecera
-           include 'inc/header.php';
-           include 'inc/nav.php';
-    ?>
-    <!-- <header>
-        <a href="index.html"><img src="img/system/Logo.png" alt="">
-		<h1>PI-Pictures &amp; Images</h1></a>
-    </header>
+<main>
+    <form action="auth.php" method="post" id="formRegister">
 
-    <nav>
-        <ul>
-            <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Log In</a></li>
-            <li><a href="register.html"><i class="fa fa-user-plus"></i> Create account</a></li>
-            <li><a href="search.html"><i class="fa fa-search"></i> Search</a></li>
-            <form action="result.html" method="get">
-                <input type="text" id="search" name="search" >
-                <input type="submit" value="Search">
-            </form>
-        </ul>
-    </nav> -->
+        <label for="userName">User name: </label>
+        <input type="text" id="userName" name="userName">
 
-    <main>
-		<form action="auth.html" method="post" id="formRegister">
+        <label for="pass">Password: </label>
+        <input type="password" id="pass" name="pass">
 
-            <label for="userName">User name: </label>
-            <input type="text" id="userName" name="userName">
+        <label for="pass2">Repeat password: </label>
+        <input type="password" id="pass2" name="pass2">
 
-            <label for="pass">Password: </label>
-            <input type="password" id="pass" name="pass">
+        <label for="email">Email: </label>
+        <input type="text" id="email" name="email">
 
-			<label for="pass2">Repeat password: </label>
-            <input type="password" id="pass2" name="pass2">
+        <label for="sex">Sex: </label>
+        <input type="text" id="sex" name="sex">
 
-            <label for="email">Email: </label>
-            <input type="text" id="email" name="email">
+        <label for="birth">Birth date (dd/mm/AAAA): </label>
+        <input type="text" id="birth" name="birth">
 
-			<label for="sex">Sex: </label>
-            <input type="text" id="sex" name="sex">
+        <label for="city">City: </label>
+        <input type="text" id="city" name="city">
 
-			<label for="birth">Birth date (dd/mm/AAAA): </label>
-            <input type="text" id="birth" name="birth">
-            
-            <label for="city">City: </label>
-            <input type="text" id="city" name="city">
 
-			
-            <label for="country">Country: </label>
-            <select id="country" name="country">
-                <option value="usa">United States</option>
-                <option value="canada">Canada</option>
-                <option value="mexico">Mexico</option>
-                <option value="uk">United Kingdom</option>
-                <option value="germany">Germany</option>
-                <option value="australia">Australia</option>
-                <option value="brazil">Brazil</option>
-                <option value="china">China</option>
-                <option value="india">India</option>
-                <option value="japan">Japan</option>
-            </select>
+        <label for="country">Country: </label>
+        <select id="country" name="country">
+            <option value="usa">United States</option>
+            <option value="canada">Canada</option>
+            <option value="mexico">Mexico</option>
+            <option value="uk">United Kingdom</option>
+            <option value="germany">Germany</option>
+            <option value="australia">Australia</option>
+            <option value="brazil">Brazil</option>
+            <option value="china">China</option>
+            <option value="india">India</option>
+            <option value="japan">Japan</option>
+        </select>
 
-			<label for="photo">Photo: </label>
-			<input type="file" id="photo" name="photo">
+        <label for="photo">Photo: </label>
+        <input type="file" id="photo" name="photo">
 
-            <input type="submit" value="Register">
-             
-        </form>
-    </main>
+        <input type="submit" value="Register">
 
-    <?php
-    include 'inc/footer.php';
-    include 'inc/end.php';
-    ?>
-    <!-- <footer  data-url="htpps://dawua.free.nf/">
-        <p><a href="https://creativecommons.org/licenses/">&copy;</a> Develop by Tomas Woodward Marin y Alex Valdelvira Muñoz 2024. All rights reserved </p>
-        <p><a href="accesibility.html">Accesibility statements</a></p>
-    </footer>
-</body>
-</html> -->
+    </form>
+</main>
+
+<?php
+include 'inc/footer.php';
+include 'inc/end.php';
+?>
