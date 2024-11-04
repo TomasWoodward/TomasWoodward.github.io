@@ -5,6 +5,7 @@ $cssOscuro = "accesibilityOscuro";
 $cssContraste = "accesibilityContraste";
 $cssGrande = "accesibilityGrande";
 $cssGrandeContraste = "accesibilityHB";
+$scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/nav.php';

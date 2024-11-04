@@ -11,5 +11,6 @@
     <link rel="alternate stylesheet" title="big Font" href="css/textoGrande/<?=$cssGrande?>.css">
     <link rel="alternate stylesheet" title="big Font + high contrast" href="css/highBig/<?=$cssGrandeContraste?>.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <?=$scripts1?>
 </head>
 <body>

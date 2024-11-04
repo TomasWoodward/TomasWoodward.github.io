@@ -5,11 +5,50 @@ $cssOscuro = "getAlbumOscuro";
 $cssContraste = "getAlbumContraste";
 $cssGrande = "getAlbumGrande";
 $cssGrandeContraste = "getAlbumHb";
+$scripts1 = "<script src='script/tablaAlbum.js'></script>";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/navAuth.php';
 ?>
 
+<?php
+// Variables iniciales
+$headers = ["Num pags", "Num fotos", "B/N 150-300 dpi", "B/N 450-900 dpi", "Color 150-300 dpi", "Color 450-900 dpi"];
+$minFee = 10;
+$rows = [];
+
+// Generar las filas de la tabla en base a las fórmulas ajustadas
+for ($i = 1; $i <= 15; $i++) {
+    $numPages = $i;
+    $numPhotos = $i * 3;
+
+    // Calcular el precio base de las páginas en función de la cantidad
+    $pricePerPage = 0;
+    if ($numPages <= 4) {
+        $pricePerPage = $numPages * 2; // 2€ por página para las primeras 4
+    } elseif ($numPages <= 10) {
+        $pricePerPage = (4 * 2) + (($numPages - 4) * 1.8); // 2€ para las primeras 4 y 1.8€ para las páginas de 5 a 10
+    } else {
+        $pricePerPage = (4 * 2) + (6 * 1.8) + (($numPages - 10) * 1.6); // 2€ para las primeras 4, 1.8€ para las siguientes 6, y 1.6€ para el resto
+    }
+
+    // Cálculo del precio total por tipo de impresión y resolución
+    $price1 = $minFee + $pricePerPage; // B/N, resolución <= 300 dpi
+    $price2 = $price1 + $numPhotos * 0.2; // B/N, resolución >= 300 dpi
+    $price3 = $price1 + $numPhotos * 0.5; // Color, resolución <= 300 dpi
+    $price4 = $price3 + $numPhotos * 0.2; // Color, resolución >= 300 dpi
+
+    // Agregar fila a la tabla
+    $rows[] = [
+        $numPages,
+        $numPhotos,
+        number_format($price1, 2) . " €",
+        number_format($price2, 2) . " €",
+        number_format($price3, 2) . " €",
+        number_format($price4, 2) . " €"
+    ];
+}
+?>
 <main>
     <aside>
         <h2>Album Print Request</h2>
@@ -184,18 +223,43 @@ include 'inc/navAuth.php';
             <input type="date" id="aproxDate" class="aproxDate" name="aproxDate">
         </p>
 
-        <p><input type="radio">color
-            <input type="radio" checked>B/N
+        <p>
+            <input type="radio" name="colorOption" value="color"> Color
+            <input type="radio" name="colorOption" value="bn" checked> B/N
         </p>
 
+        <button type="button"
+            onclick="document.getElementById('priceTable').style.display = document.getElementById('priceTable').style.display === 'none' ? 'table' : 'none';">
+            Show/Hide price table
+        </button>
 
+        <table id="priceTable" class="tablaDesplegable" style="display: none;">
+            <?php
+           
+            echo "<tr>";
+            foreach ($headers as $header) {
+                echo "<th>$header</th>";
+            }
+            echo "</tr>";
+            foreach ($rows as $row) {
+                echo "<tr>";
+                foreach ($row as $cell) {
+                    echo "<td>$cell</td>";
+                }
+                echo "</tr>";
+            }
+            
+            ?>
+        </table>
 
         <input type="button" id="show" value="Show price table">
         <table id="hiddenBoard">
 
         </table>
+
         <input type="submit" value="Request!">
     </form>
+
 </main>
 
 <script>

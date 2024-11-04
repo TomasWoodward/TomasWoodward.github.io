@@ -5,6 +5,7 @@ $cssOscuro = "userOscuro";
 $cssContraste = "userContraste";
 $cssGrande = "userGrande";
 $cssGrandeContraste = "userProfileHb";
+$scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/navAuth.php';
@@ -14,8 +15,8 @@ include 'inc/navAuth.php';
         <li>My data</li>
         <li>Unsubscribe</li>
         <li>My Albums</li>
-        <li>Create albulm</li>
-        <li><a href="./getAlbum.php">Request Album</a></li>
+        <li><a href="createAlbum.php">Create albulm</a></li>
+        <li><a href="getAlbum.php">Request Album</a></li>
         <li><a href="auth.php">Log out</a></li>
     </ul>
 </main>

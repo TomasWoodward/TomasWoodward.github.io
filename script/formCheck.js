@@ -8,10 +8,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function comprobarLogin(event){
 	/*--------VARIABLES PARA COMPROBAR----------*/
-	let mensaje = "";
 	let nameInput = document.querySelector("#userName");
 	let name = nameInput.value;
-
+	let isFormValid = true; 
 	let passwordInput = document.querySelector("#pass");
 	let password = passwordInput.value;
 
@@ -24,28 +23,37 @@ function comprobarLogin(event){
 	password = password.replaceAll(/\t/g, "");
 	
 	if (name == "" ) {
-		mensaje += "El campo nombre no puede estar vacio\n";
-		nameInput.style.backgroundColor = 'red';
+		mostrarError(nameInput, "El campo nombre no puede estar vacio");
 	}else{
-		nameInput.style.backgroundColor = '#e0e0e0';
+		limpiarError(nameInput);
 	}
 
 	if (password == "") {
-		mensaje += "El campo contraseña no puede estar vacio\n";
-		passwordInput.style.backgroundColor = 'red';
+		mostrarError(passwordInput, "El campo contraseña no puede estar vacio");
 	}else{
-		passwordInput.style.backgroundColor = '#e0e0e0';
+		limpiarError(passwordInput);
 	}
 
-	/*--------MOSTRAR MENSAJE DE ERROR----------*/
-	if (mensaje != "") {
-		if (document.querySelector("#mensaje") != null) {
-			document.querySelector("#mensaje").remove();
-		}
-		let p = document.createElement("p");
-		p.setAttribute("id", "mensaje");
-		p.innerHTML = mensaje.replace(/\n/g, "<br>");
-		form.prepend(p);
+	if (!isFormValid) {
 		event.preventDefault();
 	}
+	
+function mostrarError(input, mensaje) {
+	limpiarError(input); // Eliminar cualquier error previo en el mismo campo
+	let error = document.createElement("p");
+	error.className = "error-message";
+	error.innerText = mensaje;
+	input.parentNode.insertBefore(error, input); // Insertar el mensaje antes del input
+	input.style.backgroundColor = 'red';
+	error.style.color = 'red';
+	isFormValid = false;
+}
+
+function limpiarError(input) {
+	let error = input.previousElementSibling;
+	if (error && error.classList.contains("error-message")) {
+		error.remove();
+	}
+	input.style.backgroundColor = '#e6e6e6';
+}
 }

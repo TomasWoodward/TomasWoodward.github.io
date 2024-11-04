@@ -5,6 +5,7 @@ $cssOscuro = "searchOscuro";
 $cssContraste = "searchContraste";
 $cssGrande = "searchGrande";
 $cssGrandeContraste = "searchHb";
+$scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/navAuth.php';

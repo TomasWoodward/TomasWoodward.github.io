@@ -5,6 +5,7 @@ $cssOscuro = "indexOscuro";
 $cssContraste = "indexContraste";
 $cssGrande = "indexGrande";
 $cssGrandeContraste = "indexHighBig";
+$scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/navAuth.php';

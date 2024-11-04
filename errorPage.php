@@ -5,6 +5,7 @@ $cssOscuro = "albumResultOscuro";
 $cssContraste = "albumResultContraste";
 $cssGrande = "albumResultGrande";
 $cssGrandeContraste = "albumResultHb";
+$scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/nav.php';
