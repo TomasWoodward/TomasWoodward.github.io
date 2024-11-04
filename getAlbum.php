@@ -49,6 +49,7 @@ for ($i = 1; $i <= 15; $i++) {
     ];
 }
 ?>
+
 <main>
     <aside>
         <h2>Album Print Request</h2>

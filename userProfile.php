@@ -10,7 +10,8 @@ include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/navAuth.php';
 ?>
-<main>
+
+<main> 
     <ul>
         <li>My data</li>
         <li>Unsubscribe</li>

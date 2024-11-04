@@ -11,6 +11,7 @@ include 'inc/header.php';
 include 'inc/navAuth.php';
 ?>
 <main>
+    <h2>Search</h2>
     <form action="result.php" method="post">
 
         <label for="searchTitle">Title: </label>

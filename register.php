@@ -12,6 +12,7 @@ include 'inc/nav.php';
 ?>
 
 <main>
+    <h2>Register</h2>
     <form action="auth.php" method="post" id="formRegister">
 
         <label for="userName">User name: </label>

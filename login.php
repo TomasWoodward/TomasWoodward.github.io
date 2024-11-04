@@ -11,6 +11,7 @@ include 'inc/header.php';
 include 'inc/nav.php';
 ?>
 <main>
+    <h2>Log in</h2>
     <form id="formLogin" action="auth.php" method="post">
 
         <label for="search">User name:</label>
