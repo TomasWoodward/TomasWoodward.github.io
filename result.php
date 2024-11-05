@@ -13,12 +13,15 @@ include 'inc/navAuth.php';
 
 <main data-url="https://dawua.free.nf/">
     <h2>Search results</h2>
-
     <aside>
         <h3>Search parameters</h3>
-        <p>Title = <?= $_POST["searchTitle"] ?></p>
-        <p>Date = <?= $_POST["searchDate"] ?></p>
-        <p>Country = <?= $_POST["searchCountry"] ?></p>
+        <?php if (!empty($_POST["searchTitle"])) { ?>
+            <p>Title = <?php echo htmlspecialchars($_POST["searchTitle"]); ?></p>
+            <p>Date = <?php echo htmlspecialchars($_POST["searchDate"] ?? ''); ?></p>
+            <p>Country = <?php echo htmlspecialchars($_POST["searchCountry"] ?? ''); ?></p>
+        <?php } else { ?>
+            <p>Title = <?php echo htmlspecialchars($_POST["search"] ?? ''); ?></p>
+        <?php } ?>
     </aside>
     <figure>
         <a href="photoDetails.php?id=1">
