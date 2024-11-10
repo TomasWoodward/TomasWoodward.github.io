@@ -11,60 +11,24 @@ include 'inc/header.php';
 include 'inc/nav.php';
 
 // Inicializamos las variables
-$userName = isset($_POST["userName"]) ? $_POST["userName"] : '';
-$password = isset($_POST["pass"]) ? $_POST["pass"] : '';
-$password2 = isset($_POST["pass2"]) ? $_POST["pass2"] : '';
-$email = isset($_POST["email"]) ? $_POST["email"] : '';
-$sex = isset($_POST["sex"]) ? $_POST["sex"] : '';
-$birth = isset($_POST["birth"]) ? $_POST["birth"] : '';    
-$city = isset($_POST["city"]) ? $_POST["city"] : '';
-$country = isset($_POST["country"]) ? $_POST["country"] : '';
+$userName = !empty($_POST["userName"]) ? $_POST["userName"] : '';
+$password = !empty($_POST["pass"]) ? $_POST["pass"] : '';
+$password2 = !empty($_POST["pass2"]) ? $_POST["pass2"] : '';
+$email = !empty($_POST["email"]) ? $_POST["email"] : '';
+$sex = !empty($_POST["sex"]) ? $_POST["sex"] : '';
+$birth = !empty($_POST["birth"]) ? $_POST["birth"] : '';    
+$city = !empty($_POST["city"]) ? $_POST["city"] : '';
+$country = !empty($_POST["country"]) ? $_POST["country"] : '';
 
-if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $errors = [];   
-
-    // Validaciones
-    if(empty($userName)){
-        $errors["name"] = "User name is required";
-    }
-
-    if(empty($password)){
-        $errors["pass"] = "Password is required";
-    }
-
-    if(empty($password2)){
-        $errors["pass2"] = "Repeat your password";
-    } elseif($password != $password2){
-        $errors["pass2"] = "Passwords do not match";
-    }
-
-    if(empty($email)){
-        $errors["email"] = "Email is required";
-    }
-
-    if(empty($sex)){
-        $errors["sex"] = "Sex is required";
-    }
-
-    if(empty($birth)){
-        $errors["birth"] = "Birth date is required";
-    }
-
-    if(empty($city)){
-        $errors["city"] = "City is required";
-    }
-
-    // Si no hay errores, puedes proceder con el siguiente paso (por ejemplo, guardar en la base de datos)
-    if(empty($errors)){
-        header("Location: registerResponse.php?userName=" . urlencode($userName) . "&email=" . urlencode($email) . "&birth=" . urlencode($birth) . "&sex=" . urlencode($sex) . "&city=" . urlencode($city) . "&country=" . urlencode($country));
-
-    }
+$errors = [];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_GET)) {
+    $errors = $_GET;  
 }
 ?>
 
 <main>
     <h2>Register</h2>
-    <form action="register.php" method="post" id="formRegister" enctype="multipart/form-data">
+    <form action="registerResponse.php" method="post" id="formRegister" enctype="multipart/form-data">
 
         <label for="userName">User name: </label>
         <input type="text" id="userName" name="userName" value="<?php echo $userName; ?>">
@@ -107,7 +71,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             <option value="india" <?php echo $country == "india" ? "selected" : ""; ?>>India</option>
             <option value="japan" <?php echo $country == "japan" ? "selected" : ""; ?>>Japan</option>
             <option value="spain" <?php echo $country == "spain" ? "selected" : ""; ?>>Spain</option>
-
         </select>
         <span style="color:red;"><?php echo $errors["country"] ?? ""; ?></span>
 

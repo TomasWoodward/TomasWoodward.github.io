@@ -1,7 +1,7 @@
 <nav>
 	<ul>
 		<li><a href="auth.php"><i class="fa fa-home"></i> Home</a></li>
-		<li><a href="userProfile.php"><i class="fa-solid fa-user"></i><?=$userAuth?></a></li>
+		<li><a href="userProfile.php"><i class="fa-solid fa-user"></i>User name</a></li>
 		<li><a href="userProfile.php"><i class="fa-solid fa-book"></i>My albums</a></li>
 		<li><a href="index.php"><i class="fa-solid fa-right-from-bracket"></i>Log out</a></li>
 		<li><a href="search.php"><i class="fa fa-search"></i> Search</a></li>

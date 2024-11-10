@@ -8,13 +8,6 @@ $cssGrandeContraste = "indexHighBig";
 $scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
-
-if(!empty($_GET["userName"])){
-    $userAuth = $_GET["userName"];
-} else {
-    $userAuth = "User Name";
-}
-
 include 'inc/navAuth.php';
 
 
@@ -30,7 +23,7 @@ include 'inc/navAuth.php';
         <a href="photoDetails.php"><img src="img/users/photo1.png" alt="Photo1"></a>
         <figcaption>
             <p>Photo desc</p>
-            <p>Photo by: <a href="userDetails.php">User</a></p>
+            <p>Photo by: <a href="userDetails.php?userAuth=".urlEncode>User</a></p>
         </figcaption>
     </figure>
 

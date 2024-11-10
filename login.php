@@ -5,7 +5,7 @@ $cssOscuro = "searchOscuro";
 $cssContraste = "searchContraste";
 $cssGrande = "searchGrande";
 $cssGrandeContraste = "searchHb";
-$scripts1 = "<script src='script/formCheck.js'></script>";
+$scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/nav.php';
