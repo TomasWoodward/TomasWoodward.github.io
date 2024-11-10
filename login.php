@@ -9,7 +9,7 @@ $scripts1 = "<script src='script/formCheck.js'></script>";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/nav.php';
-    if(isset($_GET["error"])){
+    if(!empty($_GET["error"])){
         $error = $_GET["error"];
     } else {
         $error = "";
