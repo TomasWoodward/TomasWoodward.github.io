@@ -8,7 +8,16 @@ $cssGrandeContraste = "indexHighBig";
 $scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
+
+if(isset($_GET["userName"])){
+    $userAuth = $_GET["userName"];
+} else {
+    $userAuth = "User Name";
+}
+
 include 'inc/navAuth.php';
+
+
 ?>
 
 <main>

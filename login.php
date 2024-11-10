@@ -9,10 +9,16 @@ $scripts1 = "<script src='script/formCheck.js'></script>";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/nav.php';
+    if(isset($_GET["error"])){
+        $error = $_GET["error"];
+    } else {
+        $error = "";
+    }
 ?>
 <main>
     <h2>Log in</h2>
-    <form id="formLogin" action="auth.php" method="post">
+    <form id="formLogin" action="controlAccess.php" method="post">
+        <span style="color:red;"><?php echo $error?></span>
 
         <label for="search">User name:</label>
         <input type="text" id="userName" name="userName">

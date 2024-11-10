@@ -1,3 +1,4 @@
+
 <?php
 $htmlTitle = 'Get album response';
 $cssDefault = "albumResult";
