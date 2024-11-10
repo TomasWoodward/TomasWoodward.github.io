@@ -203,7 +203,7 @@ for ($i = 1; $i <= 15; $i++) {
         </p>
 
         <p><label for="color">Color: </label>
-            <input type="color" id="color" name="color" value="#FF0000" disabled>
+            <input type="color" id="color" name="color">
         </p>
 
         <p><label for="cNumber">Copy number: </label>

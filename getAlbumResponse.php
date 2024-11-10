@@ -42,6 +42,7 @@ $numPages = 4;
 $numFotos = 12;
 $resolution = intval($_POST['resolution']);
 $precioTotal = calcularPrecioAlbum($numPages, $numFotos, $color,$resolution);
+
 ?>
 
 
@@ -54,7 +55,7 @@ $precioTotal = calcularPrecioAlbum($numPages, $numFotos, $color,$resolution);
     <p>Email: <?= $_POST["email"] ?></p>
     <p>Adress: <?= $_POST["direc"] ?> <?= $_POST["number"] ?></p>
     <p>Phone: <?= $_POST["phone"] ?></p>
-    <p>Color: <input type="color" id="color" name="color" value="#FF0000" disabled></p>
+    <p>Color: <?=$_POST["color"]?> </p>
     <p>Copy number: <?= $_POST["cNumber"] ?></p>
     <p>Resolution: <?= $_POST["resolution"] ?></p>
     <p>User Album: <?= $_POST["userAlbum"] ?></p>
