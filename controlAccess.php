@@ -12,7 +12,7 @@
     $error = "Invalid user or password";
     
     if(!empty($users[$userName]) && $users[$userName] == $password){
-        header("Location: auth.php?userName=" . urlencode($userName));
+        header("Location: userProfile.php?userName=" . urlencode($userName));
     } else {
         header("Location: login.php?error=".urlEncode($error));
     }
