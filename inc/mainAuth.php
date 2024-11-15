@@ -1,18 +1,3 @@
-<?php
-$htmlTitle = 'Home';
-$cssDefault = "indexEstilo";
-$cssOscuro = "indexOscuro";
-$cssContraste = "indexContraste";
-$cssGrande = "indexGrande";
-$cssGrandeContraste = "indexHighBig";
-$scripts1 = "";
-include 'inc/start.php';
-include 'inc/header.php';
-include 'inc/navAuth.php';
-
-
-?>
-
 <main>
     <h2>Latest photos</h2>
 
@@ -72,7 +57,3 @@ include 'inc/navAuth.php';
         </figcaption>
     </figure>
 </main>
-<?php
-include 'inc/footer.php';
-include 'inc/end.php';
-?>

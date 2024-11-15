@@ -14,6 +14,16 @@ include 'inc/nav.php';
     } else {
         $error = "";
     }
+
+
+    if(!empty($_COOKIE["userName"])&&!empty($_COOKIE["password"])){
+        header("Location: ControlAccess.php");
+    } else {
+        echo "<h2>Welcome you're not logged in</h2>";
+        $userName = "";
+        $password = "";
+
+    }   
 ?>
 <main>
     <h2>Log in</h2>
