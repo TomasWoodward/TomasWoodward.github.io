@@ -1,40 +1,23 @@
 <?php
-session_start();
-$users = [
-    "user1" => "pass1",
-    "user2" => "pass2",
-    "user3" => "pass3",
-    "user4" => "pass4",
-    "user5" => "pass5"
-];
-if($_COOKIE["password"] != $users[$_COOKIE["userName"]])
-if (empty($_SESSION["userName"]) || 
-    !array_key_exists($_SESSION["userName"], $users) ||
-     $users[$_SESSION["userName"]] !== $_SESSION["password"] 
-     ) {
-    header("Location: login.php");
-}
+include("inc/comprobarSesion.php");
 
-
-$htmlTitle = 'User profile';
+// Variables para HTML y CSS
+$htmlTitle = 'User Profile';
 $cssDefault = "userStyle";
 $cssOscuro = "userOscuro";
 $cssContraste = "userContraste";
 $cssGrande = "userGrande";
 $cssGrandeContraste = "userProfileHb";
 $scripts1 = "";
+
+// Inclusión de archivos comunes
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/navAuth.php';
 
-
-if (!empty($_COOKIE["userName"])) {
-    $userName = $_COOKIE["userName"];
-    echo "<h2>Welcome $userName</h2>";
-} else {
-    echo "<h2>Welcome you're not logged in</h2>";
-}
-
+// Mostrar saludo si hay un usuario activo
+$userName = htmlspecialchars(!empty($_SESSION["userName"]) ? $_SESSION["userName"] : $_COOKIE["userName"]);
+echo "<h2>Welcome, $userName</h2>";
 ?>
 
 <main>
@@ -42,12 +25,14 @@ if (!empty($_COOKIE["userName"])) {
         <li>My data</li>
         <li>Unsubscribe</li>
         <li>My Albums</li>
-        <li><a href="createAlbum.php">Create albulm</a></li>
+        <li><a href="createAlbum.php">Create album</a></li>
         <li><a href="getAlbum.php">Request Album</a></li>
         <li><a href="index.php">Log out</a></li>
     </ul>
 </main>
+
 <?php
+// Inclusión de pie de página y cierre
 include 'inc/footer.php';
 include 'inc/end.php';
 ?>

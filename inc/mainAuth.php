@@ -1,6 +1,6 @@
 <main>
     <h2>Latest photos</h2>
-
+    
     <figure>
         <a href="photoDetails.php?id=1">
             <h3>Photo title</h3>
