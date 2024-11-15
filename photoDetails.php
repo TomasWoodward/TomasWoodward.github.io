@@ -7,7 +7,7 @@
         "user4" => "pass4",
         "user5" => "pass5"
     ];
-
+    if($_COOKIE["password"] != $users[$_COOKIE["userName"]])
     if(empty($_SESSION["userName"]) || !array_key_exists($_SESSION["userName"], $users) || $users[$_SESSION["userName"]] !== $_SESSION["password"]){
         header("Location: login.php");
     }

@@ -1,19 +1,19 @@
 <?php
-    session_start();
-    $users = [
-        "user1" => "pass1",
-        "user2" => "pass2",
-        "user3" => "pass3",
-        "user4" => "pass4",
-        "user5" => "pass5"
-    ];
-
-    if(empty($_SESSION["userName"]) || !array_key_exists($_SESSION["userName"], $users) || $users[$_SESSION["userName"]] !== $_SESSION["password"]){
-        header("Location: login.php");
-    }
-        
-
-
+session_start();
+$users = [
+    "user1" => "pass1",
+    "user2" => "pass2",
+    "user3" => "pass3",
+    "user4" => "pass4",
+    "user5" => "pass5"
+];
+if($_COOKIE["password"] != $users[$_COOKIE["userName"]])
+if (empty($_SESSION["userName"]) || 
+    !array_key_exists($_SESSION["userName"], $users) ||
+     $users[$_SESSION["userName"]] !== $_SESSION["password"] 
+     ) {
+    header("Location: login.php");
+}
 
 
 $htmlTitle = 'User profile';
@@ -28,7 +28,7 @@ include 'inc/header.php';
 include 'inc/navAuth.php';
 
 
-if(!empty($_COOKIE["userName"])){
+if (!empty($_COOKIE["userName"])) {
     $userName = $_COOKIE["userName"];
     echo "<h2>Welcome $userName</h2>";
 } else {
@@ -37,7 +37,7 @@ if(!empty($_COOKIE["userName"])){
 
 ?>
 
-<main> 
+<main>
     <ul>
         <li>My data</li>
         <li>Unsubscribe</li>
