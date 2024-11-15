@@ -24,35 +24,54 @@ session_start();
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         // Validaciones
         if(empty($userName)){
-            $_SESSION["userNameReg"] = "User name is required";
+            $_SESSION["error_userNameReg"] = "User name is required";
+        }else {
+            $_SESSION["userNameReg"] = $userName;
         }
 
         if(empty($password)){
-            $_SESSION["pass"] = "Password is required";
+            $_SESSION["error_pass"] = "Password is required";
+        }   else {
+            $_SESSION["pass"] = $password;
         }
 
         if(empty($password2)){
-            $_SESSION["pass2"] = "Repeat your password";
+            $_SESSION["error_pass2"] = "Repeat your password";
         } elseif($password != $password2){
-            $_SESSION["pass2"] = "Passwords do not match";
+            $_SESSION["error_pass2"] = "Passwords do not match";
+        } else {
+            $_SESSION["pass2"] = $password2;
         }
 
         if(empty($email)){
-            $_SESSION["email"] = "Email is required";
+            $_SESSION["error_email"] = "Email is required";
+        } else {
+            $_SESSION["email"] = $email;
         }
 
         if(empty($sex)){
-            $_SESSION["sex"] = "Sex is required";
+            $_SESSION["error_sex"] = "Sex is required";
+        } else {
+            $_SESSION["sex"] = $sex;
         }
 
         if(empty($birth)){
-            $_SESSION["birth"] = "Birth date is required";
+            $_SESSION["error_birth"] = "Birth date is required";
+        } else {
+            $_SESSION["birth"] = $birth;
         }
 
         if(empty($city)){
-            $_SESSION["city"] = "City is required";
+            $_SESSION["error_city"] = "City is required";
+        } else {
+            $_SESSION["city"] = $city;
         }
 
+        if(empty($country)){
+            $_SESSION["error_country"] = "Country is required";
+        } else {
+            $_SESSION["country"] = $country;
+        }
     }
 ?>
 

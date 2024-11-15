@@ -32,31 +32,31 @@ $country = !empty($_SESSION["country"]) ? $_SESSION["country"] : '';
 
         <label for="userName">User name: </label>
         <input type="text" id="userName" name="userName" value="<?php echo $userName; ?>">
-        <span style="color:red;"><?php echo $_SESSION["userNameReg"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["error_userNameReg"] ?? ""; ?></span>
 
         <label for="pass">Password: </label>
         <input type="password" id="pass" name="pass">
-        <span style="color:red;"><?php echo $_SESSION["pass"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["error_pass"] ?? ""; ?></span>
 
         <label for="pass2">Repeat password: </label>
         <input type="password" id="pass2" name="pass2">
-        <span style="color:red;"><?php echo $_SESSION["pass2"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["error_pass2"] ?? ""; ?></span>
 
         <label for="email">Email: </label>
         <input type="text" id="email" name="email" value="<?php echo $email; ?>">
-        <span style="color:red;"><?php echo $_SESSION["email"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["error_email"] ?? ""; ?></span>
 
         <label for="sex">Sex: </label>
         <input type="text" id="sex" name="sex" value="<?php echo $sex; ?>">
-        <span style="color:red;"><?php echo $_SESSION["sex"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["error_sex"] ?? ""; ?></span>
 
         <label for="birth">Birth date (dd/mm/AAAA): </label>
         <input type="text" id="birth" name="birth" value="<?php echo $birth; ?>">
-        <span style="color:red;"><?php echo $_SESSION["birth"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["error_birth"] ?? ""; ?></span>
 
         <label for="city">City: </label>
         <input type="text" id="city" name="city" value="<?php echo $city; ?>">
-        <span style="color:red;"><?php echo $_SESSION["city"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["error_city"] ?? ""; ?></span>
 
         <label for="country">Country: </label>
         <select id="country" name="country">
@@ -72,7 +72,7 @@ $country = !empty($_SESSION["country"]) ? $_SESSION["country"] : '';
             <option value="japan" <?php echo $country == "japan" ? "selected" : ""; ?>>Japan</option>
             <option value="spain" <?php echo $country == "spain" ? "selected" : ""; ?>>Spain</option>
         </select>
-        <span style="color:red;"><?php echo $_SESSION["country"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["error_country"] ?? ""; ?></span>
 
         <label for="photo">Photo: </label>
         <input type="file" id="photo" name="photo">
