@@ -24,6 +24,7 @@ include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/navAuth.php';
 ?>
+
 <main>
 	<h2>Create Album</h2>
 	<form action="post">
