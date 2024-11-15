@@ -20,11 +20,18 @@ include 'inc/nav.php';
     <form id="formLogin" action="controlAccess.php" method="post">
         <span style="color:red;"><?php echo $error?></span>
 
-        <label for="search">User name:</label>
+        <label for="userName">User name:</label>
         <input type="text" id="userName" name="userName">
 
-        <label for="search">Password:</label>
+        <label for="pass">Password:</label>
         <input type="password" id="pass" name="pass">
+        
+        
+        <label>
+            <input type="checkbox" id="remember" name="remember">
+            Remember me in this device for 90 days
+        </label>
+
 
         <input type="submit" id="botonSubmit" value="Log-in">
     </form>

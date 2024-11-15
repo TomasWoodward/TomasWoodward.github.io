@@ -9,6 +9,15 @@ $scripts1 = "";
 include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/navAuth.php';
+
+
+if(!empty($_COOKIE["userName"])){
+    $userName = $_COOKIE["userName"];
+    echo "<h2>Welcome $userName</h2>";
+} else {
+    echo "<h2>Welcome you're not logged in</h2>";
+}
+
 ?>
 
 <main> 
