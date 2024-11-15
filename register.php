@@ -15,7 +15,7 @@ include 'inc/header.php';
 include 'inc/nav.php';
 
 // Inicializamos las variables
-$userName = !empty($_POST["userName"]) ? $_POST["userName"] : '';
+$userName = !empty($_POST["userNameReg"]) ? $_POST["userNameReg"] : '';
 $password = !empty($_POST["pass"]) ? $_POST["pass"] : '';
 $password2 = !empty($_POST["pass2"]) ? $_POST["pass2"] : '';
 $email = !empty($_POST["email"]) ? $_POST["email"] : '';

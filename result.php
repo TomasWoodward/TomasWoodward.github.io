@@ -21,13 +21,11 @@ include 'inc/header.php';
 if(empty($_SESSION["userName"]) || !array_key_exists($_SESSION["userName"], $users) || $users[$_SESSION["userName"]] !== $_SESSION["password"] ){
     
     include 'inc/nav.php';
-    include 'inc/parametrosBusqueda.php';
     include 'inc/mainIndex.php';
 } else {
     include 'inc/navAuth.php';
-    include 'inc/parametrosBusqueda.php';
     include 'inc/mainAuth.php';
-
 }
+include 'inc/parametrosBusqueda.php';
 include 'inc/footer.php';
 include 'inc/end.php';

@@ -17,7 +17,8 @@ include 'inc/navAuth.php';
 
 // Mostrar saludo si hay un usuario activo
 $userName = htmlspecialchars(!empty($_SESSION["userName"]) ? $_SESSION["userName"] : $_COOKIE["userName"]);
-echo "<h2>Welcome, $userName</h2>";
+echo "<h2>Welcome, $userName</h2>
+      <p>Your last visit was: </p>";
 ?>
 
 <main>

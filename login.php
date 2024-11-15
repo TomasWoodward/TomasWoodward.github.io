@@ -1,6 +1,6 @@
 <?php
 session_start();
- if (!empty($_SESSION["userName"]) && !empty($_SESSION["password"])) {
+ if (!empty($_SESSION["error"]) &&  !empty($_SESSION["userName"]) && !empty($_SESSION["password"])) {
     header("Location: userProfile.php");
 } else if (!empty($_COOKIE["userName"]) && !empty($_COOKIE["password"])) {
     header("Location: ControlAccess.php");
@@ -20,8 +20,8 @@ include 'inc/start.php';
 include 'inc/header.php';
 include 'inc/nav.php';
 
-if (!empty($_GET["error"])) {
-    $error = $_GET["error"];
+if (!empty($_SESSION["error"])) {
+    $error = $_SESSION["error"];
 } else {
     $error = "";
 }

@@ -21,12 +21,17 @@ if (empty($_SESSION["userName"]) ||
         array_key_exists($_COOKIE["userName"], $users) && 
         $users[$_COOKIE["userName"]] === $_COOKIE["password"]
     ) {
-        // Usuario válido mediante cookies, no restaurar sesión
-        // Continuar con la ejecución
+        $_SESSION["userName"] = $_COOKIE["userName"];
+        $_SESSION["password"] = $_COOKIE["password"];
+        exit();
     } else {
         // Redirigir al login si no hay sesión válida ni cookies válidas
+        setcookie("userName", "", time() - 3600);
+        setcookie("password", "", time() - 3600);
+        session_unset();
         header("Location: login.php");
         exit();
     }
-}
+} 
+
 ?>

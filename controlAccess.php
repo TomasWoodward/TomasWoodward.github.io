@@ -11,12 +11,10 @@ $users = [
 
 // Verificar si las cookies están configuradas correctamente
 if (!empty($_COOKIE["userName"]) && isset($users[$_COOKIE["userName"]]) && $users[$_COOKIE["userName"]] == $_COOKIE["password"] && empty($error)) {
-    $userName = $_COOKIE["userName"];
-    $password = $_COOKIE["password"];
-
+    
     // Guardar las credenciales en la sesión
-    $_SESSION["userName"] = $userName;
-    $_SESSION["password"] = $password;
+    $_SESSION["userName"] = $_COOKIE["userName"];
+    $_SESSION["password"] = $_COOKIE["password"];
 
     // Redirigir al perfil de usuario
     header("Location: userProfile.php");
@@ -53,12 +51,9 @@ setcookie("userName", "", time() - 3600);
 setcookie("password", "", time() - 3600);
 
 // Limpiar la sesión
-$_SESSION = [];
-
+session_unset();
+$_SESSION["error"] = $error;
 // Redirigir a la página de login con el mensaje de error codificado en la URL
-header("Location: login.php?error=" . urlencode($error));
+header("Location: login.php");
 exit();
-
-
-
 ?>

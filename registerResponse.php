@@ -1,8 +1,6 @@
 <?php
 session_start();
-if (!empty($_SESSION["userName"]) && !empty($_SESSION["password"])) {
-   header("Location: userProfile.php");
-}
+include("inc/comprobarSesion.php");
     $htmlTitle = 'Register response';
     $cssDefault = "albumResult";
     $cssOscuro = "albumResultOscuro";

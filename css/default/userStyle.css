@@ -1,5 +1,9 @@
 @import url("./variables.css");
-
+body{
+    h2,p{
+        text-align: center;
+    }
+}
 main {
     display: flex;
     justify-content: center;
