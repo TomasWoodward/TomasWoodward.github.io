@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("inc/comprobarSesion.php");
+
     $htmlTitle = 'Register response';
     $cssDefault = "albumResult";
     $cssOscuro = "albumResultOscuro";
@@ -22,37 +22,35 @@ include("inc/comprobarSesion.php");
     $country = !empty($_POST["country"]) ? $_POST["country"] : '';
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
-        $errors = [];   
-
         // Validaciones
         if(empty($userName)){
-            $errors["name"] = "User name is required";
+            $_SESSION["userNameReg"] = "User name is required";
         }
 
         if(empty($password)){
-            $errors["pass"] = "Password is required";
+            $_SESSION["pass"] = "Password is required";
         }
 
         if(empty($password2)){
-            $errors["pass2"] = "Repeat your password";
+            $_SESSION["pass2"] = "Repeat your password";
         } elseif($password != $password2){
-            $errors["pass2"] = "Passwords do not match";
+            $_SESSION["pass2"] = "Passwords do not match";
         }
 
         if(empty($email)){
-            $errors["email"] = "Email is required";
+            $_SESSION["email"] = "Email is required";
         }
 
         if(empty($sex)){
-            $errors["sex"] = "Sex is required";
+            $_SESSION["sex"] = "Sex is required";
         }
 
         if(empty($birth)){
-            $errors["birth"] = "Birth date is required";
+            $_SESSION["birth"] = "Birth date is required";
         }
 
         if(empty($city)){
-            $errors["city"] = "City is required";
+            $_SESSION["city"] = "City is required";
         }
 
     }
@@ -61,18 +59,9 @@ include("inc/comprobarSesion.php");
 <main>
 
 <?php
-    if (!empty($errors)) {
-        $errorParams = http_build_query($errors);
-        echo '<h3>Register Failed</h3>
-              <form id="autoSubmitForm" action="register.php?' . $errorParams . '" method="POST">
-                  <input type="hidden" name="userName" value="' . htmlspecialchars($userName) . '">
-                  <input type="hidden" name="email" value="' . htmlspecialchars($email) . '">
-                  <input type="hidden" name="birth" value="' . htmlspecialchars($birth) . '">
-                  <input type="hidden" name="sex" value="' . htmlspecialchars($sex) . '">
-                  <input type="hidden" name="city" value="' . htmlspecialchars($city) . '">
-                  <input type="hidden" name="country" value="' . htmlspecialchars($country) . '">
-                  <input type="submit" value="Go back">
-              </form>';
+    if (!empty($_SESSION)) {
+        
+        header("Location: register.php");
     } else {
 ?>
 

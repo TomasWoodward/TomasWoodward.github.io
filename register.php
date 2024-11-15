@@ -15,19 +15,15 @@ include 'inc/header.php';
 include 'inc/nav.php';
 
 // Inicializamos las variables
-$userName = !empty($_POST["userNameReg"]) ? $_POST["userNameReg"] : '';
-$password = !empty($_POST["pass"]) ? $_POST["pass"] : '';
-$password2 = !empty($_POST["pass2"]) ? $_POST["pass2"] : '';
-$email = !empty($_POST["email"]) ? $_POST["email"] : '';
-$sex = !empty($_POST["sex"]) ? $_POST["sex"] : '';
-$birth = !empty($_POST["birth"]) ? $_POST["birth"] : '';    
-$city = !empty($_POST["city"]) ? $_POST["city"] : '';
-$country = !empty($_POST["country"]) ? $_POST["country"] : '';
+$userName = !empty($_SESSION["userNameReg"]) ? $_SESSION["userNameReg"] : '';
+$password = !empty($_SESSION["pass"]) ? $_SESSION["pass"] : '';
+$password2 = !empty($_SESSION["pass2"]) ? $_SESSION["pass2"] : '';
+$email = !empty($_SESSION["email"]) ? $_SESSION["email"] : '';
+$sex = !empty($_SESSION["sex"]) ? $_SESSION["sex"] : '';
+$birth = !empty($_SESSION["birth"]) ? $_SESSION["birth"] : '';    
+$city = !empty($_SESSION["city"]) ? $_SESSION["city"] : '';
+$country = !empty($_SESSION["country"]) ? $_SESSION["country"] : '';
 
-$errors = [];
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_GET)) {
-    $errors = $_GET;  
-}
 ?>
 
 <main>
@@ -36,31 +32,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_GET)) {
 
         <label for="userName">User name: </label>
         <input type="text" id="userName" name="userName" value="<?php echo $userName; ?>">
-        <span style="color:red;"><?php echo $errors["name"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["userNameReg"] ?? ""; ?></span>
 
         <label for="pass">Password: </label>
         <input type="password" id="pass" name="pass">
-        <span style="color:red;"><?php echo $errors["pass"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["pass"] ?? ""; ?></span>
 
         <label for="pass2">Repeat password: </label>
         <input type="password" id="pass2" name="pass2">
-        <span style="color:red;"><?php echo $errors["pass2"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["pass2"] ?? ""; ?></span>
 
         <label for="email">Email: </label>
         <input type="text" id="email" name="email" value="<?php echo $email; ?>">
-        <span style="color:red;"><?php echo $errors["email"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["email"] ?? ""; ?></span>
 
         <label for="sex">Sex: </label>
         <input type="text" id="sex" name="sex" value="<?php echo $sex; ?>">
-        <span style="color:red;"><?php echo $errors["sex"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["sex"] ?? ""; ?></span>
 
         <label for="birth">Birth date (dd/mm/AAAA): </label>
         <input type="text" id="birth" name="birth" value="<?php echo $birth; ?>">
-        <span style="color:red;"><?php echo $errors["birth"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["birth"] ?? ""; ?></span>
 
         <label for="city">City: </label>
         <input type="text" id="city" name="city" value="<?php echo $city; ?>">
-        <span style="color:red;"><?php echo $errors["city"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["city"] ?? ""; ?></span>
 
         <label for="country">Country: </label>
         <select id="country" name="country">
@@ -76,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_GET)) {
             <option value="japan" <?php echo $country == "japan" ? "selected" : ""; ?>>Japan</option>
             <option value="spain" <?php echo $country == "spain" ? "selected" : ""; ?>>Spain</option>
         </select>
-        <span style="color:red;"><?php echo $errors["country"] ?? ""; ?></span>
+        <span style="color:red;"><?php echo $_SESSION["country"] ?? ""; ?></span>
 
         <label for="photo">Photo: </label>
         <input type="file" id="photo" name="photo">
