@@ -78,8 +78,7 @@ session_start();
 <main>
 
 <?php
-    if (!empty($_SESSION)) {
-        
+    if (!empty($_SESSION["error_userNameReg"]) || !empty($_SESSION["error_pass"]) || !empty($_SESSION["error_pass2"]) || !empty($_SESSION["error_email"]) || !empty($_SESSION["error_sex"]) || !empty($_SESSION["error_birth"]) || !empty($_SESSION["error_city"]) || !empty($_SESSION["error_country"])) {
         header("Location: register.php");
     } else {
 ?>
