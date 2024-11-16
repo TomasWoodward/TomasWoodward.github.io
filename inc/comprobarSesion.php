@@ -23,6 +23,9 @@ if (empty($_SESSION["userName"]) ||
     ) {
         $_SESSION["userName"] = $_COOKIE["userName"];
         $_SESSION["password"] = $_COOKIE["password"];
+        $_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
+        setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60);
+        header("Location: userProfile.php");
         exit();
     } else {
         // Redirigir al login si no hay sesión válida ni cookies válidas

@@ -15,7 +15,8 @@ if (!empty($_COOKIE["userName"]) && isset($users[$_COOKIE["userName"]]) && $user
     // Guardar las credenciales en la sesión
     $_SESSION["userName"] = $_COOKIE["userName"];
     $_SESSION["password"] = $_COOKIE["password"];
-
+    $_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
+    setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60);
     // Redirigir al perfil de usuario
     header("Location: userProfile.php");
     exit();
@@ -31,15 +32,16 @@ if (!empty($users[$userName]) && $users[$userName] == $password) {
     // Guardar las credenciales en la sesión
     $_SESSION["userName"] = $userName;
     $_SESSION["password"] = $password;
-
+    $_SESSION["lastVisit"] = date(" F j, Y, g:i a");
     // Configurar cookies si el usuario selecciona "Recordar"
     if ($remember) {
         setcookie("userName", $userName, time() + 90 * 24 * 60 * 60);
         setcookie("password", $password, time() + 90 * 24 * 60 * 60);
+        setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60);
     }
 
     // Redirigir al perfil de usuario con el nombre codificado en la URL
-    header("Location: userProfile.php?userName=" . urlencode($userName));
+    header("Location: userProfile.php");
     exit();
 }
 
@@ -49,7 +51,7 @@ $error = "Invalid user or password";
 // Eliminar cookies existentes
 setcookie("userName", "", time() - 3600);
 setcookie("password", "", time() - 3600);
-
+setcookie("lastVisit", "", time() - 3600);
 // Limpiar la sesión
 session_unset();
 $_SESSION["error"] = $error;
