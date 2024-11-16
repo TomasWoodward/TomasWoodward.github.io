@@ -37,6 +37,29 @@ if (!empty($users[$userName]) && $users[$userName] == $password) {
         setcookie("userName", $userName, time() + 90 * 24 * 60 * 60);
         setcookie("password", $password, time() + 90 * 24 * 60 * 60);
         setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60);
+        
+        switch($userName){
+            case "user1":
+                setcookie("theme", "", time() - 3600);
+                setcookie("theme", "default", time() + 90 * 24 * 60 * 60);
+                break;
+            case "user2":
+                setcookie("theme", "", time() - 3600);
+                setcookie("theme", "dark theme", time() + 90 * 24 * 60 * 60);
+                break;
+            case "user3":
+                setcookie("theme", "", time() - 3600);
+                setcookie("theme", "high contrast", time() + 90 * 24 * 60 * 60);
+                break;
+            case "user4":
+                setcookie("theme", "", time() - 3600);
+                setcookie("theme", "big Font", time() + 90 * 24 * 60 * 60);
+                break;
+            case "user5":   
+                setcookie("theme", "", time() - 3600);
+                setcookie("theme", "big Font + high contrast", time() + 90 * 24 * 60 * 60);
+                break;
+        }
     }
 
     // Redirigir al perfil de usuario con el nombre codificado en la URL
@@ -51,6 +74,7 @@ $error = "Invalid user or password";
 setcookie("userName", "", time() - 3600);
 setcookie("password", "", time() - 3600);
 setcookie("lastVisit", "", time() - 3600);
+setcookie("theme", "", time()- 3600);
 // Limpiar la sesión
 session_unset();
 $_SESSION["error"] = $error;

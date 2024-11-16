@@ -33,6 +33,7 @@ if ($horaActual >= 6 && $horaActual < 12) {
 }
 echo "<h2>$mensaje, $userName</h2>";
 echo "<p>Your last visit was: $lastVisit </p>";
+echo "theme: ".$_COOKIE["theme"];
 ?>
 
 <main>
