@@ -18,8 +18,21 @@ include 'inc/navAuth.php';
 // Mostrar saludo si hay un usuario activo
 $userName = htmlspecialchars(!empty($_SESSION["userName"]) ? $_SESSION["userName"] : $_COOKIE["userName"]);
 $lastVisit = !empty($_SESSION["lastVisit"]) ? $_SESSION["lastVisit"] : "This is your first visit";
-echo "<h2>Welcome, $userName</h2>
-      <p>Your last visit was: $lastVisit </p>";
+
+$horaActual = intval(date("H"));
+
+// Determinar el mensaje según la franja horaria
+if ($horaActual >= 6 && $horaActual < 12) {
+    $mensaje = "Good morning";
+} elseif ($horaActual >= 12 && $horaActual < 16) {
+    $mensaje = "Welcome";
+} elseif ($horaActual >= 16 && $horaActual < 20) {
+    $mensaje = "Good afternoon";
+} else {
+    $mensaje = "Good evening";
+}
+echo "<h2>$mensaje, $userName</h2>";
+echo "<p>Your last visit was: $lastVisit </p>";
 ?>
 
 <main>
