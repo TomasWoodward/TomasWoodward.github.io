@@ -10,8 +10,7 @@ $users = [
 ];
 
 // Verificar si las cookies están configuradas correctamente
-if (!empty($_COOKIE["userName"]) && isset($users[$_COOKIE["userName"]]) && $users[$_COOKIE["userName"]] == $_COOKIE["password"] && empty($error)) {
-    
+if (!empty($_COOKIE["userName"]) && isset($users[$_COOKIE["userName"]]) && $users[$_COOKIE["userName"]] == $_COOKIE["password"] && empty($error)) {    
     // Guardar las credenciales en la sesión
     $_SESSION["userName"] = $_COOKIE["userName"];
     $_SESSION["password"] = $_COOKIE["password"];

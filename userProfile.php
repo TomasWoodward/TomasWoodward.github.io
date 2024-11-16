@@ -17,7 +17,7 @@ include 'inc/navAuth.php';
 
 // Mostrar saludo si hay un usuario activo
 $userName = htmlspecialchars(!empty($_SESSION["userName"]) ? $_SESSION["userName"] : $_COOKIE["userName"]);
-$lastVisit = !empty($_COOKIE["lastVisit"]) ? $_COOKIE["lastVisit"] : "This is your first visit";
+$lastVisit = !empty($_SESSION["lastVisit"]) ? $_SESSION["lastVisit"] : "This is your first visit";
 echo "<h2>Welcome, $userName</h2>
       <p>Your last visit was: $lastVisit </p>";
 ?>
@@ -29,7 +29,7 @@ echo "<h2>Welcome, $userName</h2>
         <li>My Albums</li>
         <li><a href="createAlbum.php">Create album</a></li>
         <li><a href="getAlbum.php">Request Album</a></li>
-        <li><a href="index.php">Log out</a></li>
+        <li><a href="logOut.php">Log out</a></li>
     </ul>
 </main>
 
