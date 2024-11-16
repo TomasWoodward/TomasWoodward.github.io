@@ -9,12 +9,21 @@ $users = [
     "user5" => "pass5"
 ];
 
+$themes = [
+    "user1" => "default",
+    "user2" => "dark theme",
+    "user3" => "high contrast",
+    "user4" => "big Font",
+    "user5" => "big Font + high contrast"
+];
+
 // Verificar si las cookies están configuradas correctamente
 if (!empty($_COOKIE["userName"]) && isset($users[$_COOKIE["userName"]]) && $users[$_COOKIE["userName"]] == $_COOKIE["password"] && empty($error)) {    
     // Guardar las credenciales en la sesión
     $_SESSION["userName"] = $_COOKIE["userName"];
     $_SESSION["password"] = $_COOKIE["password"];
     $_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
+    $_SESSION["theme"] = $_COOKIE["theme"];
     setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60);
     // Redirigir al perfil de usuario
     header("Location: userProfile.php");
@@ -32,34 +41,20 @@ if (!empty($users[$userName]) && $users[$userName] == $password) {
     $_SESSION["userName"] = $userName;
     $_SESSION["password"] = $password;
     $_SESSION["lastVisit"] = date(" F j, Y, g:i a");
+    $_SESSION["theme"] = $themes[$userName];
+
+
     // Configurar cookies si el usuario selecciona "Recordar"
     if ($remember) {
         setcookie("userName", $userName, time() + 90 * 24 * 60 * 60);
         setcookie("password", $password, time() + 90 * 24 * 60 * 60);
         setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60);
         
-        switch($userName){
-            case "user1":
-                setcookie("theme", "", time() - 3600);
-                setcookie("theme", "default", time() + 90 * 24 * 60 * 60);
-                break;
-            case "user2":
-                setcookie("theme", "", time() - 3600);
-                setcookie("theme", "dark theme", time() + 90 * 24 * 60 * 60);
-                break;
-            case "user3":
-                setcookie("theme", "", time() - 3600);
-                setcookie("theme", "high contrast", time() + 90 * 24 * 60 * 60);
-                break;
-            case "user4":
-                setcookie("theme", "", time() - 3600);
-                setcookie("theme", "big Font", time() + 90 * 24 * 60 * 60);
-                break;
-            case "user5":   
-                setcookie("theme", "", time() - 3600);
-                setcookie("theme", "big Font + high contrast", time() + 90 * 24 * 60 * 60);
-                break;
-        }
+        
+    if (isset($themes[$userName])) {
+        setcookie("theme", "", time() - 3600);
+        setcookie("theme", $themes[$userName], time() + 90 * 24 * 60 * 60);
+    }
     }
 
     // Redirigir al perfil de usuario con el nombre codificado en la URL

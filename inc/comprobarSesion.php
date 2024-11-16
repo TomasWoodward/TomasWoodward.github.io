@@ -10,6 +10,10 @@ $users = [
     "user5" => "pass5"
 ];
 
+$_SESSION["userName"] = $_COOKIE["userName"];
+$_SESSION["password"] = $_COOKIE["password"];
+$_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
+
 // Verificar si hay una sesión activa
 if (empty($_SESSION["userName"]) || 
     !array_key_exists($_SESSION["userName"], $users) || 
@@ -31,6 +35,8 @@ if (empty($_SESSION["userName"]) ||
         // Redirigir al login si no hay sesión válida ni cookies válidas
         setcookie("userName", "", time() - 3600);
         setcookie("password", "", time() - 3600);
+        setcookie("theme", "", time() - 3600);
+        setcookie("lastVisit","", time() -3600);
         session_unset();
         session_destroy();
         header("Location: login.php");

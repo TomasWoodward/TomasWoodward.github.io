@@ -1,7 +1,9 @@
 <?php
     session_start();
     
-    if(!empty($_COOKIE["userName"])){
+    if(!empty($_SESSION["userName"])){
+        
+        session_unset();
         session_destroy();
         setcookie("userName", "", time() - 3600);
         setcookie("password", "", time() - 3600);

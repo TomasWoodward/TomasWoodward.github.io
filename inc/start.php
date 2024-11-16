@@ -1,6 +1,6 @@
 <?php
-    if(!empty($_COOKIE["theme"])){
-        $currentTheme = $_COOKIE["theme"];
+    if(!empty($_SESSION["theme"])){
+        $currentTheme = $_SESSION["theme"];
     } else {
         $currentTheme = "default";
     }
