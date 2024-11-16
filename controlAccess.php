@@ -24,7 +24,7 @@ if (!empty($_COOKIE["userName"]) && isset($users[$_COOKIE["userName"]]) && $user
     $_SESSION["password"] = $_COOKIE["password"];
     $_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
     $_SESSION["theme"] = $_COOKIE["theme"];
-    setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60);
+    setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60,"", "",  false ,true);
     // Redirigir al perfil de usuario
     header("Location: userProfile.php");
     exit();
@@ -46,14 +46,14 @@ if (!empty($users[$userName]) && $users[$userName] == $password) {
 
     // Configurar cookies si el usuario selecciona "Recordar"
     if ($remember) {
-        setcookie("userName", $userName, time() + 90 * 24 * 60 * 60);
-        setcookie("password", $password, time() + 90 * 24 * 60 * 60);
-        setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60);
+        setcookie("userName", $userName, time() + 90 * 24 * 60 * 60,"", "",  false ,true);
+        setcookie("password", $password, time() + 90 * 24 * 60 * 60,"", "",  false ,true);
+        setcookie("lastVisit",date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60,"", "", false ,true);
         
         
     if (isset($themes[$userName])) {
-        setcookie("theme", "", time() - 3600);
-        setcookie("theme", $themes[$userName], time() + 90 * 24 * 60 * 60);
+        setcookie("theme", "", time() - 3600,"", "",  false ,true);
+        setcookie("theme", $themes[$userName], time() + 90 * 24 * 60 * 60,"", "",  false ,true);    
     }
     }
 
@@ -66,10 +66,10 @@ if (!empty($users[$userName]) && $users[$userName] == $password) {
 $error = "Invalid user or password";
 
 // Eliminar cookies existentes
-setcookie("userName", "", time() - 3600);
-setcookie("password", "", time() - 3600);
-setcookie("lastVisit", "", time() - 3600);
-setcookie("theme", "", time()- 3600);
+setcookie("userName", "", time() - 3600,"", "",  false ,true);
+setcookie("password", "", time() - 3600,"", "",  false ,true);
+setcookie("lastVisit", "", time() - 3600,"", "", false ,true);
+setcookie("theme", "", time()- 3600,"", "",  false ,true);
 // Limpiar la sesión
 session_unset();
 $_SESSION["error"] = $error;

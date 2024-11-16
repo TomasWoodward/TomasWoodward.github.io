@@ -2,9 +2,8 @@
 <?php
 	if(!empty($_SESSION["userName"])){
 		$userName = $_SESSION["userName"];
-	} else {
-		$userName = "User";
-
+	} else if(!empty($_COOKIE["userName"])){
+		$userName = $_COOKIE["userName"];
 	}
 	?>
 
