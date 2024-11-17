@@ -1,6 +1,6 @@
 <?php
-if(!defined('FROM_ROUTER') ||  !$_SESSION["AUTH"]){
-	header('Location: ./index.php');
+if (!defined('FROM_ROUTER') || !$_SESSION["AUTH"]) {
+    header('Location: ./index.php');
 }
 
 // Variables para HTML y CSS
@@ -34,8 +34,12 @@ if ($horaActual >= 6 && $horaActual < 12) {
     $mensaje = "Good evening";
 }
 echo "<h2>$mensaje, $userName</h2>";
-echo "<p>Your last visit was: $lastVisit </p>";
-echo "<P>Theme: {$_SESSION["theme"] } </p>";
+if ($lastVisit == "This is your first visit") {
+    echo "<p>" . $lastVisit . "</p>";
+} else {
+    echo "<p>Your last visit was: $lastVisit </p>";
+}
+echo "<P>Theme: {$_SESSION["theme"]} </p>";
 ?>
 
 <main>
