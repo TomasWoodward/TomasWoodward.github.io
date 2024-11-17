@@ -1,5 +1,5 @@
 <?php
-if(!defined('FROM_ROUTER') ||  $_SESSION["AUTH"]==false ){
+if(!defined('FROM_ROUTER') ){
 	header('Location: ../index.php');
 }
 
