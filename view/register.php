@@ -1,6 +1,6 @@
 <?php
 if(!defined('FROM_ROUTER') ||  $_SESSION["AUTH"]==true ){
-	header('Location: ../index.php');
+	header('Location: ./index.php');
 }
 
 $htmlTitle = 'Register';

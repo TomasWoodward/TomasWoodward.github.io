@@ -1,7 +1,7 @@
 
 <?php
 if(!defined('FROM_ROUTER') ||  $_SESSION["AUTH"]==false ){
-	header('Location: ../index.php');
+	header('Location: ./index.php');
 }
 $htmlTitle = 'Get album response';
 $cssDefault = "albumResult";

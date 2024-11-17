@@ -1,6 +1,6 @@
 <?php
 if(!defined('FROM_ROUTER')){
-	header('Location: ../index.php');
+	header('Location: ./index.php');
 }
 $themes = [
     "user1" => "default",

@@ -1,6 +1,6 @@
 <?php
 if(!defined('FROM_ROUTER') ||  !$_SESSION["AUTH"]){
-	header('Location: ../index.php');
+	header('Location: ./index.php');
 }
 
 // Variables para HTML y CSS
