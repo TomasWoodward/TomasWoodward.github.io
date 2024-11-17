@@ -1,4 +1,7 @@
 <?php
+
+date_default_timezone_set('Europe/Madrid');
+ini_set('date.timezone', 'Europe/Madrid');
 session_start();
 /*Controlador de la aplicación*/
 /*Este archivo se encarga de incluir la página solicitada por el usuario*/
