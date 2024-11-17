@@ -38,10 +38,14 @@ if (!empty($_COOKIE["userName"])  &&
     !empty($_COOKIE["theme"])     &&
     !empty($_COOKIE["lastVisit"]) &&  $_COOKIE["password"] == $users[$_COOKIE["userName"]]  ) {
 
+    if(empty($_SESSION["lastVisit"])) {
+        $_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
+    }
+
     $_SESSION["userName"]  = $_COOKIE["userName"];
     $_SESSION["password"]  = $_COOKIE["password"];
     $_SESSION["theme"]     = $_COOKIE["theme"];
-    $_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
+    
     setcookie("lastVisit", date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60, "", "", false, true);
     // Establece la autenticación en verdadero
    $_SESSION["AUTH"] = true;
