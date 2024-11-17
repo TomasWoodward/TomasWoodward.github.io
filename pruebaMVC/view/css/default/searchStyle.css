@@ -1,0 +1,53 @@
+@import url("./variables.css");
+
+main {
+    text-align: center;
+    font-size: var(--font-size-small); /* Fuente pequeña para el contenido de 'main' */
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: var(--form-background-color);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: var(--form-text-color);
+        font-size: var(--font-size-small); /* Fuente pequeña para el contenido de 'form' */
+
+        label {
+            margin: 0.5em;
+            font-size: var(--font-size-small); /* Fuente pequeña para las etiquetas */
+        }
+        
+        input, select {
+            background-color: var(--input-background-color);
+            margin: 0.5em;
+            padding: 0.5em;
+            border-radius: 5px;
+            border: 1px solid var(--input-border-color);
+            font-size: var(--font-size-small); /* Fuente pequeña para los campos de entrada */
+        }
+
+        input:hover, input:focus {
+            background-color: var(--input-hover-background-color);
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            background-color: var(--submit-button-background-color);
+            color: var(--submit-button-text-color);
+            border: none;
+            padding: 0.5em;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: var(--font-size-small); /* Fuente pequeña para el botón submit */
+
+            &:hover {
+                background-color: var(--submit-button-hover-background-color);
+            }
+        }
+    }
+}

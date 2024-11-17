@@ -1,0 +1,146 @@
+@import url("./variables.css");
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+body {
+    min-width: 360px;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-base);
+
+    header {
+        text-align: center;
+        margin: 0;
+        padding: .5em;
+        background-color: var(--header-background-color);
+        
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+
+            h1 {
+                display: inline-block;
+                color: var(--header-text-color);
+                font-size: var(--font-size-big); /* Usando variable */
+            }
+
+            img {
+                width: 100px;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+                transition: transform .5s ease-in-out;
+                
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+
+    nav {
+        background-color: var(--nav-background-color);
+        margin-top: 0.5em;
+        padding: 0.5em;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+        ul {
+            display: flex;
+            list-style: none;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+    
+            li {
+                a {
+                    padding: 0.75em 1.5em;
+                    text-decoration: none;
+                    color: var(--header-text-color);
+                    font-size: 0; /* Usando variable */
+                    transition: background-color 0.3s, color 0.3s;
+                    border-radius: 5px;
+
+                    &:hover, &:active, &:focus {
+                        background-color: var(--nav-link-hover-background-color);
+                        color: var(--nav-link-hover-color);
+                    }
+
+                    i {
+                        font-size: var(--font-size-icon); /* Usando variable para íconos */
+                        margin-right: 5px;
+                    }
+                }
+            }
+
+            form {
+                display: none;
+            }
+        }
+    }
+
+    footer {
+        background-color: var(--footer-background-color);
+        color: var(--footer-text-color);
+        padding: 20px;
+        text-align: center;
+        margin-top: .5em;
+        font-size: var(--font-size-small); /* Usando variable */
+
+        a{
+            text-decoration: none;
+            color: var(--list-item-text-color);
+            font-size: var(--font-size-small);
+
+            &:hover {
+                color: var(--link-hover-background-color);
+            }
+        }
+    }
+}
+
+@media all and (min-width: 825px) {
+    body {
+        nav>ul>li>a {
+            font-size: var(--font-size-small) !important; /* Usando variable para pantallas grandes */
+        }
+    }
+
+    body>nav>ul>form {
+        display: flex;
+        align-items: center;
+
+        input[type="text"] {
+            border: 1px solid var(--input-border-color);
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            font-size: var(--font-size-small); /* Usando variable */
+        }
+
+        input[type="submit"] {
+            background-color: var(--button-background-color);
+            border: none;
+            color: var(--header-text-color);
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+            transition: background-color 0.3s;
+            font-size: var(--font-size-small); /* Usando variable */
+
+            &:hover {
+                background-color: var(--button-hover-background-color);
+            }
+        }
+    }
+}
