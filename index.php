@@ -42,11 +42,27 @@ if (!empty($_COOKIE["userName"])  &&
     $_SESSION["password"]  = $_COOKIE["password"];
     $_SESSION["theme"]     = $_COOKIE["theme"];
     $_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
+    setcookie("lastVisit", date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60, "", "", false, true);
     // Establece la autenticación en verdadero
    $_SESSION["AUTH"] = true;
 } else {
     $_SESSION["AUTH"] = false;
 }
+
+/*Verifica si las cookies son correctas, en caso que no, se borran*/
+if (!empty($_COOKIE["userName"])  && 
+    !empty($_COOKIE["password"])  && 
+    $_COOKIE["password"] != $users[$_COOKIE["userName"]]  ) {
+        session_unset();
+        session_destroy();
+        setcookie("userName", "", time() - 3600);
+        setcookie("password", "", time() - 3600);
+        setcookie("lastVisit", "", time() - 3600);
+        setcookie("theme", "", time() - 3600);
+        define("FROM_ROUTER",false);
+        header("Location: index.php");
+}
+
 // parametros para photoDetails
 if (!empty($params ["id"])) {
     $id = $params ["id"];
