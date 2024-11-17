@@ -19,6 +19,7 @@ if(! $_SESSION["AUTH"]){
     include 'layout/navAuth.php';
     include 'layout/mainAuth.php';
 }
+
 include 'layout/footer.php';
 include 'layout/end.php';
 ?>
