@@ -49,7 +49,7 @@ echo "<P>Theme: {$_SESSION["theme"]} </p>";
         <li>My Albums</li>
         <li><a href="index.php?action=createAlbum">Create album</a></li>
         <li><a href="index.php?action=getAlbum">Request Album</a></li>
-        <li><a href="index.php?action=logOutç">Log out</a></li>
+        <li><a href="index.php?action=logOut">Log out</a></li>
     </ul>
 </main>
 

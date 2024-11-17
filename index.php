@@ -49,10 +49,9 @@ if (!empty($_COOKIE["userName"])  &&
     setcookie("lastVisit", date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60, "", "", false, true);
     // Establece la autenticación en verdadero
    $_SESSION["AUTH"] = true;
-} else {
+} else if (empty($_SESSION["AUTH"])) {
     $_SESSION["AUTH"] = false;
 }
-
 /*Verifica si las cookies son correctas, en caso que no, se borran*/
 if (!empty($_COOKIE["userName"])  && 
     !empty($_COOKIE["password"])  && 
