@@ -1,6 +1,6 @@
 <?php
-if(!defined('FROM_ROUTER') ){
-	header('Location: ../index.php');
+if (!defined('FROM_ROUTER')) {
+    header('Location: ../index.php');
 }
 
 $htmlTitle = 'Search';
@@ -14,7 +14,7 @@ include 'layout/start.php';
 include 'layout/header.php';
 
 
-if(! $_SESSION["AUTH"]){
+if (!$_SESSION["AUTH"]) {
     include 'layout/nav.php';
 } else {
     include 'layout/navAuth.php';
@@ -33,7 +33,14 @@ if(! $_SESSION["AUTH"]){
         <input type="date" id="searchDate" name="searchDate">
 
         <label for="searchCountry">Country: </label>
-        <input type="text" id="searchCountry" name="searchCountry">
+        <select id="country" name="country">
+
+            <?php
+            foreach ($countrys as $countrysql) {
+                echo '<option value="' . $countrysql["nombre"] . '" ' . ($country == $countrysql["nombre"] ? "selected" : "") . '>' . $countrysql["nombre"] . '</option>';
+            }
+            ?>
+        </select>
 
         <input type="submit" value="Search">
     </form>

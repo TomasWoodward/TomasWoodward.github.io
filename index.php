@@ -1,10 +1,15 @@
 <?php
+/*Este archivo se encarga de incluir la página solicitada por el usuario*/
 
+/*Establece la zona horaria de España*/
 date_default_timezone_set('Europe/Madrid');
 ini_set('date.timezone', 'Europe/Madrid');
 session_start();
-/*Controlador de la aplicación*/
-/*Este archivo se encarga de incluir la página solicitada por el usuario*/
+
+/*Controladores de la aplicación*/
+require_once 'controller/photoController.php';
+require_once 'controller/countryController.php';
+
 
 //constante para evitar el acceso directo al archivo
 define('FROM_ROUTER', true);
@@ -73,5 +78,13 @@ if (!empty($_COOKIE["userName"])  &&
 if (!empty($params ["id"])) {
     $id = $params ["id"];
 }
+
+
+    $controllerPhotos = new PhotoController();
+    $photos = $controllerPhotos->listLastPhotos();
+
+    $controllerCountry = new CountryController();
+    $countrys = $controllerCountry->getCountries();
+
 // Mostrar la página solicitada
 include(__DIR__ . "/view/$page.php");

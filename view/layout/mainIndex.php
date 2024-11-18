@@ -1,7 +1,19 @@
 <main>
     <h2>Latest photos</h2>
-
-    <figure>
+    <?php 
+    if(isset($photos))
+    foreach ($photos as $photo) {
+        echo '<figure>';
+        echo '<h3>' . $photo['titulo'] . '</h3>';
+        echo '<img src="view/img/users/' . $photo['fichero'] . '" alt="' . $photo['alternativo'] . '">';
+        echo '<figcaption>';
+        echo '<p>' . $photo['descripcion'] . '</p>';
+        echo '<p>Country: ' . $photo['nombre'] . '</p>';
+        echo '</figcaption>';
+        echo '</figure>';
+    }
+    ?>
+    <!-- <figure>
     
             <h3>Photo title</h3>
        
@@ -54,5 +66,5 @@
             <p>Ultima descripcion para verificar que todo se ve correctamente </p>
             <p>Photo by: User</p>
         </figcaption>
-    </figure>
+    </figure> -->
 </main>

@@ -40,7 +40,9 @@ if (!empty($_SESSION["error"])) {
         <input type="submit" id="botonSubmit" value="Log-in">
     </form>
 </main>
+
 <?php
+unset($_SESSION["error"]);
 include 'layout/footer.php';
 include 'layout/end.php';
 ?>

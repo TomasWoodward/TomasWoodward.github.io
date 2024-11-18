@@ -60,19 +60,15 @@ $country = !empty($_SESSION["country"]) ? $_SESSION["country"] : '';
 
         <label for="country">Country: </label>
         <select id="country" name="country">
-            <option value="usa" <?php echo $country == "usa" ? "selected" : ""; ?>>United States</option>
-            <option value="canada" <?php echo $country == "canada" ? "selected" : ""; ?>>Canada</option>
-            <option value="mexico" <?php echo $country == "mexico" ? "selected" : ""; ?>>Mexico</option>
-            <option value="uk" <?php echo $country == "uk" ? "selected" : ""; ?>>United Kingdom</option>
-            <option value="germany" <?php echo $country == "germany" ? "selected" : ""; ?>>Germany</option>
-            <option value="australia" <?php echo $country == "australia" ? "selected" : ""; ?>>Australia</option>
-            <option value="brazil" <?php echo $country == "brazil" ? "selected" : ""; ?>>Brazil</option>
-            <option value="china" <?php echo $country == "china" ? "selected" : ""; ?>>China</option>
-            <option value="india" <?php echo $country == "india" ? "selected" : ""; ?>>India</option>
-            <option value="japan" <?php echo $country == "japan" ? "selected" : ""; ?>>Japan</option>
-            <option value="spain" <?php echo $country == "spain" ? "selected" : ""; ?>>Spain</option>
+
+        <?php
+            foreach ($countrys as $countrysql) {
+               echo '<option value="' . $countrysql["nombre"] . '" ' . ($country == $countrysql["nombre"] ? "selected" : "") . '>' . $countrysql["nombre"] . '</option>';
+            }
+        ?>
         </select>
         <span style="color:red;"><?php echo $_SESSION["error_country"] ?? ""; ?></span>
+
 
         <label for="photo">Photo: </label>
         <input type="file" id="photo" name="photo">
