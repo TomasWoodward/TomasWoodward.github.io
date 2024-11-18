@@ -1,7 +1,42 @@
-# Habilitar mod_rewrite
+# Activar el motor de reescritura
 RewriteEngine On
 
-# Redirigir todas las solicitudes a index.php
+# Forzar HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Rutas limpias: redirigir todo a index.php si no existe el archivo o directorio
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?action=$1 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?action=$1 [L,QSA]
+
+
+# Configuración de la zona horaria
+SetEnv TZ Europe/Madrid
+
+# Evitar problemas de caché
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</IfModule>
+
+# Manejo de errores personalizados
+ErrorDocument 404 /view/errorPage.php
+
+# Seguridad para el archivo .htaccess
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+# Configuración de cookies seguras
+<IfModule mod_php.c>
+    php_value session.cookie_secure On
+    php_value session.cookie_httponly On
+    php_value session.cookie_domain "dawua.000.pe"
+</IfModule>
