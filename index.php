@@ -10,7 +10,6 @@ session_start();
 require_once 'controller/photoController.php';
 require_once 'controller/countryController.php';
 
-
 //constante para evitar el acceso directo al archivo
 define('FROM_ROUTER', true);
 
@@ -25,8 +24,8 @@ $users = [
 
 // Obtiene la acción solicitada por el usuario y la página correspondiente
 $request = empty($_GET['action']) ? 'index' : $_GET['action'];
-$parts = explode("?", $request);    
-$page = explode("/", $parts[0])[0]; 
+$parts = explode("?", $request);
+$page = explode("/", $parts[0])[0];
 
 // Procesa los parámetros adicionales en el query string (ej. ?id=5&name=photo)
 $queryString = isset($parts[1]) ? $parts[1] : '';
@@ -41,49 +40,47 @@ if (!file_exists(__DIR__ . "/view/$page.php")) {
 }
 
 // Verifica si el usuario ya ha iniciado sesión previamente
-if (!empty($_COOKIE["userName"])  && 
-    !empty($_COOKIE["password"])  && 
-    !empty($_COOKIE["theme"])     &&
-    !empty($_COOKIE["lastVisit"]) &&  $_COOKIE["password"] == $users[$_COOKIE["userName"]]  ) {
+if (
+    !empty($_COOKIE["userName"]) &&
+    !empty($_COOKIE["password"]) &&
+    !empty($_COOKIE["theme"]) &&
+    !empty($_COOKIE["lastVisit"]) && $_COOKIE["password"] == $users[$_COOKIE["userName"]]
+) {
 
-    if(empty($_SESSION["lastVisit"])) {
+    if (empty($_SESSION["lastVisit"])) {
         $_SESSION["lastVisit"] = $_COOKIE["lastVisit"];
     }
 
-    $_SESSION["userName"]  = $_COOKIE["userName"];
-    $_SESSION["password"]  = $_COOKIE["password"];
-    $_SESSION["theme"]     = $_COOKIE["theme"];
-    
+    $_SESSION["userName"] = $_COOKIE["userName"];
+    $_SESSION["password"] = $_COOKIE["password"];
+    $_SESSION["theme"] = $_COOKIE["theme"];
+
     setcookie("lastVisit", date("F j, Y, g:i a"), time() + 90 * 24 * 60 * 60, "", "", false, true);
     // Establece la autenticación en verdadero
-   $_SESSION["AUTH"] = true;
+    $_SESSION["AUTH"] = true;
 } else if (empty($_SESSION["AUTH"])) {
     $_SESSION["AUTH"] = false;
 }
+
 /*Verifica si las cookies son correctas, en caso que no, se borran*/
-if (!empty($_COOKIE["userName"])  && 
-    !empty($_COOKIE["password"])  && 
-    $_COOKIE["password"] != $users[$_COOKIE["userName"]]  ) {
-        session_unset();
-        session_destroy();
-        setcookie("userName", "", time() - 3600);
-        setcookie("password", "", time() - 3600);
-        setcookie("lastVisit", "", time() - 3600);
-        setcookie("theme", "", time() - 3600);
-        define("FROM_ROUTER",false);
-        header("Location: index.php");
+if (
+    !empty($_COOKIE["userName"]) &&
+    !empty($_COOKIE["password"]) &&
+    $_COOKIE["password"] != $users[$_COOKIE["userName"]]
+) {
+    session_unset();
+    session_destroy();
+    setcookie("userName", "", time() - 3600);
+    setcookie("password", "", time() - 3600);
+    setcookie("lastVisit", "", time() - 3600);
+    setcookie("theme", "", time() - 3600);
+    define("FROM_ROUTER", false);
+    header("Location: index.php");
 }
 
-// parametros para photoDetails
-if (!empty($params ["id"])) {
-    $id = $params ["id"];
-}
-    $controllerPhotos = new PhotoController();
-   
-    
+$controllerPhotos = new PhotoController();
+$controllerCountry = new CountryController();
 
-    $controllerCountry = new CountryController();
-  
 
 // Mostrar la página solicitada
 include(__DIR__ . "/view/$page.php");
