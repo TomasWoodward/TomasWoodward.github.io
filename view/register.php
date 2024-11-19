@@ -2,7 +2,7 @@
 if(!defined('FROM_ROUTER') ||  $_SESSION["AUTH"]==true ){
 	header('Location: ../index.php');
 }
-
+$countrys = $controllerCountry->getCountries();
 $htmlTitle = 'Register';
 $cssDefault = "searchStyle";
 $cssOscuro = "searchOscuro";

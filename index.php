@@ -79,11 +79,11 @@ if (!empty($params ["id"])) {
     $id = $params ["id"];
 }
     $controllerPhotos = new PhotoController();
-    $photos = $controllerPhotos->listLastPhotos();
+   
     
 
     $controllerCountry = new CountryController();
-    $countrys = $controllerCountry->getCountries();
+  
 
 // Mostrar la página solicitada
 include(__DIR__ . "/view/$page.php");

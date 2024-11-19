@@ -24,7 +24,7 @@ class PhotoController {
 
     // Mostrar detalles de una foto
     public function viewPhoto($params) {
-        $idFoto = $params['idFoto'] ?? null;
+        $idFoto = $params;
         if ($idFoto) {
             $photo = $this->photoModel->getPhotoById($idFoto);
 			return $photo;

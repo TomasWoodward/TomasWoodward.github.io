@@ -2,7 +2,7 @@
 if (!defined('FROM_ROUTER')) {
     header('Location: ../index.php');
 }
-
+$countrys = $controllerCountry->getCountries();
 $htmlTitle = 'Search';
 $cssDefault = "searchStyle";
 $cssOscuro = "searchOscuro";

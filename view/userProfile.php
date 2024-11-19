@@ -3,6 +3,8 @@ if (!defined('FROM_ROUTER') || !$_SESSION["AUTH"]) {
     header('Location: ../index.php');
 }
 
+
+
 // Variables para HTML y CSS
 $htmlTitle = 'User Profile';
 $cssDefault = "userStyle";
