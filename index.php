@@ -78,10 +78,9 @@ if (!empty($_COOKIE["userName"])  &&
 if (!empty($params ["id"])) {
     $id = $params ["id"];
 }
-
-
     $controllerPhotos = new PhotoController();
     $photos = $controllerPhotos->listLastPhotos();
+    
 
     $controllerCountry = new CountryController();
     $countrys = $controllerCountry->getCountries();

@@ -37,7 +37,7 @@ if (!$_SESSION["AUTH"]) {
 
             <?php
             foreach ($countrys as $countrysql) {
-                echo '<option value="' . $countrysql["nombre"] . '" ' . ($country == $countrysql["nombre"] ? "selected" : "") . '>' . $countrysql["nombre"] . '</option>';
+                echo '<option value="' . $countrysql["nombre"] . '">' . $countrysql["nombre"] . '</option>';
             }
             ?>
         </select>
