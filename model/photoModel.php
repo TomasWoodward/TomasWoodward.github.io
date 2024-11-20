@@ -63,10 +63,6 @@ class PhotoModel
         $stmt->bind_param("i", $idFoto);
         $stmt->execute();
         $result= $stmt->get_result()->fetch_assoc();
-        if($result->num_rows <= 0) {
-            $_SESSION["error"] = "No photo found";
-            header("Location: ../index.php?action=errorPage");
-        }
         return $result;
         
     }
@@ -95,8 +91,13 @@ class PhotoModel
     public function busquedaFoto($titulo, $fecha, $pais)
     {
         $titulo = '%' . $titulo . '%';
-        $stmt = $this->db->prepare("SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto WHERE titulo LIKE ? OR fecha LIKE ? OR nombre LIKE ?");
-        $stmt->bind_param("sss", $titulo, $fecha, $pais);
+        if ($fecha=="" && $pais == '') {
+            $stmt = $this->db->prepare('SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto WHERE titulo LIKE ?');
+            $stmt->bind_param('s', $titulo, ) ;
+        }else{
+            $stmt = $this->db->prepare("SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto WHERE titulo LIKE ? OR fecha LIKE ? OR nombre LIKE ?");
+            $stmt->bind_param("sss", $titulo, $fecha, $pais);
+        }
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }

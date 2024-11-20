@@ -15,7 +15,7 @@
 		<li><a href="index.php?action=logOut"><i class="fa-solid fa-right-from-bracket"></i>Log out</a></li>
 		<li><a href="index.php?action=search"><i class="fa fa-search"></i> Search</a></li>
 		<form action="index.php?action=result" method="post">
-			<input type="text" id="search" name="search">
+			<input type="text" id="searchTitle" name="searchTitle">
 			<input type="submit" value="Search">
 		</form>
 	</ul>

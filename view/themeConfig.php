@@ -4,23 +4,18 @@ if (!defined('FROM_ROUTER') || !$_SESSION["AUTH"]) {
 }
 
 $htmlTitle = 'Theme configuration';
-$cssDefault = "albumResult";
-$cssOscuro = "albumResultOscuro";
-$cssContraste = "albumResultContraste";
-$cssGrande = "albumResultGrande";
-$cssGrandeContraste = "albumResultHb";
+$cssDefault = "searchStyle";
+$cssOscuro = "searchOscuro";
+$cssContraste = "searchContraste";
+$cssGrande = "searchGrande";
+$cssGrandeContraste = "searchHb";
 $scripts1 = "";
 include 'layout/start.php';
 include 'layout/header.php';
 include 'layout/navAuth.php';
 
 $themes = $controllerTheme->listThemes();
-
-
 ?>
-
-
-
 <main>
     <!-- Formulario para seleccionar el tema -->
     <form action="changeTheme.php" method="POST">
@@ -39,7 +34,7 @@ $themes = $controllerTheme->listThemes();
             }
             ?>
         </select>
-        <button type="submit">Change Theme</button>
+        <input type="submit" value="Change Theme"></input>
     </form>
 </main>
 

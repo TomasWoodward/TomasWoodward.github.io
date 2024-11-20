@@ -41,12 +41,13 @@ class UserModel {
 		$statements->bind_param("s", $username);
 		$statements->execute();
 		$result = $statements->get_result();
-		$result->fetch_assoc();
+		$row = $result->fetch_assoc();
+
 		if($result->num_rows <= 0) {
 			$_SESSION["error"] = "User not found";
 			header("Location: ../index.php?action=errorPage");
 		}
-		return $result; // Devuelve el idUsuario o null si no existe
+		return $row["idUsuario"];; // Devuelve el idUsuario o null si no existe
 	}
 
 	public function getUserName($userId){
@@ -113,6 +114,7 @@ class UserModel {
 		}
 		return true;
 	}
+
 
 	
 }

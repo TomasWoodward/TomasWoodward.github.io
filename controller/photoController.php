@@ -106,7 +106,8 @@ class PhotoController {
     public function busqueda (){
         $titulo = $_POST['searchTitle'] ?? '';
         $fecha = $_POST['searchDate'] ?? '';
-        $pais = $_POST['country'] ??0;
+        $pais = $_POST['country'] ?? "";
+
         $photos= $this ->photoModel->busquedaFoto($titulo, $fecha, $pais);
         return $photos;
     }
