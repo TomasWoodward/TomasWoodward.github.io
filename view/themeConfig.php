@@ -1,0 +1,49 @@
+<?php
+if (!defined('FROM_ROUTER') || !$_SESSION["AUTH"]) {
+    header('Location: ../index.php');
+}
+
+$htmlTitle = 'Theme configuration';
+$cssDefault = "albumResult";
+$cssOscuro = "albumResultOscuro";
+$cssContraste = "albumResultContraste";
+$cssGrande = "albumResultGrande";
+$cssGrandeContraste = "albumResultHb";
+$scripts1 = "";
+include 'layout/start.php';
+include 'layout/header.php';
+include 'layout/navAuth.php';
+
+$themes = $controllerTheme->listThemes();
+
+
+?>
+
+
+
+<main>
+    <!-- Formulario para seleccionar el tema -->
+    <form action="changeTheme.php" method="POST">
+        <h2><?=$htmlTitle?></h2>
+        <h3>Choose a Theme</h3>
+        <label for="themeSelect">Select Theme:</label>
+        <select name="theme" id="themeSelect" required>
+
+            <?php
+            if ($themes) {
+                foreach ($themes as $theme) {
+                    echo '<option value="' . htmlspecialchars($theme['idEstilo'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($theme['nombre'], ENT_QUOTES, 'UTF-8') . '</option>';
+                }
+            } else {
+                echo '<option disabled>No themes available</option>';
+            }
+            ?>
+        </select>
+        <button type="submit">Change Theme</button>
+    </form>
+</main>
+
+<?php
+include 'layout/footer.php';
+include 'layout/end.php';
+?>
