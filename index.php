@@ -4,6 +4,8 @@
 /*Establece la zona horaria de España*/
 date_default_timezone_set('Europe/Madrid');
 ini_set('date.timezone', 'Europe/Madrid');
+//constante para evitar el acceso directo al archivo
+define('FROM_ROUTER', true);
 session_start();
 
 /*Controladores de la aplicación*/
@@ -12,8 +14,7 @@ require_once 'controller/countryController.php';
 require_once 'controller/userController.php';
 
 
-//constante para evitar el acceso directo al archivo
-define('FROM_ROUTER', true);
+
 
 // Array de usuarios
 $users = [
