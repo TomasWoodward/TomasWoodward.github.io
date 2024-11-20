@@ -21,12 +21,12 @@ $result = $controllerUser->getAlbums($_SESSION["userName"]);
 <main>
     <h2>My Albums</h2>
     <?php if (!empty($result)): ?>
-        <ul>
+        
             <?php foreach ($result as $album): ?>
                 
                     <?php
                     echo '<figure>';
-                    echo '<h3>' . $album['titulo'] .'['.$album['idAlbum'].']' . '</h3>';
+                    echo '<h3>' . $album['titulo'] . '</h3>';
                     echo '<figcaption>';
                     echo '<p>' . $album['descripcion'] . '</p>';
                     echo '</figcaption>';
@@ -34,9 +34,9 @@ $result = $controllerUser->getAlbums($_SESSION["userName"]);
                     ?>
             
             <?php endforeach; ?>
-        </ul>
+        
     <?php else: ?>
-        <p>Do not found albums for this user.</p>
+        <p>Could not found any albums for this user</p>
     <?php endif; ?>
 </main>
 
