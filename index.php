@@ -12,6 +12,7 @@ session_start();
 require_once 'controller/photoController.php';
 require_once 'controller/countryController.php';
 require_once 'controller/userController.php';
+require_once 'controller/themeController.php';
 
 
 
@@ -88,6 +89,7 @@ if (
 
     $controllerCountry = new CountryController();
   
+    $controllerTheme = new ThemeController();
 
 // Mostrar la página solicitada
 include(__DIR__ . "/view/$page.php");
