@@ -114,16 +114,6 @@ class UserModel {
 		return true;
 	}
 
-	public function getEstilos(){
-		$statements = $this->db->prepare("SELECT * FROM estilos");
-		$statements->execute();
-		$result = $statements->get_result();
-		if($result->num_rows <= 0) {
-			$_SESSION["error"] = "No styles found";
-			header("Location: ../index.php?action=errorPage");
-		}
-		return $result->fetch_all(MYSQLI_ASSOC);
-	}
 	
 }
 ?>

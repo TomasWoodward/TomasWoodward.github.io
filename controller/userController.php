@@ -84,9 +84,6 @@ class UserController {
         return $userName; 
     }
     
-    public function getEstilos(){
-        $estilos = $this->userModel->getEstilos();
-        return $estilos;
-    }
+
 }
 ?>
