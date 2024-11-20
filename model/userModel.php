@@ -37,6 +37,14 @@ class UserModel {
 	
 		return $row['idUsuario'] ?? null; // Devuelve el idUsuario o null si no existe
 	}
+
+	public function getUserName($userId){
+		$statements = $this->db->prepare("SELECT nomUsuario from `usuarios` where idUsuario = ?");
+        $statements->bind_param("i", $userId);
+        $statements->execute();
+        $result = $statements->get_result();	
+        return $result->fetch_assoc();
+	}
 	
 	public function registerUser(
 		$username,

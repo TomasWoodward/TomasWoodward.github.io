@@ -21,4 +21,9 @@ class CountryController {
 		$country = $this->countryModel->getCountryByName($name);
 		return $country;
 	}
+
+	public function getCountryById($id){
+		$country = $this->countryModel->getCountryById($id);
+		return $country;
+	}	
 }

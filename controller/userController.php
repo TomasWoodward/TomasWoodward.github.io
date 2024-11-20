@@ -77,5 +77,11 @@ class UserController {
             header('index.php?action=photoGallery');
         }
     }
+
+
+    public function getUserName($userId){
+        $userName = $this->userModel->getUserName($userId);
+        return $userName; 
+    }
 }
 ?>
