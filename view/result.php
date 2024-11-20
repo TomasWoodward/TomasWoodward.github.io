@@ -21,7 +21,7 @@ if ( $_SESSION["AUTH"]) {
     foreach ($resultados as $resultado) {        
         echo '<figure>';
         echo '<h3>' . $resultado['titulo'] . '</h3>';
-        echo '<a href="index.php?action=photoDetails"> <img src="view/img/users/' . $resultado['fichero'] . '" alt="' . $resultado['alternativo'] . '"></a>';
+        echo '<a href="index.php?action=photoDetails&id=' . $resultado["idFoto"] . '"> <img src="view/img/users/' . $resultado['fichero'] . '" alt="' . $resultado['alternativo'] . '"></a>';
         echo '<figcaption>';
         echo '<p>' . $resultado['descripcion'] . '</p>';
         echo '<p>Country: ' . $resultado['nombre'] . '</p>';

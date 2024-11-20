@@ -9,6 +9,7 @@ session_start();
 /*Controladores de la aplicación*/
 require_once 'controller/photoController.php';
 require_once 'controller/countryController.php';
+require_once 'controller/userController.php';
 
 
 //constante para evitar el acceso directo al archivo
@@ -74,13 +75,10 @@ if (!empty($_COOKIE["userName"])  &&
         header("Location: index.php");
 }
 
-// parametros para photoDetails
-if (!empty($params ["id"])) {
-    $id = $params ["id"];
-}
+    // controladores de la web
     $controllerPhotos = new PhotoController();
    
-    
+    $controllerUser = new UserController();
 
     $controllerCountry = new CountryController();
   

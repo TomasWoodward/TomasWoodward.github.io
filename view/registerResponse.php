@@ -83,19 +83,31 @@ if(!defined('FROM_ROUTER') ){
     if (!empty($_SESSION["error_userNameReg"]) || !empty($_SESSION["error_pass"]) || !empty($_SESSION["error_pass2"]) || !empty($_SESSION["error_email"]) || !empty($_SESSION["error_sex"]) || !empty($_SESSION["error_birth"]) || !empty($_SESSION["error_city"]) || !empty($_SESSION["error_country"])) {
         header("Location: index.php?action=register");
     } else {
+        $controllerUser->register(
+            $_SESSION["userNameReg"], 
+            $_SESSION["pass"], 
+            $_SESSION["email"], 
+            $_SESSION["sex"], 
+            $_SESSION["birth"], 
+            $_SESSION["city"], 
+            $_SESSION["country"], 
+            "user.jpg", // Foto
+            1  // Estilo
+        );
+    ?>
+
+    <h2 style="color:green;">REGISTER SUCCEEDED</h2>
+    <h3>Application details:</h3>
+    <p>User name: <?php echo $userName; ?></p>
+    <p>Email: <?php echo $email ?></p>
+    <p>Birth date: <?php echo $birth ?></p>
+    <p>Sex: <?php echo $sex; ?></p>
+    <p>City: <?php echo $city ?></p>
+    <p>Country: <?php echo $country ?></p>
+
+<?php } 
 ?>
 
-        <h2 style="color:green;">REGISTER SUCCEEDED</h2>
-        <h3>Application details:</h3>
-        <p>User name: <?php echo $userName; ?></p>
-        <p>Email: <?php echo $email ?></p>
-        <p>Birth date: <?php echo $birth ?></p>
-        <p>Sex: <?php echo $sex; ?></p>
-        <p>City: <?php echo $city ?></p>
-        <p>Country: <?php echo $country ?></p>
-<?php
-    }
-?>
 
 </main>
 

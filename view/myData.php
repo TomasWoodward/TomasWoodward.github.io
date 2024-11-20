@@ -1,9 +1,12 @@
 <?php
-if(!defined('FROM_ROUTER') ||  $_SESSION["AUTH"]==true ){
-	header('Location: ../index.php');
+if (!defined('FROM_ROUTER') || !$_SESSION["AUTH"]) {
+    header('Location: ../index.php');
 }
+
+
 $countrys = $controllerCountry->getCountries();
-$htmlTitle = 'Register';
+$data = $controllerUser->getUser($_SESSION["userName"]);
+$htmlTitle = 'My Data';
 $cssDefault = "searchStyle";
 $cssOscuro = "searchOscuro";
 $cssContraste = "searchContraste";
@@ -12,28 +15,31 @@ $cssGrandeContraste = "searchHb";
 $scripts1 = "";
 include "layout/start.php";
 include 'layout/header.php';
-include 'layout/nav.php';
+include 'layout/navAuth.php';
+
+
 
 // Inicializamos las variables
-$userName = !empty($_SESSION["userNameReg"]) ? $_SESSION["userNameReg"] : '';
-$password = !empty($_SESSION["pass"]) ? $_SESSION["pass"] : '';
-$password2 = !empty($_SESSION["pass2"]) ? $_SESSION["pass2"] : '';
-$email = !empty($_SESSION["email"]) ? $_SESSION["email"] : '';
-$sex = !empty($_SESSION["sex"]) ? $_SESSION["sex"] : '';
-$birth = !empty($_SESSION["birth"]) ? $_SESSION["birth"] : '';    
-$city = !empty($_SESSION["city"]) ? $_SESSION["city"] : '';
-$country = !empty($_SESSION["country"]) ? $_SESSION["country"] : '';
+$userName = !empty($data) ? $data['nomUsuario'] : '';
+$password = !empty($data) ? $data['clave'] : '';
+$password2 = !empty($data) ? $data['clave'] : '';
+$email = !empty($data) ? $data['email'] : '';
+$sex = !empty($data) ? $data['sexo'] : '';
+$birth = !empty($data) ? $data['fNacimiento'] : '';   
+$city = !empty($data) ? $data['ciudad'] : '';
+$country = !empty($data) ? $data['pais'] : '';
+
 
 ?>
 <main>
 <h2><?=$htmlTitle?></h2>
-<form action="index.php?action=registerResponse" method="post" id="formRegister" enctype="multipart/form-data">
+<form action="index.php" method="put" id="formEdit" enctype="multipart/form-data">
 <?php
 
 include 'layout/registerForm.php';
 ?>
 
-<input type="submit" value="Register">
+<input type="submit" value="Edit">
 
 </form>
 </main>

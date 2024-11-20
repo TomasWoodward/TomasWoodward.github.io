@@ -13,4 +13,9 @@ class CountryController {
 		$countries = $this->countryModel->getCountries();
 		return $countries;
 	}
+
+	public function getCountryByName($name){
+		$country = $this->countryModel->getCountryByName($name);
+		return $country;
+	}
 }

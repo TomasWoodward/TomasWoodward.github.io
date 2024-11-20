@@ -20,4 +20,11 @@ class countryModel {
 		$stmt->execute();
 		return $stmt->get_result()->fetch_assoc();
 	}
+
+	public function getCountryByName($name){
+		$stmt = $this->db->prepare("SELECT idPais FROM paises WHERE nombre = ? ");
+		$stmt->bind_param("s", $name);
+		$stmt->execute();
+		return $stmt->get_result()->fetch_assoc();
+	}
 }
