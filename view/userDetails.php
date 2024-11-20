@@ -27,7 +27,7 @@ if($params[1]){
 $username = $controllerUser->getUserName($idUsuario);
 $user = $controllerUser->getUser($username['nomUsuario']);  
 $userId = $user['idUsuario']; 
-$album = $controllerPhotos->getPhotosByUser($userId);
+$albums = $controllerUser->getAlbums($username["nomUsuario"]);
 ?>
 
 
@@ -36,25 +36,22 @@ $album = $controllerPhotos->getPhotosByUser($userId);
     <h3><?=$user['nomUsuario']?></h3>
     <p>Profile pic: <?=$user['foto']?></p>
     <p>Been active since: <?=$user['fRegistro']?></p>
-
-    <br>
-
     <h3><?=$user['nomUsuario']?>'s albums</h3>
 <?php
-    if ($album) {
-        foreach ($album as $photo) {
-            $country = $controllerCountry->getCountryById($photo['FotoPais']);
+    if ($albums) {
 
+        foreach ($albums as $album) {
+            // $country = $controllerCountry->getCountryById($album['FotoPais']);
             echo '<figure>';
-            echo '<h3>' . htmlspecialchars($photo['AlbumTitulo'], ENT_QUOTES, 'UTF-8') . '</h3>';
-            echo '<a href="index.php?action=photoDetails&id=' . urlencode($photo['idFoto']) . '">';
-            echo '<img src="view/img/users/' . htmlspecialchars($photo['FotoFichero'], ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($photo['FotoAlternativo'], ENT_QUOTES, 'UTF-8') . '">';
-            echo '</a>';
-            echo '<figcaption>';
-            echo '<p>' . htmlspecialchars($photo['FotoDescripcion'], ENT_QUOTES, 'UTF-8') . '</p>';
-            echo '<p>Country: ' . htmlspecialchars($country['nombre'] ?? 'Unknown', ENT_QUOTES, 'UTF-8') . '</p>';
-            echo '<p>Fecha: ' . htmlspecialchars($photo['FotoFRegistro'], ENT_QUOTES, 'UTF-8') . '</p>';
-            echo '</figcaption>';
+            echo '<h3>' . htmlspecialchars($album['titulo'], ENT_QUOTES, 'UTF-8') . '</h3>';
+            // echo '<a href="index.php?action=photoDetails&id=' . urlencode($album['idFoto']) . '">';
+            // echo '<img src="view/img/users/' . htmlspecialchars($album['FotoFichero'], ENT_QUOTES, 'UTF-8') . '" alt="' . htmlspecialchars($album['FotoAlternativo'], ENT_QUOTES, 'UTF-8') . '">';
+            // echo '</a>';
+            // echo '<figcaption>';
+            // echo '<p>' . htmlspecialchars($album['FotoDescripcion'], ENT_QUOTES, 'UTF-8') . '</p>';
+            // echo '<p>Country: ' . htmlspecialchars($album['nombre'] ?? 'Unknown', ENT_QUOTES, 'UTF-8') . '</p>';
+            // echo '<p>Fecha: ' . htmlspecialchars($album['FotoFRegistro'], ENT_QUOTES, 'UTF-8') . '</p>';
+            // echo '</figcaption>';
             echo '</figure>';
         }
     }else{

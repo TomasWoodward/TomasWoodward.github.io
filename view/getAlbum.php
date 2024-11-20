@@ -1,6 +1,6 @@
 <?php
-if(!defined('FROM_ROUTER') ||  $_SESSION["AUTH"]==false ){
-	header('Location: ../index.php');
+if (!defined('FROM_ROUTER') || $_SESSION["AUTH"] == false) {
+    header('Location: ../index.php');
 }
 $htmlTitle = 'Get album';
 $cssDefault = "getAlbumStyle";
@@ -218,10 +218,18 @@ for ($i = 1; $i <= 15; $i++) {
                 onchange="getValue()">
             <output id="rangeValue">150 DPI</output>
         </p>
+        <label for="userAlbum">User Album: </label>
+        <select name="userAlbum">
 
-        <p><label for="userAlbum">User Album: </label>
-            <input type="text" id="userAlbum" name="userAlbum">
-        </p>
+            <?php
+            $result = $controllerUser->getAlbums($_SESSION["userName"]);
+            if ($result) {
+                foreach ($result as $row) {
+                    echo "<option value='" . $row['titulo'] . "'>" . $row['titulo'] . "</option>";
+                }
+            }
+            ?>
+        </select>
 
         <p><label for="aproxDate">Date: </label>
             <input type="date" id="aproxDate" class="aproxDate" name="aproxDate">
@@ -239,7 +247,7 @@ for ($i = 1; $i <= 15; $i++) {
 
         <table id="priceTable" class="tablaDesplegable" style="display: none;">
             <?php
-           
+
             echo "<tr>";
             foreach ($headers as $header) {
                 echo "<th>$header</th>";
@@ -252,7 +260,7 @@ for ($i = 1; $i <= 15; $i++) {
                 }
                 echo "</tr>";
             }
-            
+
             ?>
         </table>
 

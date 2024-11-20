@@ -110,10 +110,8 @@ class PhotoController {
         $photos= $this ->photoModel->busquedaFoto($titulo, $fecha, $pais);
         return $photos;
     }
-
-
-    public function getPhotosByUser($idUsuario){ 
-        $photos = $this->photoModel->getPhotosByUser($idUsuario);
+    public function getAlbums_PhotosByUser($idUsuario){ 
+        $photos = $this->photoModel->getAlbums_PhotosByUser($idUsuario);
         return $photos;
     }
 }

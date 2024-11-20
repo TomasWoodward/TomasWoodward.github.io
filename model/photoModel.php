@@ -21,7 +21,12 @@ class PhotoModel
              VALUES (?, ?, ?, ?, ?, ?, ?)"
         );
         $stmt->bind_param("sssiiis", $titulo, $descripcion, $fecha, $pais, $album, $fichero, $alternativo);
-        return $stmt->execute();
+        $result = $stmt->execute();
+        if($result === false){
+            $_SESSION["error"] = " Error adding photo";
+            header("Location: ../index.php?action=errorPage");
+        }
+        return $result;
     }
 
     // Obtener todas las fotos
@@ -36,7 +41,8 @@ class PhotoModel
     {
         $stmt = $this->db->prepare("SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto ORDER BY fRegistro DESC LIMIT 5");
         $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $result;
     }
 
     // Obtener una foto por ID
@@ -56,7 +62,13 @@ class PhotoModel
                                             WHERE f.idFoto = ?;");
         $stmt->bind_param("i", $idFoto);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        $result= $stmt->get_result()->fetch_assoc();
+        if($result->num_rows <= 0) {
+            $_SESSION["error"] = "No photo found";
+            header("Location: ../index.php?action=errorPage");
+        }
+        return $result;
+        
     }
 
     // Actualizar una foto
@@ -90,7 +102,7 @@ class PhotoModel
     }
 
 
-    public function getPhotosByUser($idUsuario)
+    public function getAlbums_PhotosByUser($idUsuario)
     {
         $stmt = $this->db->prepare("SELECT albumes.idAlbum,
                                         albumes.titulo AS AlbumTitulo,
@@ -110,7 +122,7 @@ class PhotoModel
                                     WHERE 
                                         albumes.usuario = ?
                                     ORDER BY 
-                                        albumes.idAlbum, fotos.idFoto;
+                                        albumes.idAlbum, fotos.fRegistro DESC
                                     ");
         $stmt->bind_param("i", $idUsuario);
         $stmt->execute();

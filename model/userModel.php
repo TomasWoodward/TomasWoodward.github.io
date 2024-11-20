@@ -18,6 +18,10 @@ class UserModel {
 		$statements->bind_param("i", $userId);
 		$statements->execute();
 		$result = $statements->get_result();
+		if($result->num_rows <= 0) {
+			$_SESSION["error"] = "No albums found";
+			header("Location: ../index.php?action=errorPage");
+		}
 		return $result->fetch_all(MYSQLI_ASSOC);
 	}
     public function getUser($username) {
@@ -25,6 +29,10 @@ class UserModel {
         $statements->bind_param("s", $username);
         $statements->execute();
         $result = $statements->get_result();	
+		if($result->num_rows <= 0) {
+			$_SESSION["error"] = "User not found";
+			header("Location: ../index.php?action=errorPage");
+		}
         return $result->fetch_assoc();
     }
 
@@ -33,9 +41,12 @@ class UserModel {
 		$statements->bind_param("s", $username);
 		$statements->execute();
 		$result = $statements->get_result();
-		$row = $result->fetch_assoc();
-	
-		return $row['idUsuario'] ?? null; // Devuelve el idUsuario o null si no existe
+		$result->fetch_assoc();
+		if($result->num_rows <= 0) {
+			$_SESSION["error"] = "User not found";
+			header("Location: ../index.php?action=errorPage");
+		}
+		return $result; // Devuelve el idUsuario o null si no existe
 	}
 
 	public function getUserName($userId){
@@ -43,6 +54,10 @@ class UserModel {
         $statements->bind_param("i", $userId);
         $statements->execute();
         $result = $statements->get_result();	
+		if($result->num_rows <= 0) {
+			$_SESSION["error"] = " User not found";
+			header("Location: ../index.php?action=errorPage");
+		}
         return $result->fetch_assoc();
 	}
 	
@@ -57,7 +72,7 @@ class UserModel {
 		$foto,
 		$estilo,
 		$countryController // Pasar el controlador de países para obtener el id del pais a partir del nombre
-) {
+	) {
 		// Obtener el idPais usando el controlador de países
 		$country = $countryController->getCountryByName($paisNombre);
 	
@@ -93,10 +108,21 @@ class UserModel {
 	
 		// Ejecutar la consulta y verificar el resultado
 		if (!$statements->execute()) {
-			throw new Exception("Error al registrar el usuario: " . $statements->error);
+			$_SESSION["error"] = "Error al registrar el usuario";
+            header('Location: ../index.php?action=errorPage');
 		}
-	
 		return true;
+	}
+
+	public function getEstilos(){
+		$statements = $this->db->prepare("SELECT * FROM estilos");
+		$statements->execute();
+		$result = $statements->get_result();
+		if($result->num_rows <= 0) {
+			$_SESSION["error"] = "No styles found";
+			header("Location: ../index.php?action=errorPage");
+		}
+		return $result->fetch_all(MYSQLI_ASSOC);
 	}
 	
 }
