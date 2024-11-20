@@ -88,4 +88,32 @@ class PhotoModel
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+
+
+    public function getPhotosByUser($idUsuario)
+    {
+        $stmt = $this->db->prepare("SELECT albumes.idAlbum,
+                                        albumes.titulo AS AlbumTitulo,
+                                        albumes.descripcion AS AlbumDescripcion,
+                                        fotos.idFoto,
+                                        fotos.titulo AS FotoTitulo,
+                                        fotos.descripcion AS FotoDescripcion,
+                                        fotos.fecha AS FotoFecha,
+                                        fotos.pais AS FotoPais,
+                                        fotos.fichero AS FotoFichero,
+                                        fotos.alternativo AS FotoAlternativo,
+                                        fotos.fRegistro AS FotoFRegistro
+                                    FROM 
+                                        albumes
+                                    LEFT JOIN 
+                                        fotos ON albumes.idAlbum = fotos.album
+                                    WHERE 
+                                        albumes.usuario = ?
+                                    ORDER BY 
+                                        albumes.idAlbum, fotos.idFoto;
+                                    ");
+        $stmt->bind_param("i", $idUsuario);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
 }
