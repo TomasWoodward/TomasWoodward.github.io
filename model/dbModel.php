@@ -1,4 +1,7 @@
 <?php 
+if(!defined('FROM_ROUTER')){
+	header('Location: ../index.php');
+}
 class Database {
     private static $instance = null;
     private $connection;

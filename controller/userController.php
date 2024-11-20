@@ -1,4 +1,7 @@
 <?php 
+if(!defined('FROM_ROUTER')){
+	header('Location: ../index.php');
+}
 require_once __DIR__ . '/../model/UserModel.php';
 require_once __DIR__ . '/../controller/countryController.php';
 
