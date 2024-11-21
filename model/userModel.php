@@ -18,10 +18,6 @@ class UserModel {
 		$statements->bind_param("i", $userId);
 		$statements->execute();
 		$result = $statements->get_result();
-		if($result->num_rows <= 0) {
-			$_SESSION["error"] = "No albums found";
-			header("Location: ../index.php?action=errorPage");
-		}
 		return $result->fetch_all(MYSQLI_ASSOC);
 	}
     public function getUser($username) {
@@ -29,10 +25,7 @@ class UserModel {
         $statements->bind_param("s", $username);
         $statements->execute();
         $result = $statements->get_result();	
-		if($result->num_rows <= 0) {
-			$_SESSION["error"] = "User not found";
-			header("Location: ../index.php?action=errorPage");
-		}
+		
         return $result->fetch_assoc();
     }
 
@@ -115,7 +108,14 @@ class UserModel {
 		return true;
 	}
 
-
+	public function getStyle($userId){
+		$result = $this->db->prepare("SELECT nombre  FROM usuarios u JOIN estilos a ON a.idEstilo = u.estilo WHERE idUsuario = ?");
+		$result->bind_param("i", $userId);
+		$result->execute();
+		$result = $result->get_result();
+		$style = $result->fetch_assoc();
+		return $style;
+	}
 	
 }
 ?>

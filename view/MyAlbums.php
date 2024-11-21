@@ -1,5 +1,5 @@
 <?php
-if (!defined('FROM_ROUTER') || !$_SESSION["AUTH"]) {
+if (!defined('FROM_ROUTER') || $_SESSION["AUTH"]==false) {
     header('Location: ../index.php');
 }
 
@@ -36,7 +36,9 @@ $result = $controllerUser->getAlbums($_SESSION["userName"]);
         <?php endforeach; ?>
 
     <?php else: ?>
-        <p>Could not found any albums for this user</p>
+        <figure>
+            <p>Could not found any albums for this user</p>
+        </figure>
     <?php endif; ?>
 </main>
 

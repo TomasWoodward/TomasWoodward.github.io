@@ -15,12 +15,10 @@ class UserController {
     public function login($username, $password) {
         $user = $this->userModel->getUser($username);
 
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user'] = $user['username'];
-            header('index.php?action=photoGallery');
+        if ($user && password_verify($password, $user['clave'])) {
+            return $user;
         } else {
-            $_SESSION['error'] = ' Usuario o contraseña incorrectos';
-            header('index.php?action=login');
+           return false;
         }
     }
 
@@ -59,7 +57,7 @@ class UserController {
             return $albums;
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
-            header('index.php?action=photoGallery');
+            header('./index.php?action=errorPage');
         }
         
     }
@@ -84,6 +82,9 @@ class UserController {
         return $userName; 
     }
     
-
+    public function getStyle($userId){
+        $style = $this->userModel->getStyle($userId);
+        return $style;
+    }
 }
 ?>

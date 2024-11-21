@@ -34,7 +34,7 @@ if (!empty($_SESSION["error"])) {
 
 
         <label>
-            <input type="checkbox" id="remember" name="remember">
+            <input type="checkbox" id="remember" name="remember" value="1">
             Remember me in this device for 90 days
         </label>
         <input type="submit" id="botonSubmit" value="Log-in">

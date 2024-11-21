@@ -12,6 +12,7 @@ $scripts1 = "";
 include 'layout/start.php';
 include 'layout/header.php';
 include 'layout/nav.php';
+$error = $_GET["error"] ;
 ?>
 
 <main>
