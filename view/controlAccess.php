@@ -11,7 +11,7 @@ $remember = !empty($_POST["remember"]);
 $usuario = $controllerUser->login($userName, $password);
 
 // Verificar credenciales
-if (!empty($usuario)) {
+if ($usuario) {
     // Guardar las credenciales en la sesión
     $_SESSION["userName"] = $usuario["nomUsuario"];
     $_SESSION["password"] = $usuario["clave"];

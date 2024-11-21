@@ -64,16 +64,8 @@ class UserController {
 
     public function getUser($username){
         $user = $this->userModel->getUser($username);
+        return $user;
 
-        try{
-            if (!$user) {
-                throw new Exception("User not found");
-            }
-            return $user;
-        } catch (Exception $e) {
-            $_SESSION['error'] = $e->getMessage();
-            header('index.php?action=photoGallery');
-        }
     }
 
 

@@ -1,8 +1,8 @@
 <?php
-if (!defined('FROM_ROUTER') || $_SESSION["AUTH"]==false) {
+
+if (!defined('FROM_ROUTER') || !isset($_SESSION["AUTH"]) || $_SESSION["AUTH"] == false) {
     header('Location: ../index.php');
 }
-
 
 $htmlTitle = 'MyAlbums';
 $cssDefault = "indexEstilo";
@@ -24,20 +24,20 @@ $result = $controllerUser->getAlbums($_SESSION["userName"]);
 
         <?php foreach ($result as $album): ?>
 
-            <?php
-            echo '<figure>';
-            echo '<h3>' . $album['titulo'] . '</h3>';
-            echo '<figcaption>';
-            echo '<p>' . $album['descripcion'] . '</p>';
-            echo '</figcaption>';
-            echo '</figure>';
-            ?>
+            
+            <figure>
+                <h3><?= $album['titulo'] ?></h3>
+                <figcaption>
+                    <p><?= $album['descripcion'] ?></p>
+                </figcaption>
+            </figure>
+            
 
         <?php endforeach; ?>
 
     <?php else: ?>
         <figure>
-            <p>Could not found any albums for this user</p>
+            <p>Could not find any albums for this user</p>
         </figure>
     <?php endif; ?>
 </main>
