@@ -21,21 +21,14 @@ $result = $controllerUser->getAlbums($_SESSION["userName"]);
 <main>
     <h2>My Albums</h2>
     <?php if (!empty($result)): ?>
-
         <?php foreach ($result as $album): ?>
-
-            
             <figure>
-                <p><?php $album["idAlbum"] ?></p>
                 <a href="index.php?action=albumDetails&id=<?= $album["idAlbum"] ?>"><h3><?= $album['titulo'] ?></h3></a>
                 <figcaption>
                     <p><?= $album['descripcion'] ?></p>
                 </figcaption>
             </figure>
-            
-
         <?php endforeach; ?>
-
     <?php else: ?>
         <figure>
             <p>Could not find any albums for this user</p>

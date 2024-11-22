@@ -134,46 +134,47 @@ class PhotoModel
     public function getAlbumPhotos($idAlbum)
     {
         $stmt = $this->db->prepare("SELECT 
-    a.titulo AS albumTitulo,
-    a.descripcion AS descripcion_album,
-    f.idFoto AS fotoId,
-    f.titulo AS fotoTitulo,
-    f.alternativo AS fotoAlternativo,
-    f.fichero AS fotoFichero,
-    f.descripcion AS fotoDescripcion,
-    f.fecha AS fotoFecha,
-    p.nombre AS fotoPais,
-    agg.total_fotos,
-    agg.paises,
-    agg.inicio_intervalo,
-    agg.fin_intervalo
-FROM 
-    albumes a
-LEFT JOIN 
-    fotos f ON a.idAlbum = f.album
-LEFT JOIN 
-    paises p ON f.pais = p.idPais
+                                        a.titulo AS albumTitulo,
+                                        a.descripcion AS descripcion_album,
+                                        a.usuario AS usuario_album,
+                                        f.idFoto AS fotoId,
+                                        f.titulo AS fotoTitulo,
+                                        f.alternativo AS fotoAlternativo,
+                                        f.fichero AS fotoFichero,
+                                        f.descripcion AS fotoDescripcion,
+                                        f.fecha AS fotoFecha,
+                                        p.nombre AS fotoPais,
+                                        agg.total_fotos,
+                                        agg.paises,
+                                        agg.inicio_intervalo,
+                                        agg.fin_intervalo
+                                    FROM 
+                                        albumes a
+                                    LEFT JOIN 
+                                        fotos f ON a.idAlbum = f.album
+                                    LEFT JOIN 
+                                        paises p ON f.pais = p.idPais
     
-LEFT JOIN (
-    SELECT 
-        f.album AS album_id,
-        COUNT(f.idFoto) AS total_fotos,
-        GROUP_CONCAT(DISTINCT p.nombre ORDER BY p.nombre ASC SEPARATOR ', ') AS paises,
-        MIN(f.fecha) AS inicio_intervalo,
-        MAX(f.fecha) AS fin_intervalo
-    FROM 
-        fotos f
-    LEFT JOIN 
-        paises p ON f.pais = p.idPais
-    GROUP BY 
-        f.album
-) agg ON a.idAlbum = agg.album_id
-    WHERE 
-    	a.idAlbum = ?
+                                    LEFT JOIN (
+                                    SELECT 
+                                        f.album AS album_id,
+                                        COUNT(f.idFoto) AS total_fotos,
+                                        GROUP_CONCAT(DISTINCT p.nombre ORDER BY p.nombre ASC SEPARATOR ', ') AS paises,
+                                        MIN(f.fecha) AS inicio_intervalo,
+                                        MAX(f.fecha) AS fin_intervalo
+                                    FROM 
+                                        fotos f
+                                    LEFT JOIN 
+                                        paises p ON f.pais = p.idPais
+                                    GROUP BY 
+                                        f.album
+                                ) agg ON a.idAlbum = agg.album_id
+                                    WHERE 
+                                        a.idAlbum = ?
 
-ORDER BY 
-    a.idAlbum, f.fecha;
-");
+                                ORDER BY 
+                                    a.idAlbum, f.fecha;
+                                ");
         $stmt->bind_param("i", $idAlbum);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

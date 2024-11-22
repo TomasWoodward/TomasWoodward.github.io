@@ -120,6 +120,7 @@ class PhotoController {
         $photos = $this->photoModel->getAlbumPhotos($idAlbum);
         return $photos;
     }
+    
 }
 
 ?>

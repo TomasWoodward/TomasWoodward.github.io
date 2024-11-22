@@ -64,6 +64,11 @@ return $albums;
         $userName = $this->userModel->getUserName($userId);
         return $userName; 
     }
+
+        public function getUserId($username){
+            $userId = $this->userModel->getUserId($username);
+            return $userId;
+        }
     
     public function getStyle($userId){
         $style = $this->userModel->getStyle($userId);

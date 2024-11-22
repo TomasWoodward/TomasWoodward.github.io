@@ -1,5 +1,5 @@
 <?php
-if(!defined('FROM_ROUTER')){
+if(!defined('FROM_ROUTER')||$_SESSION["AUTH"] === false ){
 	header('Location: ../index.php');
 }
 $htmlTitle = 'Home';
@@ -11,7 +11,7 @@ $cssGrandeContraste = "indexHighBig";
 $scripts1 = "";
 include 'layout/start.php';
 include 'layout/header.php';
-
+include 'layout/navAuth.php';
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 if ($id === false) {
@@ -20,14 +20,13 @@ if ($id === false) {
     exit;
 }
 $photos = $controllerPhotos->getAlbumPhotos($id);
+$userid=  $controllerUser->getUserId( $_SESSION["userName"]);
 
-if ($_SESSION["AUTH"] === false){
-    include 'layout/nav.php';
+if ( $userid != $photos[0]["usuario_album"]) {
     echo'<main>';
     include 'layout/albumDetail.php';
     echo '</main>';
 } else {
-    include 'layout/navAuth.php';
     echo'<main>';
     include 'layout/albumDetail.php';
     echo '<a href=""><p>Agregar Foto</p></a>';
