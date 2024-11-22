@@ -23,7 +23,7 @@ if($_SESSION["AUTH"]==false ){
 
 <main>
     <h2>Error</h2>
-    <p><?php echo $error; ?></p>
+    <p><?= $error; ?></p>
 </main>
 
 <?php

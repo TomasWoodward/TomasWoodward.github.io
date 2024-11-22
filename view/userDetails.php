@@ -15,15 +15,15 @@ include 'layout/start.php';
 include 'layout/header.php';
 include 'layout/navAuth.php';
 
-$idUsuario = $_GET['id'] ?? "";
+$idUsuario = $_GET['id'] ;
 $username = $controllerUser->getUserName($idUsuario);
 $user = $controllerUser->getUser($username['nomUsuario']);  
 $userId = $user['idUsuario']; 
 $albums = $controllerUser->getAlbums($username["nomUsuario"]);
 
-if (!isset($username) || !isset($user) || !is_array($albums)) {
-    $_SESSION['error'] = 'User not found';
-    header('Location: index.php?action=errorPage');
+ if (!isset($username) || !isset($user) || !is_array($albums)) {
+     $_SESSION['error'] = 'User not found';
+     header('Location: index.php?action=errorPage');
 }
 ?>
 <main>

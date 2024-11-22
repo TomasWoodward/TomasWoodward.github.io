@@ -91,7 +91,9 @@ class PhotoModel
     //buscar fotos por titulo, fecha, y pais
     public function busquedaFoto($titulo, $fecha, $pais)
     {
-        $titulo = '%' . $titulo . '%';
+        $titulo = $titulo . '%';
+        $fecha = date('Y-m-d', strtotime($fecha)); 
+        $fecha = '%' . $fecha . '%';
         if ($fecha == "" && $pais == '') {
             $stmt = $this->db->prepare('SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto WHERE titulo LIKE ?');
             $stmt->bind_param('s', $titulo, );
