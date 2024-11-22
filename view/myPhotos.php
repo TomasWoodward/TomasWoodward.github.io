@@ -5,11 +5,11 @@ if (!defined('FROM_ROUTER') || !$_SESSION["AUTH"]) {
 
 
 $htmlTitle = 'My Photos';
-$cssDefault = "albumResult";
-$cssOscuro = "albumResultOscuro";
-$cssContraste = "albumResultContraste";
-$cssGrande = "albumResultGrande";
-$cssGrandeContraste = "albumResultHb";
+$cssDefault = "indexEstilo";
+$cssOscuro = "indexOscuro";
+$cssContraste = "indexContraste";
+$cssGrande = "indexGrande";
+$cssGrandeContraste = "indexHighbig";
 $scripts1 ="";
 include 'layout/start.php';
 include 'layout/header.php';
@@ -24,8 +24,7 @@ $album = $controllerPhotos->getAllAlbums_PhotosByUser($userId);
 
 
 <main>
-    <h2><?=$htmlTitle?></h2>
-    <h3><?=$user['nomUsuario']?>'s albums</h3>
+    <h2><?=$user['nomUsuario']?>'s photos</h2>
 <?php
     if ($album ) {
         foreach ($album as $photo) {
