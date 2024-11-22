@@ -15,11 +15,7 @@ include 'layout/start.php';
 include 'layout/header.php';
 include 'layout/nav.php';
 
-if (!empty($_SESSION["error"])) {
-    $error = $_SESSION["error"];
-} else {
-    $error = "";
-}
+$error = $_SESSION["error"] ?? "";
 ?>
 <main>
     <h2>Log in</h2>
