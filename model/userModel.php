@@ -14,7 +14,7 @@ class UserModel {
 
 	public function getAlbums($username) {
 		$userId = $this->getUserId($username);
-		$statements = $this->db->prepare("SELECT * FROM albumes WHERE Usuario = ?");
+		$statements = $this->db->prepare("SELECT * FROM albumes WHERE Usuario = ? ORDER BY titulo DESC");
 		$statements->bind_param("i", $userId);
 		$statements->execute();
 		$result = $statements->get_result();

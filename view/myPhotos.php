@@ -19,7 +19,7 @@ include 'layout/navAuth.php';
 
 $user = $controllerUser->getUser($_SESSION["userName"]);  
 $userId = $user['idUsuario']; 
-$album = $controllerPhotos->getAlbums_PhotosByUser($userId);
+$album = $controllerPhotos->getAllAlbums_PhotosByUser($userId);
 ?>
 
 

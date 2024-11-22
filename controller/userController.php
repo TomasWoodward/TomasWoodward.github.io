@@ -49,16 +49,7 @@ class UserController {
 
     public function getAlbums($username) {
         $albums = $this->userModel->getAlbums($username);
-
-        try{
-            if (!$albums) {
-                throw new Exception("No albums found");
-            }
-            return $albums;
-        } catch (Exception $e) {
-            $_SESSION['error'] = $e->getMessage();
-            header('./index.php?action=errorPage');
-        }
+return $albums;
         
     }
 

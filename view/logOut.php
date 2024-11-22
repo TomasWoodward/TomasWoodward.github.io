@@ -12,5 +12,6 @@ setcookie("userName" , "", time() + 90 * 24 * 60 * 60, "/", "", false, true);
 setcookie("password" , "", time() + 90 * 24 * 60 * 60, "/", "", false, true);
 setcookie("lastVisit", "", time() + 90 * 24 * 60 * 60, "/", "", false, true);
 setcookie("theme"    , "", time() + 90 * 24 * 60 * 60, "/", "", false, true);
+$_SESSION["AUTH"] = false;
 header("Location: ./index.php?action=login");
 ?>

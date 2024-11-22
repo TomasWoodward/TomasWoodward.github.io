@@ -26,7 +26,8 @@ $result = $controllerUser->getAlbums($_SESSION["userName"]);
 
             
             <figure>
-                <h3><?= $album['titulo'] ?></h3>
+                <p><?php $album["idAlbum"] ?></p>
+                <a href="index.php?action=albumDetails&id=<?= $album["idAlbum"] ?>"><h3><?= $album['titulo'] ?></h3></a>
                 <figcaption>
                     <p><?= $album['descripcion'] ?></p>
                 </figcaption>
