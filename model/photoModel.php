@@ -134,6 +134,7 @@ class PhotoModel
     public function getAlbumPhotos($idAlbum)
     {
         $stmt = $this->db->prepare("SELECT 
+                                        a.idAlbum AS albumId,
                                         a.titulo AS albumTitulo,
                                         a.descripcion AS descripcion_album,
                                         a.usuario AS usuario_album,

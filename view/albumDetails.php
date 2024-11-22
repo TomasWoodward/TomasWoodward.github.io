@@ -29,7 +29,7 @@ if ( $userid != $photos[0]["usuario_album"]) {
 } else {
     echo'<main>';
     include 'layout/albumDetail.php';
-    echo '<a href=""><p>Agregar Foto</p></a>';
+    echo '<a href="index.php?action=createPhoto&id='.$photos[0]["albumId"].'"><p>Agregar Foto</p></a>';
     echo '</main>';
 
 }

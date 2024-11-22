@@ -35,11 +35,6 @@ class UserModel {
 		$statements->execute();
 		$result = $statements->get_result();
 		$row = $result->fetch_assoc();
-
-		if($result->num_rows <= 0) {
-			$_SESSION["error"] = "User not found";
-			header("Location: ../index.php?action=errorPage");
-		}
 		return $row["idUsuario"];; // Devuelve el idUsuario o null si no existe
 	}
 
