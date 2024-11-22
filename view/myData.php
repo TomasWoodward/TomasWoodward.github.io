@@ -34,8 +34,8 @@ $country = !empty($data) ? $data['pais'] : '';
 <main>
 <h2><?=$htmlTitle?></h2>
 <form action="index.php" method="put" id="formEdit" enctype="multipart/form-data">
-<?php
 
+<?php
 include 'layout/registerForm.php';
 ?>
 

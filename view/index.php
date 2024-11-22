@@ -12,7 +12,7 @@ $scripts1 = "";
 include 'layout/start.php';
 include 'layout/header.php';
 
-if(! $_SESSION["AUTH"]){
+if($_SESSION["AUTH"]==false ){
     include 'layout/nav.php';
     include 'layout/mainIndex.php';
 } else {

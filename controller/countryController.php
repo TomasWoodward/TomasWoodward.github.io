@@ -8,8 +8,8 @@ class CountryController {
 	private $countryModel;
 
 	public function __construct() { 
-		$db = Database::getInstance(); // Supongamos que `Database` es una clase para conectar
-        $this->countryModel = new countryModel();
+		$db = Database::getInstance(); 
+        $this->countryModel = new countryModel($db);
 	}
 
 	public function getCountries() {

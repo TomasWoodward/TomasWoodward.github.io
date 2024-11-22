@@ -18,6 +18,7 @@ include 'layout/header.php';
 if ( $_SESSION["AUTH"]) {
     include 'layout/navAuth.php';
     echo '<main>';
+    if($resultados)
     foreach ($resultados as $resultado) {        
         echo '<figure>';
         echo '<h3>' . $resultado['titulo'] . '</h3>';
@@ -29,10 +30,16 @@ if ( $_SESSION["AUTH"]) {
         echo '</figcaption>';
         echo '</figure>';
     }
+    else{
+        echo '<figure>';
+        echo '<h2>No results found</h2>';
+        echo '</figure>';
+    }
     echo '</main>';
 } else {
     include 'layout/nav.php';
     echo '<main>';
+    if($resultados)
     foreach ($resultados as $resultado) {        
         echo '<figure>';
         echo '<h3>' . $resultado['titulo'] . '</h3>';
@@ -42,6 +49,11 @@ if ( $_SESSION["AUTH"]) {
         echo '<p>Country: ' . $resultado['nombre'] . '</p>';
         echo '<p>Fecha: ' . $resultado['fecha'] . '</p>';
         echo '</figcaption>';
+        echo '</figure>';
+    }
+    else{
+        echo '<figure>';
+        echo '<h2>No results found</h2>';
         echo '</figure>';
     }
     echo '</main>';

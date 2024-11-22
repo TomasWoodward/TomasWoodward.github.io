@@ -17,6 +17,7 @@ include 'layout/start.php';
 include 'layout/header.php';
 include 'layout/navAuth.php';
 
+if($foto){
 echo'<main>';
 echo '<h2>'.$foto['titulo_foto'].'</h2>';
     echo'<figure>';
@@ -30,7 +31,13 @@ echo '<h2>'.$foto['titulo_foto'].'</h2>';
         echo '</figcaption>';
     echo '</figure>';
 echo'</main>';
-
+}else{
+    echo '<main>';
+    echo '<figure>';
+    echo '<h2>Photo not found</h2>';
+    echo '</figure>';
+    echo '</main>'; 
+}
 include 'layout/footer.php';
 include 'layout/end.php';
 ?>

@@ -1,32 +1,37 @@
-<?php 
-if(!defined('FROM_ROUTER')){
-	header('Location: ../index.php');
+<?php
+if (!defined('FROM_ROUTER')) {
+    header('Location: ../index.php');
 }
 require_once __DIR__ . '/../model/UserModel.php';
 require_once __DIR__ . '/../controller/countryController.php';
 
-class UserController {
+class UserController
+{
     private $userModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->userModel = new UserModel();
     }
 
-    public function login($username, $password) {
+    public function login($username, $password)
+    {
         $user = $this->userModel->getUser($username);
 
         if ($user && password_verify($password, $user['clave'])) {
             return $user;
         } else {
-           return false;
+            return false;
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         header('index.php?action=logOut');
     }
 
-    public function register($username, $password, $email, $sexo, $nacimiento, $ciudad, $pais, $foto, $estilo) {
+    public function register($username, $password, $email, $sexo, $nacimiento, $ciudad, $pais, $foto, $estilo)
+    {
         // Verificar si existe el usuario
         if ($this->userModel->getUser($username)) {
             $_SESSION['error'] = 'El usuario ya existe';
@@ -47,30 +52,34 @@ class UserController {
         }
     }
 
-    public function getAlbums($username) {
+    public function getAlbums($username)
+    {
         $albums = $this->userModel->getAlbums($username);
-return $albums;
-        
+        return $albums;
     }
 
-    public function getUser($username){
+    public function getUser($username)
+    {
         $user = $this->userModel->getUser($username);
         return $user;
 
     }
 
 
-    public function getUserName($userId){
+    public function getUserName($userId)
+    {
         $userName = $this->userModel->getUserName($userId);
-        return $userName; 
+        return $userName;
     }
 
-        public function getUserId($username){
-            $userId = $this->userModel->getUserId($username);
-            return $userId;
-        }
-    
-    public function getStyle($userId){
+    public function getUserId($username)
+    {
+        $userId = $this->userModel->getUserId($username);
+        return $userId;
+    }
+
+    public function getStyle($userId)
+    {
         $style = $this->userModel->getStyle($userId);
         return $style;
     }

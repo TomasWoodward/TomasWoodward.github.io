@@ -76,7 +76,7 @@ if (
     setcookie("lastVisit", "", time() - 3600);
     setcookie("theme", "", time() - 3600);
     define("FROM_ROUTER", false);
-    header("Location: ./index.php?action=controlAccess");
+    header("Location: ./index.php");
 }*/
 
 // Mostrar la página solicitada

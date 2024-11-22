@@ -27,7 +27,7 @@ $album = $controllerPhotos->getAllAlbums_PhotosByUser($userId);
     <h2><?=$htmlTitle?></h2>
     <h3><?=$user['nomUsuario']?>'s albums</h3>
 <?php
-    if ($album) {
+    if ($album ) {
         foreach ($album as $photo) {
             $country = $controllerCountry->getCountryById($photo['FotoPais']);
 

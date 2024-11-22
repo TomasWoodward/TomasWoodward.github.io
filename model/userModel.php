@@ -43,10 +43,6 @@ class UserModel {
         $statements->bind_param("i", $userId);
         $statements->execute();
         $result = $statements->get_result();	
-		if($result->num_rows <= 0) {
-			$_SESSION["error"] = " User not found";
-			header("Location: ../index.php?action=errorPage");
-		}
         return $result->fetch_assoc();
 	}
 	
@@ -73,7 +69,10 @@ class UserModel {
 	
 		// Encriptar la contraseña con BCRYPT (máximo 255 caracteres)
 		$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-	
+
+		$nacimiento = DateTime::createFromFormat('d/m/Y', $nacimiento);
+		if ($nacimiento) 
+			$nacimiento = $nacimiento->format('Y-m-d');
 		// Preparar la consulta SQL para insertar un usuario
 		$statements = $this->db->prepare(
 			"INSERT INTO usuarios 
@@ -84,15 +83,15 @@ class UserModel {
 		// Enlazar los parámetros a la consulta
 		$statements->bind_param(
 			"sssissisi",
-			$username,         // NomUsuario (string, máx 15)
-			$hashedPassword,   // Clave (string, máx 255)
-			$email,            // Email (string, máx 254)
-			$sexo,             // Sexo (int)
-			$nacimiento,       // FNacimiento (string: formato 'YYYY-MM-DD')
-			$ciudad,           // Ciudad (string)
-			$paisId,           // Pais (int)
-			$foto,             // Foto (string: URL o ruta)
-			$estilo            // Estilo (int)
+			$username,         
+			$hashedPassword,   
+			$email,            
+			$sexo,             
+			$nacimiento,       
+			$ciudad,           
+			$paisId,           
+			$foto,             
+			$estilo            
 		);
 	
 		// Ejecutar la consulta y verificar el resultado

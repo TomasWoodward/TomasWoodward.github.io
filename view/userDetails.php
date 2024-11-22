@@ -15,31 +15,26 @@ include 'layout/start.php';
 include 'layout/header.php';
 include 'layout/navAuth.php';
 
-$queryString = $_SERVER['QUERY_STRING'];
-$params = explode("&", $queryString);
-if($params[1]){
-    $idUsuario = $params[1];
-}else{
-    echo `<p>There was an error with the user id</p>`;
-}
-
-
+$idUsuario = $_GET['id'] ?? "";
 $username = $controllerUser->getUserName($idUsuario);
 $user = $controllerUser->getUser($username['nomUsuario']);  
 $userId = $user['idUsuario']; 
 $albums = $controllerUser->getAlbums($username["nomUsuario"]);
+
+if (!isset($username) || !isset($user) || !is_array($albums)) {
+    $_SESSION['error'] = 'User not found';
+    header('Location: index.php?action=errorPage');
+}
 ?>
-
-
 <main>
     <h2><?=$htmlTitle?></h2>
     <h3><?=$user['nomUsuario']?></h3>
     <p>Profile pic: <?=$user['foto']?></p>
     <p>Been active since: <?=$user['fRegistro']?></p>
-    <h3><?=$user['nomUsuario']?>'s albums</h3>
+    
 <?php
     if ($albums) {
-
+        echo '<h3>'.$user['nomUsuario'].' albums</h3>';
         foreach ($albums as $album) {
             // $country = $controllerCountry->getCountryById($album['FotoPais']);
             echo '<figure>';

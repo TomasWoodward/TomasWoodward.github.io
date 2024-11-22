@@ -11,8 +11,14 @@ $cssGrandeContraste = "albumResultHb";
 $scripts1 = "";
 include 'layout/start.php';
 include 'layout/header.php';
-include 'layout/nav.php';
-$error = $_GET["error"] ;
+
+$error = $_GET["error"] ?? $_SESSION["error"];
+
+if($_SESSION["AUTH"]==false ){
+    include 'layout/nav.php';
+}else{
+    include 'layout/navAuth.php';
+}
 ?>
 
 <main>
@@ -21,6 +27,7 @@ $error = $_GET["error"] ;
 </main>
 
 <?php
+unset($_SESSION["error"]);
 include 'layout/footer.php';
 include 'layout/end.php';
 ?>

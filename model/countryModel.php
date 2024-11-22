@@ -7,8 +7,9 @@ require_once(__DIR__ . '/dbModel.php');
 class countryModel {
 	private $db;
 
-	public function __construct() {
-        $this->db = Database::getInstance();
+	public function __construct($db) 
+	{
+        $this->db = $db;
     }
 	
 	public function getCountries() {
