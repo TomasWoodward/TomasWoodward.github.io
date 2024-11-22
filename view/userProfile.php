@@ -49,6 +49,7 @@ echo "<P>Theme: {$_SESSION["theme"]} </p>";
         <li><a href="index.php?action=themeConfig">Theme configuration</a></li>
         <li><a href="index.php?action=myData">My data</a></li>
         <li><a href="index.php?action=createAlbum">Create album</a></li>
+        <li><a href="index.php?action=createPhoto">Upload photo</a></li>
         <li><a href="index.php?action=getAlbum">Request Album</a></li>
         <li><a href="index.php?action=myPhotos">My photos</a></li>
     </ul>
