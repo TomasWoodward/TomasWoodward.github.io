@@ -28,16 +28,15 @@ $albums =  $controllerUser->getAlbums($_SESSION["userName"]);
 		<label for="date">Date</label>
 		<input type="date" id="date" name="date" required>
 
-		<label for="country">Country</label>
-		<select id="country" name="country" required>
+		<label for="country">Country: </label>
+        <select id="country" name="country">
 
-			<option value="">Select a country</option>
-			<?php
-			foreach ($countrys as $country) {
-				echo "<option value='".$country['id']."'>".$country['name']."</option>";
-			}
-			?>
-		</select>
+        <?php
+            foreach ($countrys as $countrysql) {
+               echo '<option value="' . $countrysql["nombre"] . '" ' . ($country == $countrysql["nombre"] ? "selected" : "") . '>' . $countrysql["nombre"] . '</option>';
+            }
+        ?>
+        </select>
 		<label for="image">Image</label>
 		<input type="file" id="image" name="image" required>
 
