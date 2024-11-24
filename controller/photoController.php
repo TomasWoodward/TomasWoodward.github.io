@@ -2,7 +2,7 @@
 if(!defined('FROM_ROUTER')){
 	header('Location: ../index.php');
 }
-require_once __DIR__ . '/../model/PhotoModel.php';
+require_once __DIR__ . '/../model/photoModel.php';
 
 class PhotoController {
     private $photoModel;

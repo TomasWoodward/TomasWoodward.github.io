@@ -2,7 +2,7 @@
 if(!defined('FROM_ROUTER')){
 	header('Location: ../index.php');
 }
-require_once __DIR__ . '/../model/ThemeModel.php';
+require_once __DIR__ . '/../model/themeModel.php';
 
 class ThemeController {
     private $themeModel;

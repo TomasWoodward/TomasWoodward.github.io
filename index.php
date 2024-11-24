@@ -1,6 +1,7 @@
 <?php
 /*Este archivo se encarga de incluir la página solicitada por el usuario*/
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 /*Establece la zona horaria de España*/
 date_default_timezone_set('Europe/Madrid');
 ini_set('date.timezone', 'Europe/Madrid');
