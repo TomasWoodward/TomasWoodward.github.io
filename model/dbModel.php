@@ -23,7 +23,7 @@ class Database {
             $dbConfig['password'],
             $dbConfig['dbname']
         );
-
+        $this->connection->set_charset("utf8mb4");
         // Comprobar errores
         if ($this->connection->connect_error) {
             throw new Exception('Error de conexión: ' . $this->connection->connect_error);
