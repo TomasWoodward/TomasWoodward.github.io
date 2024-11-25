@@ -26,4 +26,7 @@ class CountryController {
 		$country = $this->countryModel->getCountryById($id);
 		return $country;
 	}	
+	public function closeConection(){
+        $this->countryModel->closeConection();
+    }
 }

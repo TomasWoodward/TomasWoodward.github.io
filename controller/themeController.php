@@ -17,6 +17,10 @@ class ThemeController {
         $themes = $this->themeModel->getAllThemes(); // Llamada a getAllThemes() en el modelo
         return $themes;
     }
+    public function closeConection(){
+        $this->themeModel->closeConection();
+    }
+
 }
 
 ?>

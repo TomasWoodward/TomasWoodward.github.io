@@ -47,6 +47,9 @@ class PhotoController {
         return $photos;
     }
     
+    public function closeConection(){
+        $this->photoModel->closeConection();
+    }
 }
 
 ?>

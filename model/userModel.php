@@ -111,5 +111,8 @@ class UserModel {
 		return $style;
 	}
 	
+	public function closeConection(){
+        $this->db->close();
+    }
 }
 ?>

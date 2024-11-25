@@ -31,4 +31,7 @@ class countryModel {
 		$stmt->execute();
 		return $stmt->get_result()->fetch_assoc();
 	}
+	public function closeConection(){
+        $this->db->close();
+    }
 }

@@ -82,3 +82,5 @@ if (
 
 // Mostrar la página solicitada
 include(__DIR__ . "/view/$page.php");
+
+$controllerPhotos->closeConection();
