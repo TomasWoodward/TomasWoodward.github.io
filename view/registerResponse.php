@@ -115,6 +115,10 @@ $controllerUser->register(
 </main>
 
 <?php
+
+unset($_SESSION["userNameReg"], $_SESSION["pass"], $_SESSION["pass2"], $_SESSION["email"], $_SESSION["sex"], $_SESSION["birth"], $_SESSION["city"], $_SESSION["country"]);
+unset($_SESSION["error_userNameReg"], $_SESSION["error_pass"], $_SESSION["error_pass2"], $_SESSION["error_email"], $_SESSION["error_sex"], $_SESSION["error_birth"], $_SESSION["error_city"], $_SESSION["error_country"]);
+
 include 'layout/footer.php';
 include 'layout/end.php';
 ?>

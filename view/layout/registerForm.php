@@ -25,7 +25,7 @@
         <span style="color:red;"><?php echo $_SESSION["error_sex"] ?? ""; ?></span>
 
         <label for="birth">Birth date (dd/mm/AAAA): </label>
-        <input type="text" id="birth" name="birth" value="<?php echo $birth; ?>">
+        <input type="date" id="birth" name="birth" value="<?php echo $birth; ?>">
         <span style="color:red;"><?php echo $_SESSION["error_birth"] ?? ""; ?></span>
 
         <label for="city">City: </label>
