@@ -63,23 +63,6 @@ if (
     $_SESSION["AUTH"] = false;
 }
 
-/*if (!empty($_COOKIE["userName"]) &&
-    !empty($_COOKIE["password"]) && (!isset($controllerUser->getUser($_COOKIE["userName"])["clave"]) ||
-    !hash_equals($_COOKIE["password"], $controllerUser->getUser($_COOKIE["userName"])["clave"]))
-) {
-
-    $_SESSION = array();
-    setcookie(session_name(), '', time() - 42000, '/');
-    session_unset();
-    session_destroy();
-    setcookie("userName", "", time() - 3600);
-    setcookie("password", "", time() - 3600);
-    setcookie("lastVisit", "", time() - 3600);
-    setcookie("theme", "", time() - 3600);
-    define("FROM_ROUTER", false);
-    header("Location: ./index.php");
-}*/
-
 // Mostrar la página solicitada
 include(__DIR__ . "/view/$page.php");
 
