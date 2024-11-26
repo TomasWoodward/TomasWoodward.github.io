@@ -1,6 +1,6 @@
 
-        <label for="userName">User name: </label>
-        <input type="text" id="userName" name="userName" value="<?php echo $userName; ?>">
+        <label for="userNameReg">User name: </label>
+        <input type="text" id="userNameReg" name="userNameReg" value="<?php echo $userName; ?>">
         <span style="color:red;"><?php echo $_SESSION["error_userNameReg"] ?? ""; ?></span>
 
         <label for="pass">Password: </label>
