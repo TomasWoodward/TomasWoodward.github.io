@@ -110,6 +110,13 @@ class UserModel {
 		$style = $result->fetch_assoc();
 		return $style;
 	}
+
+	public function updateStyle($userId, $styleId){
+		$statement = $this->db->prepare("UPDATE usuarios SET estilo = ? WHERE idUsuario = ?");
+		$statement->bind_param("ii", $styleId, $userId);
+		$statement->execute();
+		return $statement->affected_rows;
+	}
 	
 	public function closeConection(){
         $this->db->close();

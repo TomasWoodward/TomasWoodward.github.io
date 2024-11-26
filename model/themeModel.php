@@ -14,8 +14,14 @@ class ThemeModel
     }
 
 
-
-    // Obtener todas las fotos
+public function getTheme($theme_id){
+    $stmt = $this->db->prepare('SELECT * FROM estilos WHERE idEstilo = ?');
+    $stmt->bind_param('i', $theme_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc();
+}
+    
     public function getAllThemes()
     {
         $stmt = $this->db->prepare("SELECT * FROM estilos");

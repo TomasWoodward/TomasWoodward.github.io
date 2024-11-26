@@ -17,12 +17,12 @@ include 'layout/navAuth.php';
 $themes = $controllerTheme->listThemes();
 ?>
 <main>
-    <!-- Formulario para seleccionar el tema -->
-    <form action="changeTheme.php" method="POST">
+
+    <form action="index.php?action=changeTheme" method="POST">
         <h2><?=$htmlTitle?></h2>
         <h3>Choose a Theme</h3>
         <label for="themeSelect">Select Theme:</label>
-        <select name="theme" id="themeSelect" required>
+        <select name="themeSelect" id="themeSelect" required>
 
             <?php
             if ($themes) {

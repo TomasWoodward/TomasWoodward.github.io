@@ -83,6 +83,12 @@ class UserController
         $style = $this->userModel->getStyle($userId);
         return $style;
     }
+
+    public function updateStyle($userId, $style)
+    {
+        return $this->userModel->updateStyle($userId, $style);
+    }   
+
     public function closeConection(){
         $this->userModel->closeConection();
     }

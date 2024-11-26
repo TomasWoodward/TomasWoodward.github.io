@@ -13,6 +13,11 @@ class ThemeController {
         $this->themeModel = new ThemeModel($db);
     }
 
+    public function getTheme($id) {
+        $theme = $this->themeModel->getTheme($id);
+        return $theme;
+    }
+
     public function listThemes() {
         $themes = $this->themeModel->getAllThemes(); // Llamada a getAllThemes() en el modelo
         return $themes;
