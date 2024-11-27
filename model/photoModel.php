@@ -34,7 +34,7 @@ class PhotoModel
     {
         $stmt = $this->db->prepare("SELECT * FROM fotos ORDER BY fRegistro DESC");
         $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $stmt->execute();
     }
 
     public function getLastPhotos()
@@ -212,7 +212,12 @@ class PhotoModel
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-
+    public function addAlbum($title, $description,$user){
+        $stmt = $this->db->prepare("INSERT INTO albumes (titulo,descripcion,usuario) VALUES (?,?,?)");
+        $stmt->bind_param("ssi", $title, $description, $user);
+        return $stmt->execute();
+        
+    }
 
     public function closeConection(){
         $this->db->close();

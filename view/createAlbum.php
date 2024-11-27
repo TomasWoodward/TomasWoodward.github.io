@@ -17,11 +17,11 @@ include 'layout/navAuth.php';
 
 <main>
 	<h2>Create Album</h2>
-	<form action="post">
-		<label for="search">Title name: </label>
+	<form action="index.php?action=createAlbumResponse" method="post">
+		<label for="albumTitle">Title name: </label>
 		<input type="text" name="albumTitle">
 		
-		<label for="search">Description: </label>
+		<label for="description">Description: </label>
 		<input type="text" name="description">
 
 		<input type="submit" id="botonSubmit" value="Create">
