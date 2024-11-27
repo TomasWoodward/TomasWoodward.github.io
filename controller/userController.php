@@ -89,6 +89,10 @@ class UserController
         return $this->userModel->updateStyle($userId, $style);
     }   
 
+    public function deleteAccount ($userId){
+        $this->userModel->deleteAccount($userId);
+    }
+
     public function closeConection(){
         $this->userModel->closeConection();
     }

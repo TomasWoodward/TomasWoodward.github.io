@@ -183,6 +183,37 @@ class PhotoModel
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getAllData($idUsuario)
+    {
+        $stmt = $this->db->prepare("SELECT 
+                                        albumes.idAlbum,
+                                        albumes.titulo AS AlbumTitulo,
+                                        albumes.descripcion AS AlbumDescripcion,
+                                        COUNT(fotos.idFoto) AS NumeroFotosAlbum,
+                                        (
+                                            SELECT COUNT(f.idFoto)
+                                            FROM fotos f
+                                            JOIN albumes a ON f.album = a.idAlbum
+                                            WHERE a.usuario = albumes.usuario
+                                        ) AS NumeroTotalFotosUsuario
+                                    FROM 
+                                        albumes
+                                    LEFT JOIN 
+                                        fotos ON albumes.idAlbum = fotos.album
+                                    WHERE 
+                                        albumes.usuario = ?
+                                    GROUP BY 
+                                        albumes.idAlbum, albumes.titulo, albumes.descripcion
+                                    ORDER BY 
+                                        albumes.idAlbum;
+                                    ");
+        $stmt->bind_param("i", $idUsuario);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+
     public function closeConection(){
         $this->db->close();
     }

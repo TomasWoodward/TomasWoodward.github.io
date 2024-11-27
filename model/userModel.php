@@ -117,6 +117,12 @@ class UserModel {
 		$statement->execute();
 		return $statement->affected_rows;
 	}
+
+	public function deleteAccount($userId){
+		$statement = $this->db->prepare("DELETE FROM usuarios WHERE idUsuario = ?");
+		$statement->bind_param("i", $userId);
+		$statement->execute();
+	}
 	
 	public function closeConection(){
         $this->db->close();

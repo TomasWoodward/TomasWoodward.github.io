@@ -46,6 +46,11 @@ class PhotoController {
         $photos = $this->photoModel->getAlbumPhotos($idAlbum);
         return $photos;
     }
+
+    public function getAllData($idUser){
+        $photos = $this->photoModel->getAllData($idUser);
+        return $photos;
+    }
     
     public function closeConection(){
         $this->photoModel->closeConection();
