@@ -56,6 +56,10 @@ class PhotoController {
         return $this->photoModel->addAlbum($title, $description,$user);
     }
 
+    public function getAlbumByName($name){
+        return $this->photoModel->getAlbumByName($name);
+    }
+
     public function closeConection(){
         $this->photoModel->closeConection();
     }

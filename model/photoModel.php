@@ -219,6 +219,13 @@ class PhotoModel
         
     }
 
+    public function getAlbumByName($name){
+        $stmt = $this->db->prepare("SELECT * FROM albumes WHERE titulo = ?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function closeConection(){
         $this->db->close();
     }
