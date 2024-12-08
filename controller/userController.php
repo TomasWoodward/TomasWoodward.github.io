@@ -52,6 +52,55 @@ class UserController
         }
     }
 
+    public function updateUser($userId, $username, $email, $sexo, $nacimiento, $ciudad, $pais, $foto, $estilo, $password = null)
+{
+    $countryController = new CountryController();
+
+    if ($this->userModel->getUser($username) && $this->userModel->getUserId($username) !== $userId) {
+        $_SESSION['error'] = 'El usuario ya existe';
+        header('Location: ../index.php?action=updateUserForm');
+        return;
+    }
+
+    try {
+        $nacimiento = DateTime::createFromFormat('d/m/Y', $nacimiento);
+        if ($nacimiento) {
+            $nacimiento = $nacimiento->format('Y-m-d');
+        }
+
+        // Verificar si el país existe
+        $country = $countryController->getCountryByName($pais);
+        if (!$country || !isset($country['idPais'])) {
+            throw new Exception("País no encontrado: $pais");
+        }
+        $paisId = $country['idPais'];
+
+        // Hashear la contraseña si es proporcionada
+        $hashedPassword = $password ? password_hash($password, PASSWORD_BCRYPT) : null;
+
+        // Actualizar el usuario
+        $this->userModel->updateUser(
+            $userId,
+            $username,
+            $email,
+            $sexo,
+            $nacimiento,
+            $ciudad,
+            $paisId,
+            null,
+            'default',
+            $hashedPassword,
+            $countryController
+        );
+
+        $_SESSION['success'] = 'Usuario actualizado exitosamente';
+        header('Location: ../index.php?action=viewUser&userId=' . $userId);
+    } catch (Exception $e) {
+        $_SESSION['error'] = $e->getMessage();
+        header('Location: ../index.php?action=myData');
+    }
+}
+
     public function getAlbums($username)
     {
         $albums = $this->userModel->getAlbums($username);

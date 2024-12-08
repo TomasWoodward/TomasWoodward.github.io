@@ -236,8 +236,8 @@ for ($i = 1; $i <= 15; $i++) {
         </p>
 
         <p>
-            <input type="radio" name="colorOption" value="color"> Color
-            <input type="radio" name="colorOption" value="bn" checked> B/N
+            <input type="radio" name="colorOption" value="1"> Color
+            <input type="radio" name="colorOption" value="0" checked> B/N
         </p>
 
         <button type="button"

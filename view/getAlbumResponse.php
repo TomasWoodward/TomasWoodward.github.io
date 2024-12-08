@@ -40,11 +40,32 @@ function calcularPrecioAlbum($numPaginas, $numFotos, $esColor, $resolucion) {
 
     return $precioTotal;
 }
+
+
+
+$name  = $_POST['name'];
+$title = $_POST['title'];
+$addText = $_POST['addText'];
+$email  = $_POST['email'];
+$dir = $_POST['direc'] . $_POST['number'] . $_POST['PostalCode'] . $_POST['city'];
+$phone = $_POST['phone'];
 $color = $_POST['colorOption'] == "color";
-$numPages = 4;
-$numFotos = 12;
+$cNumber = $_POST['cNumber'];
 $resolution = intval($_POST['resolution']);
-$precioTotal = calcularPrecioAlbum($numPages, $numFotos, $color,$resolution);
+$album = $_POST['userAlbum'];
+$aproxDate = $_POST["aproxDate"];
+$icolor = $_POST["colorOption"];
+$idAlbum = $controllerPhotos->getAlbumIdByName($album);
+$numFotos = $controllerPhotos->getAlbumPhotoCount($idAlbum);
+$numPagesPerFoto = 3;
+$numPages = ceil($numFotos/ $numPagesPerFoto);
+
+echo $idAlbum;
+echo $numFotos;
+
+$precioTotal = $cNumber * calcularPrecioAlbum($numPages, $numFotos, $color,$resolution);
+
+$add = $controllerPhotos->addSolicitud($idAlbum, $name, $title, $addText, $email, $dir, $phone, $color, $cNumber, $resolution, $aproxDate, $icolor, $precioTotal);
 
 ?>
 
@@ -63,6 +84,7 @@ $precioTotal = calcularPrecioAlbum($numPages, $numFotos, $color,$resolution);
     <p>Resolution: <?= $_POST["resolution"] ?></p>
     <p>User Album: <?= $_POST["userAlbum"] ?></p>
     <p>Date: <?= $_POST["aproxDate"] ?></p>
+    <p>iColor: <?= $_POST["colorOption"] ?></p>
     <p>Price: <?= $precioTotal?> </p>
 </main>
 

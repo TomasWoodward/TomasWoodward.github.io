@@ -102,6 +102,93 @@ class UserModel {
 		return true;
 	}
 
+	public function updateUser(
+		$userId,
+		$username,
+		$email,
+		$sexo,
+		$nacimiento,
+		$ciudad,
+		$paisNombre,
+		$foto,
+		$estilo,
+		$countryController, // Parámetro obligatorio
+		$password = null    // Parámetro opcional al final
+	) {
+		// Obtener el idPais usando el controlador de países
+		$country = $countryController->getCountryByName($paisNombre);
+	
+		if (!$country || !isset($country['idPais'])) {
+			throw new Exception("País no encontrado: $paisNombre");
+		}
+	
+		$paisId = $country['idPais']; // Asignar el id del país
+	
+		if ($password !== null) {
+			// Encriptar la contraseña solo si se ha proporcionado
+			$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+		}
+	
+		$nacimiento = DateTime::createFromFormat('d/m/Y', $nacimiento);
+		if ($nacimiento) {
+			$nacimiento = $nacimiento->format('Y-m-d');
+		}
+	
+		// Preparar la consulta SQL para actualizar un usuario
+		$statements = $this->db->prepare(
+			"UPDATE usuarios SET 
+				NomUsuario = ?, 
+				Clave = ?, 
+				Email = ?, 
+				Sexo = ?, 
+				FNacimiento = ?, 
+				Ciudad = ?, 
+				Pais = ?, 
+				Foto = ?, 
+				Estilo = ?
+			WHERE idUsuario = ?"
+		);
+	
+		// Enlazar los parámetros a la consulta
+		if ($password !== null) {
+			$statements->bind_param(
+				"sssissisii",
+				$username,
+				$hashedPassword,
+				$email,
+				$sexo,
+				$nacimiento,
+				$ciudad,
+				$paisId,
+				$foto,
+				$estilo,
+				$userId
+			);
+		} else {
+			$statements->bind_param(
+				"sssisissi",
+				$username,
+				$email,
+				$sexo,
+				$nacimiento,
+				$ciudad,
+				$paisId,
+				$foto,
+				$estilo,
+				$userId
+			);
+		}
+	
+		// Ejecutar la consulta y verificar el resultado
+		if (!$statements->execute()) {
+			$_SESSION["error"] = "Error al actualizar el usuario";
+			header('Location: ../index.php?action=errorPage');
+		}
+		return true;
+	}
+	
+	
+
 	public function getStyle($userId){
 		$result = $this->db->prepare("SELECT nombre  FROM usuarios u JOIN estilos a ON a.idEstilo = u.estilo WHERE idUsuario = ?");
 		$result->bind_param("i", $userId);

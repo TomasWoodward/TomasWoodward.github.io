@@ -14,20 +14,20 @@ class PhotoModel
     }
 
     // Insertar una nueva foto
-    public function addPhoto($titulo, $descripcion, $fecha, $pais, $album, $fichero, $alternativo)
-    {
+    public function addPhoto($title, $description, $date, $country, $album, $file, $alt) {
         $stmt = $this->db->prepare(
             "INSERT INTO fotos (titulo, descripcion, fecha, pais, album, fichero, alternativo) 
              VALUES (?, ?, ?, ?, ?, ?, ?)"
         );
-        $stmt->bind_param("sssiiis", $titulo, $descripcion, $fecha, $pais, $album, $fichero, $alternativo);
+        $stmt->bind_param("sssisss", $title, $description, $date, $country, $album, $file, $alt);
         $result = $stmt->execute();
         if ($result === false) {
-            $_SESSION["error"] = " Error adding photo";
+            $_SESSION["error"] = "Error adding photo";
             header("Location: ../index.php?action=errorPage");
         }
         return $result;
     }
+
 
     // Obtener todas las fotos
     public function getAllPhotos()
@@ -224,6 +224,45 @@ class PhotoModel
         $stmt->bind_param("s", $name);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getAlbumPhotoCount($idAlbum) {
+        $stmt = $this->db->prepare("SELECT COUNT(idFoto) AS total_fotos FROM fotos WHERE album = ?");
+        $stmt->bind_param("i", $idAlbum);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result['total_fotos'];
+    }
+    
+       // Insertar una nueva solicitud
+       public function addSolicitud($album, $nombre, $titulo, $descripcion, $email, $direccion, $telefono, $color, $copias, $resolucion, $fecha, $iColor, $coste) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO solicitudes 
+             (album, nombre, titulo, descripcion, email, direccion, telefono, color, copias, resolucion, fecha, iColor, fRegistro, coste) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)"
+        );
+
+        // Cambia el tipo esperado a uno correcto basado en los parámetros que estás pasando
+        $stmt->bind_param("issssssssiisi", $album, $nombre, $titulo, $descripcion, $email, $direccion, $telefono, $color, $copias, $resolucion, $fecha, $iColor, $coste);
+        $result = $stmt->execute();
+
+        if ($result === false) {
+            $_SESSION["error"] = "Error adding solicitud";
+            header("Location: ../index.php?action=errorPage");
+        }
+
+        return $result;
+    }
+
+    public function getAlbumIdByName($titulo) {
+        $stmt = $this->db->prepare("SELECT IdAlbum FROM Albumes WHERE Titulo = ?");
+        $stmt->bind_param("s", $titulo);
+        $stmt->execute();
+        $stmt->bind_result($idAlbum);
+        $stmt->fetch();
+        $stmt->close();
+
+        return $idAlbum ? (int)$idAlbum : null;
     }
 
     public function closeConection(){

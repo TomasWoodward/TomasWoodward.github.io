@@ -18,6 +18,11 @@ class PhotoController {
 		return $photos;
 	}
 
+    public function createPhoto($title, $description, $date, $country, $album, $file, $alt) {
+        $photo = $this->photoModel->addPhoto($title, $description, $date, $country, $album, $file, $alt);
+        return $photo;
+    }
+
 
     public function viewPhoto($params) {
         $idFoto = $params;
@@ -60,6 +65,18 @@ class PhotoController {
         return $this->photoModel->getAlbumByName($name);
     }
 
+    public function getAlbumPhotoCount($idAlbum) {
+        $count = $this->photoModel->getAlbumPhotoCount($idAlbum);
+        return $count;
+    }
+
+    public function addSolicitud($album, $nombre, $titulo, $descripcion, $email, $direccion, $telefono, $color, $copias, $resolucion, $fecha, $iColor, $coste) {
+        return $this->photoModel->addSolicitud($album, $nombre, $titulo, $descripcion, $email, $direccion, $telefono, $color, $copias, $resolucion, $fecha, $iColor, $coste);
+    }
+
+    public function getAlbumIdByName($albumName) {
+        return $this->photoModel->getAlbumIdByName($albumName);
+    }
     public function closeConection(){
         $this->photoModel->closeConection();
     }
