@@ -25,7 +25,11 @@ class CountryController {
 	public function getCountryById($id){
 		$country = $this->countryModel->getCountryById($id);
 		return $country;
-	}	
+	}
+	public function getCountryIdByName($name){
+        $countryId = $this->countryModel->getCountryIdByName($name);
+        return $countryId;
+    }	
 	public function closeConection(){
         $this->countryModel->closeConection();
     }

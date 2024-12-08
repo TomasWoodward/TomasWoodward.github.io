@@ -83,10 +83,11 @@ if (
     !empty($_SESSION["error_sex"]) || !empty($_SESSION["error_birth"]) ||
     !empty($_SESSION["error_city"]) || !empty($_SESSION["error_country"])
 ) {
-    header("Location: index.php?action=myData");
+    $_SESSION["error"] = "There were errors in your submission. Please correct them and try again.";
+    header("Location: errorPage.php");
     exit;
 }
-
+$idCountry = $controllerCountry->getCountryIdByName($_SESSION["country"]);
 // Actualización del usuario si todo es válido
 $controllerUser->updateUser(
     $_SESSION["userNameReg"],
@@ -95,7 +96,7 @@ $controllerUser->updateUser(
     $_SESSION["sex"],
     $_SESSION["birth"],
     $_SESSION["city"],
-    $_SESSION["country"],
+    $idCountry,
     null,
     'default'
 );

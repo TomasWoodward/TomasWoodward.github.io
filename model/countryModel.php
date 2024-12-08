@@ -31,6 +31,14 @@ class countryModel {
 		$stmt->execute();
 		return $stmt->get_result()->fetch_assoc();
 	}
+
+	public function getCountryIdByName($name){
+        $stmt = $this->db->prepare("SELECT idPais FROM paises WHERE nombre = ?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result ? $result['idPais'] : null;
+    }
 	public function closeConection(){
         $this->db->close();
     }

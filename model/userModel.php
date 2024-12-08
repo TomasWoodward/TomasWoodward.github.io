@@ -124,37 +124,43 @@ class UserModel {
 	
 		$paisId = $country['idPais']; // Asignar el id del país
 	
+		// Encriptar la contraseña solo si se ha proporcionado
+		$hashedPassword = null;
 		if ($password !== null) {
-			// Encriptar la contraseña solo si se ha proporcionado
 			$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 		}
 	
+		// Convertir la fecha de nacimiento
 		$nacimiento = DateTime::createFromFormat('d/m/Y', $nacimiento);
 		if ($nacimiento) {
 			$nacimiento = $nacimiento->format('Y-m-d');
 		}
 	
 		// Preparar la consulta SQL para actualizar un usuario
-		$statements = $this->db->prepare(
-			"UPDATE usuarios SET 
+		$sql = "UPDATE usuarios SET 
 				NomUsuario = ?, 
-				Clave = ?, 
 				Email = ?, 
 				Sexo = ?, 
 				FNacimiento = ?, 
 				Ciudad = ?, 
 				Pais = ?, 
 				Foto = ?, 
-				Estilo = ?
-			WHERE idUsuario = ?"
-		);
+				Estilo = ?";
+		
+		// Condicional para la actualización de la contraseña si se proporciona
+		if ($hashedPassword !== null) {
+			$sql .= ", Clave = ?";
+		}
+	
+		$sql .= " WHERE idUsuario = ?";
+	
+		$statements = $this->db->prepare($sql);
 	
 		// Enlazar los parámetros a la consulta
-		if ($password !== null) {
+		if ($hashedPassword !== null) {
 			$statements->bind_param(
-				"sssissisii",
+				"ssisisisss",
 				$username,
-				$hashedPassword,
 				$email,
 				$sexo,
 				$nacimiento,
@@ -162,11 +168,12 @@ class UserModel {
 				$paisId,
 				$foto,
 				$estilo,
+				$hashedPassword,
 				$userId
 			);
 		} else {
 			$statements->bind_param(
-				"sssisissi",
+				"ssisisissi",
 				$username,
 				$email,
 				$sexo,
@@ -183,9 +190,12 @@ class UserModel {
 		if (!$statements->execute()) {
 			$_SESSION["error"] = "Error al actualizar el usuario";
 			header('Location: ../index.php?action=errorPage');
+			exit;
 		}
+	
 		return true;
 	}
+	
 	
 	
 
