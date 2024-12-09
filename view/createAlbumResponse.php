@@ -3,14 +3,15 @@ if(!defined('FROM_ROUTER') ||  $_SESSION["AUTH"]==false ){
 	header('Location: ../index.php');
 }
 
-if(isset($_POST['title']) && isset( $_POST['description']) ){
+
+if(isset($_POST['albumTitle']) && isset( $_POST['description']) ){
 	$userId= $controllerUser->getUserId($_SESSION["userName"]);
 	$album = $controllerPhotos->addAlbum( $_POST['albumTitle'], $_POST['description'],$userId);
 	$album = $controllerPhotos->getAlbumByName($_POST['albumTitle']);
 }
-if(!$album){
-	header('Location: index.php?action=errorPage&error=Error creating album');
-}
+// if(!$album){
+// 	header('Location: index.php?action=errorPage&error=Error creating album');
+// }
 $htmlTitle = 'Error';
 $cssDefault = "albumResult";
 $cssOscuro = "albumResultOscuro";
@@ -21,7 +22,8 @@ $scripts1 = "";
 include 'layout/start.php';
 include 'layout/header.php';
 include 'layout/navAuth.php';
-var_dump($album);
+
+
 ?>
 <main>
 	<h2>Album <?php echo $album[0]["titulo"]; ?> created correctly</h2>

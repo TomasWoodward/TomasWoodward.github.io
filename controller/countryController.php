@@ -1,6 +1,8 @@
 <?php 
 if(!defined('FROM_ROUTER')){
+	echo "You don't have access to this file";
 	header('Location: ../index.php');
+
 }
 require_once __DIR__ . '/../model/countryModel.php';
 

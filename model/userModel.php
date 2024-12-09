@@ -112,17 +112,17 @@ class UserModel {
 		$paisNombre,
 		$foto,
 		$estilo,
-		$countryController, // Parámetro obligatorio
+		$paisId, // Parámetro obligatorio
 		$password = null    // Parámetro opcional al final
 	) {
-		// Obtener el idPais usando el controlador de países
-		$country = $countryController->getCountryByName($paisNombre);
+		// // Obtener el idPais usando el controlador de países
+		// $country = $countryController->getCountryByName($paisNombre);
 	
-		if (!$country || !isset($country['idPais'])) {
-			throw new Exception("País no encontrado: $paisNombre");
-		}
+		// if (!$country || !isset($country['idPais'])) {
+		// 	throw new Exception("País no encontrado: $paisNombre");
+		// }
 	
-		$paisId = $country['idPais']; // Asignar el id del país
+		// $paisId = $country['idPais']; // Asignar el id del país
 	
 		// Encriptar la contraseña solo si se ha proporcionado
 		$hashedPassword = null;
@@ -184,13 +184,6 @@ class UserModel {
 				$estilo,
 				$userId
 			);
-		}
-	
-		// Ejecutar la consulta y verificar el resultado
-		if (!$statements->execute()) {
-			$_SESSION["error"] = "Error al actualizar el usuario";
-			header('Location: ../index.php?action=errorPage');
-			exit;
 		}
 	
 		return true;

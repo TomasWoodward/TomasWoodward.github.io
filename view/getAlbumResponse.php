@@ -60,8 +60,6 @@ $numFotos = $controllerPhotos->getAlbumPhotoCount($idAlbum);
 $numPagesPerFoto = 3;
 $numPages = ceil($numFotos/ $numPagesPerFoto);
 
-echo $idAlbum;
-echo $numFotos;
 
 $precioTotal = $cNumber * calcularPrecioAlbum($numPages, $numFotos, $color,$resolution);
 

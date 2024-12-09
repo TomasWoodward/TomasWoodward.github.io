@@ -1,5 +1,6 @@
 <?php
 if (!defined('FROM_ROUTER')) {
+    echo "You don't have access to this file";
     header('Location: ../index.php');
 }
 require_once __DIR__ . '/../model/userModel.php';
@@ -56,11 +57,6 @@ class UserController
 {
     $countryController = new CountryController();
 
-    if ($this->userModel->getUser($username) && $this->userModel->getUserId($username) !== $userId) {
-        $_SESSION['error'] = 'El usuario ya existe';
-        header('Location: ../index.php?action=updateUserForm');
-        return;
-    }
 
     try {
         $nacimiento = DateTime::createFromFormat('d/m/Y', $nacimiento);
@@ -97,7 +93,7 @@ class UserController
         header('Location: ../index.php?action=viewUser&userId=' . $userId);
     } catch (Exception $e) {
         $_SESSION['error'] = $e->getMessage();
-        header('Location: ../index.php?action=myData');
+        header('Location: index.php?action=myDataResponse');
     }
 }
 

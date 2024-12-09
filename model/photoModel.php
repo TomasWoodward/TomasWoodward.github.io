@@ -255,7 +255,7 @@ class PhotoModel
     }
 
     public function getAlbumIdByName($titulo) {
-        $stmt = $this->db->prepare("SELECT IdAlbum FROM Albumes WHERE Titulo = ?");
+        $stmt = $this->db->prepare("SELECT IdAlbum FROM albumes WHERE Titulo = ?");
         $stmt->bind_param("s", $titulo);
         $stmt->execute();
         $stmt->bind_result($idAlbum);
