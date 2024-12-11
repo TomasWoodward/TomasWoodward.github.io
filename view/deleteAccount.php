@@ -40,7 +40,7 @@ $dataUser = $controllerPhotos->getAllData($userId);
 			echo "<p>" . $_SESSION["error"] . "</p>";
 		?>
 		<label for="pass">Introduce tu contraseña</label>
-		<input type="text" name="pass" id="pass">
+		<input type="password" name="pass" id="pass">
 		<input type="submit">
 	</form>
 </main>
