@@ -45,8 +45,7 @@ class UserController
 
         try {
             // Registrar el usuario en la base de datos
-            $this->userModel->registerUser($username, $password, $email, $sexo, $nacimiento, $ciudad, $pais, $foto, $estilo, $countryController);
-            $_SESSION['success'] = 'Usuario registrado exitosamente';
+            return $this->userModel->registerUser($username, $password, $email, $sexo, $nacimiento, $ciudad, $pais, $foto, $estilo, $countryController);
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
             header('index.php?action=register');

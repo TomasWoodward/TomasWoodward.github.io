@@ -100,12 +100,6 @@ class UserModel
 			$foto,
 			$estilo
 		);
-
-		// Ejecutar la consulta y verificar el resultado
-		if (!$statements->execute()) {
-			$_SESSION["error"] = "Error al registrar el usuario";
-			header('Location: ../index.php?action=errorPage');
-		}
 		return $statements->execute();
 	}
 
