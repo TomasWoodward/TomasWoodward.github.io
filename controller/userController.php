@@ -59,7 +59,7 @@ class UserController
         $hashedPassword = $password ? password_hash($password, PASSWORD_BCRYPT) : null;
 
         // Actualizar el usuario
-        $this->userModel->updateUser(
+        return $this->userModel->updateUser(
             $userId,
             $username,
             $email,

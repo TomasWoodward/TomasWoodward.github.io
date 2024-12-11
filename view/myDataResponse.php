@@ -116,7 +116,7 @@ if (
 
 
 // Actualización del usuario si todo es válido
-$controllerUser->updateUser(
+$flag = $controllerUser->updateUser(
     $userId,
     $_SESSION["userNameReg"],
     $_SESSION["email"],
@@ -128,6 +128,13 @@ $controllerUser->updateUser(
     $_SESSION["pass"],
 );
 
+if (!$flag) {
+    $_SESSION["error"] = "Error updating user.";
+    header("Location: index.php?action=myData");
+    exit;
+}else{
+    $_SESSION["userName"] = $_SESSION["userNameReg"];
+}
 ?>
 
 <main>

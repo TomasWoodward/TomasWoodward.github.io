@@ -106,7 +106,7 @@ class UserModel
 			$_SESSION["error"] = "Error al registrar el usuario";
 			header('Location: ../index.php?action=errorPage');
 		}
-		return true;
+		return $statements->execute();
 	}
 
 	public function updateUser(
@@ -117,80 +117,80 @@ class UserModel
 		$nacimiento,
 		$ciudad,
 		$foto,
-		$paisId, // Parámetro obligatorio
-		$password = null    // Parámetro opcional al final
+		$paisId,
+		$password
 	) {
 
-		if (!empty($userId)) {
-			// Preparar la consulta SQL para actualizar un usuario
-			$params = [];
-			$sql = "UPDATE usuarios SET ";
-			if (!empty($username)) {
-				$sql .= "NomUsuario = ?";
-				$params[] = $username;
-			}
-
-			if (!empty($email)) {
-				$sql .= ", Email = ?";
-				$params[] = $email;
-			}
-
-			if (!empty($sexo)) {
-				$sql .= ", Sexo = ?";
-				$params[] = $sexo;
-			}
-
-			if (!empty($nacimiento)) {
-				$sql .= ", FNacimiento = ?";
-				$params[] = $nacimiento;
-			}
-
-			if (!empty($ciudad)) {
-				$sql .= ", Ciudad = ?";
-				$params[] = $ciudad;
-			}
-
-			if (!empty($foto)) {
-				$sql .= ", Foto = ?";
-				$params[] = $foto;
-			}
-
-			if (!empty($paisId)) {
-				$sql .= ", Pais = ?";
-				$params[] = $paisId;
-			}
-
-			if (!empty($password)) {
-				$sql .= ", Clave = ?";
-				$params[] = $password;
-			}
-
-			if (substr($sql, -1) == ",") {
-				$sql = substr($sql, 0, -1); // Eliminar la última coma
-			}
-			
-			$sql .= " WHERE idUsuario = ?";
-			
-			echo $sql;
-			$statements = $this->db->prepare($sql);
-
-			$params[] = $userId; // Agregar el userId al final del array de parámetros
-			// Crear el tipo de parámetros dinámicamente
-			$types = '';
-			foreach ($params as $param) {
-				if (is_int($param)) {
-					$types .= 'i';
-				} else {
-					$types .= 's';
-				}
-			}
-
-			$statements->bind_param($types, ...$params);
-			$statements->execute();
+		if (empty($userId)) {
+			return false; // Retornar false si no se proporciona un userId
 		}
-		return true;
-	}
 
+		// Preparar la consulta dinámica
+		$fields = [];
+		$params = [];
+		$types = '';
+
+		if (!empty($username)) {
+			$fields[] = "NomUsuario = ?";
+			$params[] = $username;
+			$types .= 's';
+		}
+		if (!empty($email)) {
+			$fields[] = "Email = ?";
+			$params[] = $email;
+			$types .= 's';
+		}
+		if (!empty($sexo)) {
+			$fields[] = "Sexo = ?";
+			$params[] = $sexo;
+			$types .= 's';
+		}
+		if (!empty($nacimiento)) {
+			$fields[] = "FNacimiento = ?";
+			$params[] = $nacimiento;
+			$types .= 's';
+		}
+		if (!empty($ciudad)) {
+			$fields[] = "Ciudad = ?";
+			$params[] = $ciudad;
+			$types .= 's';
+		}
+		if (!empty($foto)) {
+			$fields[] = "Foto = ?";
+			$params[] = $foto;
+			$types .= 's';
+		}
+		if (!empty($paisId)) {
+			$fields[] = "Pais = ?";
+			$params[] = $paisId;
+			$types .= 'i';
+		}
+		if (!empty($password)) {
+			$fields[] = "Clave = ?";
+			$params[] = $password;
+			$types .= 's';
+		}
+
+		// Verificar si hay campos para actualizar
+		if (empty($fields)) {
+			return false; // Si no hay nada que actualizar, retorna false
+		}
+
+		// Construir la consulta SQL
+		$sql = "UPDATE usuarios SET " . implode(", ", $fields) . " WHERE idUsuario = ?";
+		$params[] = $userId; // Agregar el userId al final
+		$types .= 'i';
+
+		// Preparar y ejecutar la consulta
+		$statement = $this->db->prepare($sql);
+
+		$statement->bind_param($types, ...$params);
+		if (!$statement->execute()) {
+			return false; // Retornar false si la actualización falla
+		}
+
+		return true; // Retornar true si la actualización fue exitosa
+	}
 
 
 
