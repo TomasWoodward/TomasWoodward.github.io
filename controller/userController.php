@@ -53,24 +53,8 @@ class UserController
         }
     }
 
-    public function updateUser($userId, $username, $email, $sexo, $nacimiento, $ciudad, $pais, $foto, $estilo, $password = null)
-{
-    $countryController = new CountryController();
-
-
-    try {
-        $nacimiento = DateTime::createFromFormat('d/m/Y', $nacimiento);
-        if ($nacimiento) {
-            $nacimiento = $nacimiento->format('Y-m-d');
-        }
-
-        // Verificar si el país existe
-        $country = $countryController->getCountryByName($pais);
-        if (!$country || !isset($country['idPais'])) {
-            throw new Exception("País no encontrado: $pais");
-        }
-        $paisId = $country['idPais'];
-
+    public function updateUser($userId, $username, $email, $sexo, $nacimiento, $ciudad, $pais, $foto, $password = null)
+    {
         // Hashear la contraseña si es proporcionada
         $hashedPassword = $password ? password_hash($password, PASSWORD_BCRYPT) : null;
 
@@ -82,20 +66,11 @@ class UserController
             $sexo,
             $nacimiento,
             $ciudad,
-            $paisId,
-            null,
-            'default',
+            $foto,
+            $pais,
             $hashedPassword,
-            $countryController
         );
-
-        $_SESSION['success'] = 'Usuario actualizado exitosamente';
-        header('Location: ../index.php?action=viewUser&userId=' . $userId);
-    } catch (Exception $e) {
-        $_SESSION['error'] = $e->getMessage();
-        header('Location: index.php?action=myDataResponse');
     }
-}
 
     public function getAlbums($username)
     {
@@ -132,13 +107,15 @@ class UserController
     public function updateStyle($userId, $style)
     {
         return $this->userModel->updateStyle($userId, $style);
-    }   
+    }
 
-    public function deleteAccount ($userId){
+    public function deleteAccount($userId)
+    {
         $this->userModel->deleteAccount($userId);
     }
 
-    public function closeConection(){
+    public function closeConection()
+    {
         $this->userModel->closeConection();
     }
 }
