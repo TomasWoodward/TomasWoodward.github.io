@@ -64,7 +64,7 @@ if ($_FILES["photo"]["error"] > 0) {
     if (file_exists($filePath)) {
         echo "El archivo ya existe y será reemplazado.";
     }
-    
+    echo "Nuevo nombre: " . $filePath ;
     if (move_uploaded_file($_FILES["photo"]["tmp_name"], $filePath)) {
         echo "Archivo subido y renombrado correctamente como: " . $filePath;
         
