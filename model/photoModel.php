@@ -19,13 +19,15 @@ class PhotoModel
             "INSERT INTO fotos (titulo, descripcion, fecha, pais, album, fichero, alternativo) 
              VALUES (?, ?, ?, ?, ?, ?, ?)"
         );
+        echo $title;
+        echo $description;
+        echo $date;
+        echo $country;
+        echo $album;
+        echo $file;
+        echo $alt;
         $stmt->bind_param("sssisss", $title, $description, $date, $country, $album, $file, $alt);
-        $result = $stmt->execute();
-        if ($result === false) {
-            $_SESSION["error"] = "Error adding photo";
-            header("Location: ../index.php?action=errorPage");
-        }
-        return $result;
+        return $stmt->execute();
     }
 
 
@@ -255,14 +257,11 @@ class PhotoModel
     }
 
     public function getAlbumIdByName($titulo) {
-        $stmt = $this->db->prepare("SELECT IdAlbum FROM albumes WHERE Titulo = ?");
+        $stmt = $this->db->prepare("SELECT idAlbum FROM albumes WHERE titulo = ?");
         $stmt->bind_param("s", $titulo);
         $stmt->execute();
-        $stmt->bind_result($idAlbum);
-        $stmt->fetch();
-        $stmt->close();
-
-        return $idAlbum ? (int)$idAlbum : null;
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result['idAlbum'] ?? null;
     }
 
     public function closeConection(){

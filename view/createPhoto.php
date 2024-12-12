@@ -21,7 +21,7 @@ $albums =  $controllerUser->getAlbums($_SESSION["userName"]);
 
 <main>
     <h2><?= $htmlTitle ?></h2>
-    <form action="index.php?action=createPhotoResponse" method="post">
+    <form action="index.php?action=createPhotoResponse" method="post" enctype="multipart/form-data">
         <label for="title">Title</label>
         <input type="text" id="title" name="title" required>
 
@@ -40,8 +40,8 @@ $albums =  $controllerUser->getAlbums($_SESSION["userName"]);
             ?>
         </select>
 
-        <label for="image">Image</label>
-        <input type="file" id="image" name="image" required>
+        <label for="photo">Image</label>
+        <input type="file" id="photo" name="photo" required>
 
         <label for="alt">Alt</label>
         <input type="text" id="alt" name="alt" required minlength="10">
