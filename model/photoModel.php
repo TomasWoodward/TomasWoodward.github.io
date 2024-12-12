@@ -52,6 +52,7 @@ class PhotoModel
     {
         $stmt = $this->db->prepare("SELECT  u.idUsuario as id_usuario,
                                             f.titulo AS titulo_foto,
+                                            f.fichero AS fichero,
                                             a.idAlbum AS id_album, 
                                             a.titulo AS titulo_album, 
                                             p.nombre AS nombre_pais, 

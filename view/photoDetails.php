@@ -21,7 +21,7 @@ if($foto){
 echo'<main>';
 echo '<h2>'.$foto['titulo_foto'].'</h2>';
     echo'<figure>';
-        echo '<img src='.$foto['fichero'].'alt='.$foto['alternativo'].'>';
+        echo  "<img src='".$foto['fichero']."' alt='" . $foto['alternativo'] . "'>";
         echo '<figcaption>';
             echo '<p>Descripcion: '.$foto['descripcion'].'</p>';
             echo '<p>Country: '.$foto['nombre_pais'].'</p>';
