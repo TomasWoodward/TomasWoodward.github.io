@@ -9,7 +9,7 @@
     foreach($photos as $photo){
         echo '<figure>';
         echo '<h3>' . $photo['fotoTitulo'] . '</h3>';
-        echo '<img src="view/img/users/' . $photo['fotoFichero'] . '" alt="' . $photo['fotoAlternativo'] . '">';
+        echo  "<img src='".$photo['fichero']."' alt='" . $photo['alternativo'] . "'>";
         echo '<figcaption>';
         echo '<p>' . $photo['fotoDescripcion'] . '</p>';
         echo '<p>Country: ' . $photo['fotoPais'] . '</p>';
