@@ -29,7 +29,7 @@ $albums = $controllerUser->getAlbums($username["nomUsuario"]);
 <main>
     <h2><?=$htmlTitle?></h2>
     <h3><?=$user['nomUsuario']?></h3>
-    <p>Profile pic: <?=$user['foto']?></p>
+    <img src="<?php echo file_exists($user['foto']) ? $user['foto'] : 'img/profileStandard.jpg'; ?>" style="width: 250px; height: 250px; border-radius: 50%; border: solid .2em black; margin-right: 4em;">
     <p>Been active since: <?=$user['fRegistro']?></p>
     
 <?php

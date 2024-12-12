@@ -45,7 +45,7 @@ echo "<P>Theme: {$_SESSION["theme"]} </p>";
 ?>
 
 <main>
-    <img src="<?=$profilePic?>" alt="Profile Picture" style="width: 250px; height: 250px; border-radius: 50%; border: solid .2em black; margin-right: 4em;">
+    <img src="<?php echo file_exists($profilePic) ? $profilePic : 'img/profileStandard.jpg'; ?>" alt="Profile Picture" style="width: 250px; height: 250px; border-radius: 50%; border: solid .2em black; margin-right: 4em;">
     <ul>
         <li><a href="index.php?action=themeConfig">Theme configuration</a></li>
         <li><a href="index.php?action=myData">My data</a></li>
