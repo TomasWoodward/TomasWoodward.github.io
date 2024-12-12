@@ -14,6 +14,17 @@ include 'layout/start.php';
 include 'layout/header.php';
 include 'layout/navAuth.php';
 
+$msgError = array(
+    0 => "No hay error, el photo se subió con éxito",
+    1 => "El tamaño del photo supera la directiva upload_max_filesize el php.ini",
+    2 => "El tamaño del photo supera la directiva MAX_FILE_SIZE especificada en el formulario HTML",
+    3 => "El photo fue parcialmente subido",
+    4 => "No se ha subido un photo",
+    6 => "No existe un directorio temporal",
+    7 => "Fallo al escribir el photo al disco",
+    8 => "La subida del photo fue detenida por la extensión"
+);
+
 // Obtener los datos enviados por el formulario
 $_SESSION["userNameReg"] = $_POST["userNameReg"]??"";
 $_SESSION["pass"]        = $_POST["pass"]??"";
@@ -127,6 +138,41 @@ $flag = $controllerUser->updateUser(
     null,
     $_SESSION["pass"],
 );
+
+if ($_FILES["photo"]["error"] > 0) {
+    echo "Error: " . $msgError[$_FILES["photo"]["error"]] . "<br />";
+    $_SESSION["error"] = "Error al subir la foto";
+    header('Location: index.php?action=errorPage');
+    exit;
+} else {
+    echo "Nombre original: " . $_FILES["photo"]["name"] . "<br />";
+    echo "Tipo: " . $_FILES["photo"]["type"] . "<br />";
+    $extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
+    echo "Tamaño: " . ceil($_FILES["photo"]["size"] / 1024) . " Kb<br />";
+    echo "Nombre temporal: " . $_FILES["photo"]["tmp_name"] . "<br />";
+    
+    $userDir = "img/users/" . $_SESSION["userNameReg"];
+    if (!is_dir($userDir)) {
+        mkdir($userDir, 0777, true);
+    }
+    
+    $newFilePath = $userDir . "/user." . $extension; // Ruta final del archivo con el nuevo nombre
+    
+    if (file_exists($newFilePath)) {
+        echo "El archivo user." . $extension . " ya existe. Será reemplazado.";
+    }
+    
+    // Mover el archivo subido a la ubicación deseada y renombrarlo
+    if (move_uploaded_file($_FILES["photo"]["tmp_name"], $newFilePath)) {
+        echo "Archivo subido y renombrado correctamente como: " . $newFilePath;
+    } else {
+        echo "Error al mover el archivo a la carpeta del usuario.";
+        $_SESSION["error"] = "Error al mover el archivo a la carpeta del usuario";
+        header('Location: index.php?action=errorPage');
+        exit;
+    }
+}
+
 
 if (!$flag) {
     $_SESSION["error"] = "Error updating user.";
