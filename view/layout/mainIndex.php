@@ -2,13 +2,12 @@
     <h2>Latest photos</h2>
     <?php 
     $photos = $controllerPhotos->listLastPhotos();
-    $countrys = $controllerCountry->getCountries();
 
     if(isset($photos))
     foreach ($photos as $photo) {
         echo '<figure>';
         echo '<h3>' . $photo['titulo'] . '</h3>';
-        echo '<img src="view/img/users/' . $photo['fichero'] . '" alt="' . $photo['alternativo'] . '">';
+        echo '<img src='. $photo['fichero'] . 'alt="' . $photo['alternativo'] . '">';
         echo '<figcaption>';
         echo '<p>' . $photo['descripcion'] . '</p>';
         echo '<p>Country: ' . $photo['nombre'] . '</p>';

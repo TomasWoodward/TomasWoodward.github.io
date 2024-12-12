@@ -41,7 +41,7 @@ class PhotoModel
 
     public function getLastPhotos()
     {
-        $stmt = $this->db->prepare("SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto ORDER BY fRegistro DESC LIMIT 5");
+        $stmt = $this->db->prepare("SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto ORDER BY f.fRegistro DESC LIMIT 5");
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $result;

@@ -2,7 +2,6 @@
     <h2>Latest photos</h2>
     <?php
     $photos = $controllerPhotos->listLastPhotos();
-    $countrys = $controllerCountry->getCountries();
     if(isset($photos))
     foreach ($photos as $photo) {
         echo '<figure>';

@@ -39,12 +39,6 @@ foreach ($forbiddenWords as $word) {
     }
 }
 
-// if (!$albumId) {
-//     $_SESSION["error"] = "El álbum seleccionado no existe.";
-//     header("Location: index.php?action=errorPage");
-//     exit;
-// }
-
 // Registro del usuario si todo es válido
 if ($_FILES["photo"]["error"] > 0) {
     echo "Error: " . $msgError[$_FILES["photo"]["error"]] . "<br />";
