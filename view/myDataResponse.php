@@ -127,23 +127,16 @@ if (
 
 
 // Actualización del usuario si todo es válido
-$flag = $controllerUser->updateUser(
-    $userId,
-    $_SESSION["userNameReg"],
-    $_SESSION["email"],
-    $_SESSION["sex"],
-    $_SESSION["birth"],
-    $_SESSION["city"],
-    $idCountry,
-    null,
-    $_SESSION["pass"],
-);
+
 
 if ($_FILES["photo"]["error"] > 0) {
-    echo "Error: " . $msgError[$_FILES["photo"]["error"]] . "<br />";
-    $_SESSION["error"] = "Error al subir la foto";
-    header('Location: index.php?action=errorPage');
-    exit;
+    //borrar la foto
+    $filepathPattern = "img/users/" . $_SESSION["userNameReg"] . "/user.*"; // Busca cualquier extensión
+    $files = glob($filepathPattern);
+    foreach ($files as $file) {
+        echo "Eliminando archivo: " . $file . "\n";
+        unlink($file); // Borra el archivo
+    }
 } else {
     echo "Nombre original: " . $_FILES["photo"]["name"] . "<br />";
     echo "Tipo: " . $_FILES["photo"]["type"] . "<br />";
@@ -172,7 +165,17 @@ if ($_FILES["photo"]["error"] > 0) {
         exit;
     }
 }
-
+$flag = $controllerUser->updateUser(
+    $userId,
+    $_SESSION["userNameReg"],
+    $_SESSION["email"],
+    $_SESSION["sex"],
+    $_SESSION["birth"],
+    $_SESSION["city"],
+    $idCountry,
+    $newFilePath??"",
+    $_SESSION["pass"],
+);
 
 if (!$flag) {
     $_SESSION["error"] = "Error updating user.";

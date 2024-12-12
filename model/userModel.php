@@ -165,6 +165,8 @@ class UserModel
 			$fields[] = "Foto = ?";
 			$params[] = $foto;
 			$types .= 's';
+		}else{
+			$fields[] = "Foto = NULL";
 		}
 		if (!empty($paisId)) {
 			$fields[] = "Pais = ?";

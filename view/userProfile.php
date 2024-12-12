@@ -42,6 +42,7 @@ if ($lastVisit == "This is your first visit") {
     echo "<p>Your last visit was: $lastVisit </p>";
 }
 echo "<P>Theme: {$_SESSION["theme"]} </p>";
+echo $profilePic;
 ?>
 
 <main>
