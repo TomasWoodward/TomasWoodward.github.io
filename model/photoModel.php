@@ -98,10 +98,10 @@ class PhotoModel
         $fecha = date('Y-m-d', strtotime($fecha)); 
         $fecha = '%' . $fecha . '%';
         if ($fecha == "" && $pais == '') {
-            $stmt = $this->db->prepare('SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto WHERE titulo LIKE ?');
+            $stmt = $this->db->prepare('SELECT * FROM fotos f JOIN paises p ON p.idPais = f.pais WHERE titulo LIKE ?');
             $stmt->bind_param('s', $titulo, );
         } else {
-            $stmt = $this->db->prepare("SELECT * FROM fotos f JOIN paises p ON p.idPais = f.idFoto WHERE titulo LIKE ? OR fecha LIKE ? OR nombre LIKE ?");
+            $stmt = $this->db->prepare("SELECT * FROM fotos f JOIN paises p ON p.idPais = f.pais WHERE titulo LIKE ? OR fecha LIKE ? OR nombre LIKE ?");
             $stmt->bind_param("sss", $titulo, $fecha, $pais);
         }
         $stmt->execute();
