@@ -14,6 +14,7 @@ class UserModel
 		$this->db = Database::getInstance();
 	}
 
+
 	public function getAlbums($username)
 	{
 		$userId = $this->getUserId($username);
@@ -23,6 +24,17 @@ class UserModel
 		$result = $statements->get_result();
 		return $result->fetch_all(MYSQLI_ASSOC);
 	}
+
+	public function getUserPhoto($username){
+		$userId = $this->getUserId($username);
+		$statements = $this->db->prepare("SELECT foto FROM usuarios WHERE idUsuario = ?");
+		$statements->bind_param("i", $userId);
+		$statements->execute();
+		$result = $statements->get_result();
+		$row = $result->fetch_assoc();
+		return $row["foto"];
+	}
+
 	public function getUser($username)
 	{
 		$statements = $this->db->prepare("SELECT * FROM usuarios WHERE nomUsuario = ?");

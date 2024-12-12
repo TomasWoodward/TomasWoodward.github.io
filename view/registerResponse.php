@@ -97,44 +97,56 @@ if (
 }
 
 // Registro del usuario si todo es válido
-$user = $controllerUser->register(
-    $_SESSION["userNameReg"],
-    $_SESSION["pass"],
-    $_SESSION["email"],
-    $_SESSION["sex"],
-    $_SESSION["birth"],
-    $_SESSION["city"],
-    $_SESSION["country"],
-    "user.jpg",
-    1
-);
-if (!$user) {
-    $_SESSION["error"] = "Error al registrar el usuario";
+if ($_FILES["photo"]["error"] > 0) {
+    echo "Error: " . $msgError[$_FILES["photo"]["error"]] . "<br />";
+    $_SESSION["error"] = "Error al subir la foto";
     header('Location: index.php?action=errorPage');
     exit;
 } else {
-    if ($_FILES["photo"]["error"] > 0) {
-        echo "Error: " . $msgError[$_FILES["photo"]["error"]] . "<br />";
-    } else {
-        echo "Nombre original: " . $_FILES["photo"]["name"] . "<br />";
-        echo "Tipo: " . $_FILES["photo"]["type"] . "<br />";
-        echo "Tamaño: " . ceil($_FILES["photo"]["size"] / 1024) . " Kb<br />";
-        echo "Nombre temporal: " . $_FILES["photo"]["tmp_name"] . "<br />";
-
+    echo "Nombre original: " . $_FILES["photo"]["name"] . "<br />";
+    echo "Tipo: " . $_FILES["photo"]["type"] . "<br />";
+    $extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
+    echo "Tamaño: " . ceil($_FILES["photo"]["size"] / 1024) . " Kb<br />";
+    echo "Nombre temporal: " . $_FILES["photo"]["tmp_name"] . "<br />";
+    
+    $userDir = "img/users/" . $_SESSION["userNameReg"];
+    if (!is_dir($userDir)) {
+        mkdir($userDir, 0777, true);
+    }
+    
+    $newFilePath = $userDir . "/user." . $extension; // Ruta final del archivo con el nuevo nombre
+    
+    if (file_exists($newFilePath)) {
+        echo "El archivo user." . $extension . " ya existe. Será reemplazado.";
+    }
+    
+    // Mover el archivo subido a la ubicación deseada y renombrarlo
+    if (move_uploaded_file($_FILES["photo"]["tmp_name"], $newFilePath)) {
+        echo "Archivo subido y renombrado correctamente como: " . $newFilePath;
         
-        $userDir = "img/users/" . $_SESSION["userNameReg"];
-        if (!is_dir($userDir)) {
-            mkdir($userDir, 0777, true);
+        // Registro del usuario si el archivo se subió correctamente
+        $user = $controllerUser->register(
+            $_SESSION["userNameReg"],
+            $_SESSION["pass"],
+            $_SESSION["email"],
+            $_SESSION["sex"],
+            $_SESSION["birth"],
+            $_SESSION["city"],
+            $_SESSION["country"],
+            $newFilePath,
+            1
+        );
+        
+        if (!$user) {
+            $_SESSION["error"] = "Error al registrar el usuario";
+            header('Location: index.php?action=errorPage');
+            exit;
         }
-        if (file_exists("img/users/" . $_SESSION["userNameReg"] . "/" . $_FILES["photo"]["name"])) {
-            echo $_FILES["photo"]["name"] . " ya existe";
-        } else {
-            move_uploaded_file(
-                $_FILES["photo"]["tmp_name"],
-                $userDir . "/" . $_FILES["photo"]["name"]
-            );
-        }
-        echo "Almacenado en: " . $userDir . "/" . $_FILES["photo"]["name"];
+    } else {
+        echo "Error al mover el archivo a la carpeta del usuario.";
+        $_SESSION["error"] = "Error al mover el archivo a la carpeta del usuario";
+        header('Location: index.php?action=errorPage');
+        exit;
     }
 }
 ?>

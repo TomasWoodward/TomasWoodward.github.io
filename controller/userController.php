@@ -71,6 +71,10 @@ class UserController
         );
     }
 
+    public function getUserPhoto($username){
+        $photo = $this->userModel->getUserPhoto($username);
+        return $photo;
+    }
     public function getAlbums($username)
     {
         $albums = $this->userModel->getAlbums($username);

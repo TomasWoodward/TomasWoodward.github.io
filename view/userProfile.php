@@ -22,7 +22,7 @@ include 'layout/navAuth.php';
 // Mostrar saludo si hay un usuario activo
 $userName = htmlspecialchars(!empty($_SESSION["userName"]) ? $_SESSION["userName"] : $_COOKIE["userName"]);
 $lastVisit = !empty($_SESSION["lastVisit"]) ? $_SESSION["lastVisit"] : "This is your first visit";
-
+$profilePic = $controllerUser->getUserPhoto($userName);
 $horaActual = intval(date("H"));
 
 // Determinar el mensaje según la franja horaria
@@ -45,6 +45,7 @@ echo "<P>Theme: {$_SESSION["theme"]} </p>";
 ?>
 
 <main>
+    <img src="<?=$profilePic?>" alt="Profile Picture" style="width: 250px; height: 250px; border-radius: 50%; border: solid .2em black; margin-right: 4em;">
     <ul>
         <li><a href="index.php?action=themeConfig">Theme configuration</a></li>
         <li><a href="index.php?action=myData">My data</a></li>
