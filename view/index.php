@@ -15,10 +15,14 @@ include 'layout/header.php';
 if($_SESSION["AUTH"]==false ){
     include 'layout/nav.php';
     include 'layout/mainIndex.php';
+    
 } else {
     include 'layout/navAuth.php';
     include 'layout/mainAuth.php';
 }
+?>
+
+<?php
 
 include 'layout/footer.php';
 include 'layout/end.php';
