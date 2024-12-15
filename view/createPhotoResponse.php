@@ -22,7 +22,7 @@ $alt = htmlspecialchars(trim($_POST['alt']), ENT_QUOTES, 'UTF-8');
 $userId = $controllerUser->getUserId($_SESSION["userName"]);
 $country = $controllerCountry->getCountryIdByName($_POST['country']);
 $albumId = $controllerPhotos->getAlbumIdByName($_POST['album']);
-echo $albumId;
+
 $forbiddenWords = ['foto', 'imagen'];
 
 if (strlen($alt) < 10) {
@@ -46,11 +46,9 @@ if ($_FILES["photo"]["error"] > 0) {
     header('Location: index.php?action=errorPage');
     exit;
 } else {
-    echo "Nombre original: " . $_FILES["photo"]["name"] . "<br />";
-    echo "Tipo: " . $_FILES["photo"]["type"] . "<br />";
+ 
     $extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
-    echo "Tamaño: " . ceil($_FILES["photo"]["size"] / 1024) . " Kb<br />";
-    echo "Nombre temporal: " . $_FILES["photo"]["tmp_name"] . "<br />";
+
     
     $userDir = "img/users/" . $_SESSION["userName"];
     if (!is_dir($userDir)) {
@@ -64,9 +62,8 @@ if ($_FILES["photo"]["error"] > 0) {
     if (file_exists($filePath)) {
         echo "El archivo ya existe y será reemplazado.";
     }
-    echo "Nuevo nombre: " . $filePath ;
+  
     if (move_uploaded_file($_FILES["photo"]["tmp_name"], $filePath)) {
-        echo "Archivo subido y renombrado correctamente como: " . $filePath;
         
         $photo = $controllerPhotos->createPhoto($title, $description, $date, $country, $albumId, $filePath, $alt);
         if (!$photo) {
@@ -76,7 +73,6 @@ if ($_FILES["photo"]["error"] > 0) {
         }
 
     } else {
-        echo "Error al mover el archivo a la carpeta del usuario.";
         $_SESSION["error"] = "Error al mover el archivo a la carpeta del usuario";
         header('Location: index.php?action=errorPage');
         exit;

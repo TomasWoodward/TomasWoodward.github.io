@@ -67,46 +67,32 @@
 
 
 
-    $txt = __DIR__ . '/recomendations/rec2.txt';
-    $recomendations = fopen($txt, "r");
-    $processed = []; 
+    $json = __DIR__ . '/recomendations/rec2.json'; // Ruta del fichero JSON
 
-    if ($recomendations) {
-        while (($line = fgets($recomendations)) !== false) {
-            $line = trim($line);
-            $values = explode("$", $line);
-
-            if (count($values) === 3) {
-                $processed[] = [
-                    'Category' => (int)$values[0],
-                    'Material' => $values[1],
-                    'Description' => $values[2]
-                ];
-            }
-        }
-        fclose($recomendations);
-
-        // Seleccionar una recomendación aleatoria
-        if (!empty($processed)) {
+    if (file_exists($json)) {
+        // Leer y decodificar el archivo JSON
+        $jsonContent = file_get_contents($json);
+        $processed = json_decode($jsonContent, true); // Convertir JSON a array asociativo
+    
+        // Validar que el JSON contiene datos
+        if (json_last_error() === JSON_ERROR_NONE && !empty($processed)) {
+            // Seleccionar una recomendación aleatoria
             $randomIndex = array_rand($processed);
             $selectedRec = $processed[$randomIndex];
-
-
+    
             echo '<br>';
             echo '<h2>Recommendation of the day</h2>';
-      
-
-            if ($photo2) {
-                echo '<figure>';
-                echo '<h3>' . $selectedRec['Category'] . '</h3>';
-                echo '<figcaption>';
-                echo '<p>Material: ' .$selectedRec['Material'] . '</p>';
-                echo '<p>Description: ' . $selectedRec['Description'] . '</p>';
-                echo '</figcaption>';
-                echo '</figure>';
-            } else {
-                echo '<p>Error</p>';
-            }
+    
+            // Mostrar la recomendación
+            echo '<figure>';
+            echo '<h3>' . $selectedRec['Category'] . '</h3>';
+            echo '<figcaption>';
+            echo '<p>Material: ' . $selectedRec['Material'] . '</p>';
+            echo '<p>Description: ' . $selectedRec['Description'] . '</p>';
+            echo '</figcaption>';
+            echo '</figure>';
+        } else {
+            echo '<h2>No Recommendation Of The Day available</h2>';
         }
     } else {
         echo '<h2>No Recommendation Of The Day available</h2>';

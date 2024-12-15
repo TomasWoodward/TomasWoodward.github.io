@@ -89,9 +89,9 @@ class UserModel
 		// Encriptar la contraseña con BCRYPT (máximo 255 caracteres)
 		$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-		$nacimiento = DateTime::createFromFormat('d/m/Y', $nacimiento);
-		if ($nacimiento)
-			$nacimiento = $nacimiento->format('Y-m-d');
+		// $nacimiento = DateTime::createFromFormat('d/m/Y', $nacimiento);
+		// if ($nacimiento)
+		// 	$nacimiento = $nacimiento->format('Y-m-d');
 		// Preparar la consulta SQL para insertar un usuario
 		$statements = $this->db->prepare(
 			"INSERT INTO usuarios 

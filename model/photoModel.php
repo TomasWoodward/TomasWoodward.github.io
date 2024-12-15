@@ -19,13 +19,7 @@ class PhotoModel
             "INSERT INTO fotos (titulo, descripcion, fecha, pais, album, fichero, alternativo) 
              VALUES (?, ?, ?, ?, ?, ?, ?)"
         );
-        echo $title;
-        echo $description;
-        echo $date;
-        echo $country;
-        echo $album;
-        echo $file;
-        echo $alt;
+  
         $stmt->bind_param("sssisss", $title, $description, $date, $country, $album, $file, $alt);
         return $stmt->execute();
     }

@@ -138,12 +138,9 @@ if ($_FILES["photo"]["error"] > 0) {
         unlink($file); // Borra el archivo
     }
 } else {
-    echo "Nombre original: " . $_FILES["photo"]["name"] . "<br />";
-    echo "Tipo: " . $_FILES["photo"]["type"] . "<br />";
-    $extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
-    echo "Tamaño: " . ceil($_FILES["photo"]["size"] / 1024) . " Kb<br />";
-    echo "Nombre temporal: " . $_FILES["photo"]["tmp_name"] . "<br />";
     
+    $extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
+  
     $userDir = "img/users/" . $_SESSION["userNameReg"];
     if (!is_dir($userDir)) {
         mkdir($userDir, 0777, true);
@@ -156,10 +153,7 @@ if ($_FILES["photo"]["error"] > 0) {
     }
     
     // Mover el archivo subido a la ubicación deseada y renombrarlo
-    if (move_uploaded_file($_FILES["photo"]["tmp_name"], $newFilePath)) {
-        echo "Archivo subido y renombrado correctamente como: " . $newFilePath;
-    } else {
-        echo "Error al mover el archivo a la carpeta del usuario.";
+    if (!move_uploaded_file($_FILES["photo"]["tmp_name"], $newFilePath)) {
         $_SESSION["error"] = "Error al mover el archivo a la carpeta del usuario";
         header('Location: index.php?action=errorPage');
         exit;

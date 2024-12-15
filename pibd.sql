@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-12-2024 a las 23:30:27
+-- Tiempo de generación: 15-12-2024 a las 11:42:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pibd`
 --
+CREATE DATABASE IF NOT EXISTS `pibd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `pibd`;
 
 -- --------------------------------------------------------
 
@@ -27,12 +29,19 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `albumes`
 --
 
+DROP TABLE IF EXISTS `albumes`;
 CREATE TABLE `albumes` (
   `idAlbum` int(11) NOT NULL,
   `titulo` text NOT NULL,
   `descripcion` text NOT NULL,
   `usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `albumes`:
+--   `usuario`
+--       `usuarios` -> `idUsuario`
+--
 
 --
 -- Volcado de datos para la tabla `albumes`
@@ -49,7 +58,11 @@ INSERT INTO `albumes` (`idAlbum`, `titulo`, `descripcion`, `usuario`) VALUES
 (8, 'Amigos', 'Fotos con mis amigos', 11),
 (9, 'Hobbies', 'Imágenes relacionadas con mis pasatiempos', 1),
 (10, 'Familia', 'Recuerdos familiares', 11),
-(11, 'Prueba de album', 'Esto es una prueba del album a ver si se inserta', 13);
+(11, 'Prueba de album', 'Esto es una prueba del album a ver si se inserta', 13),
+(12, 'Prueba de album2', 'Esto es una nueva prueba justo antes de clase', 11),
+(13, 'Album clase', 'Album hecho en clase', 23),
+(14, 'Mi nuevo coche', 'Me he comprado un coche nuevo', 21),
+(15, 'Mi viaje a budapest', 'Mi viaje a budapest solo', 15);
 
 -- --------------------------------------------------------
 
@@ -57,12 +70,17 @@ INSERT INTO `albumes` (`idAlbum`, `titulo`, `descripcion`, `usuario`) VALUES
 -- Estructura de tabla para la tabla `estilos`
 --
 
+DROP TABLE IF EXISTS `estilos`;
 CREATE TABLE `estilos` (
   `idEstilo` int(11) NOT NULL,
   `nombre` text NOT NULL,
   `descripcion` text NOT NULL,
   `fichero` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `estilos`:
+--
 
 --
 -- Volcado de datos para la tabla `estilos`
@@ -81,6 +99,7 @@ INSERT INTO `estilos` (`idEstilo`, `nombre`, `descripcion`, `fichero`) VALUES
 -- Estructura de tabla para la tabla `fotos`
 --
 
+DROP TABLE IF EXISTS `fotos`;
 CREATE TABLE `fotos` (
   `idFoto` int(11) NOT NULL,
   `titulo` text NOT NULL,
@@ -92,6 +111,14 @@ CREATE TABLE `fotos` (
   `alternativo` text NOT NULL,
   `fRegistro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `fotos`:
+--   `album`
+--       `albumes` -> `idAlbum`
+--   `pais`
+--       `paises` -> `idPais`
+--
 
 --
 -- Volcado de datos para la tabla `fotos`
@@ -116,7 +143,13 @@ INSERT INTO `fotos` (`idFoto`, `titulo`, `descripcion`, `fecha`, `pais`, `album`
 (57, 'Fotillo', 'Aqui intentando subir una fotillo', '2024-12-08', 1, 8, 'Captura de pantalla 2024-11-30 172106.png', 'INTENTANDO SUBIR UNA FOTO', '2024-12-08 21:23:49'),
 (58, 'Fotillo', 'Aqui intentando subir una fotillo', '2024-12-08', 1, 8, 'Captura de pantalla 2024-11-30 172106.png', 'INTENTANDO SUBIR PUTA FOTO', '2024-12-08 21:33:19'),
 (59, 'En amor y compañia', 'En amor y compañia con mi gente como debe ser', '2024-12-06', 1, 10, 'Captura de pantalla 2024-11-30 172106.png', 'Fotillo alternativa', '2024-12-08 21:41:27'),
-(60, 'Nueva Foto', 'Nueva Foto', '2024-12-15', 4, 10, 'Captura de pantalla 2024-11-30 172106.png', 'Nueva foto', '2024-12-08 21:46:33');
+(60, 'Nueva Foto', 'Nueva Foto', '2024-12-15', 4, 10, 'Captura de pantalla 2024-11-30 172106.png', 'Nueva foto', '2024-12-08 21:46:33'),
+(61, 'Fotillo', 'Fotillo nueva', '2024-12-13', 1, 13, 'img/users/carol/081a20dcc082bf3ac944df661a733973.jpg20241213111208.jpg', 'INTENTANDO SUBIR PUTA FOTO', '2024-12-13 10:12:08'),
+(62, 'Bananna', 'The most georgeous art i&#039;ve ever seen', '2024-12-13', 8, 13, 'img/users/carol/platano.jpeg20241213113022.jpeg', 'The most georgeous art i&#039;ve ever seen', '2024-12-13 10:30:22'),
+(63, 'Scirocco', 'Mi nuevo volkswagen', '2024-12-15', 7, 14, 'img/users/juanito/volkswagen-scirocco-2921060.webp20241215110836.webp', 'Volkswagen Scirocco', '2024-12-15 10:08:36'),
+(64, 'Mi coche anterior', 'Mi coche anterior', '2024-12-09', 7, 14, 'img/users/juanito/vw-scirocco-i-1974-1981.jpg20241215111114.jpg', 'Mi coche anterior', '2024-12-15 10:11:14'),
+(65, 'Budapest de dia', 'Budapest de dia', '2024-11-14', 5, 15, 'img/users/felipe/bud.webp20241215111340.webp', 'Budapest de dia', '2024-12-15 10:13:40'),
+(66, 'Budapest de noche', 'Budapest de noche', '2024-11-16', 5, 15, 'img/users/felipe/bud_noche.jpg20241215111406.jpg', 'Budapest de noche', '2024-12-15 10:14:06');
 
 -- --------------------------------------------------------
 
@@ -124,10 +157,15 @@ INSERT INTO `fotos` (`idFoto`, `titulo`, `descripcion`, `fecha`, `pais`, `album`
 -- Estructura de tabla para la tabla `paises`
 --
 
+DROP TABLE IF EXISTS `paises`;
 CREATE TABLE `paises` (
   `idPais` int(11) NOT NULL,
   `nombre` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `paises`:
+--
 
 --
 -- Volcado de datos para la tabla `paises`
@@ -151,6 +189,7 @@ INSERT INTO `paises` (`idPais`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `solicitudes`
 --
 
+DROP TABLE IF EXISTS `solicitudes`;
 CREATE TABLE `solicitudes` (
   `idSolicitud` int(11) NOT NULL,
   `album` int(11) NOT NULL,
@@ -168,6 +207,12 @@ CREATE TABLE `solicitudes` (
   `fRegistro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `coste` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `solicitudes`:
+--   `album`
+--       `albumes` -> `idAlbum`
+--
 
 --
 -- Volcado de datos para la tabla `solicitudes`
@@ -198,6 +243,7 @@ INSERT INTO `solicitudes` (`idSolicitud`, `album`, `nombre`, `titulo`, `descripc
 -- Estructura de tabla para la tabla `usuarios`
 --
 
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `idUsuario` int(11) NOT NULL,
   `nomUsuario` text NOT NULL,
@@ -211,6 +257,14 @@ CREATE TABLE `usuarios` (
   `fRegistro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `estilo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `usuarios`:
+--   `estilo`
+--       `estilos` -> `idEstilo`
+--   `pais`
+--       `paises` -> `idPais`
+--
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -231,7 +285,9 @@ INSERT INTO `usuarios` (`idUsuario`, `nomUsuario`, `clave`, `email`, `sexo`, `fN
 (12, 'paula', '$2y$10$jelcw6xlyyGyq6jvJ.95Gu5Rh6bhk8c4FSfc8GYzIlyyL6UdvzUfS', 'paula@gmail.com', 2, '0000-00-00', 'alicante', 5, 'user.jpg', '2024-11-21 11:15:32', 1),
 (13, 'alex', '$2y$10$m0n64qgDNQAlomrwLkupne9nchmY2ioixAwt29s6eLkOu8IG/ZfQO', 'alex@gmail.com', 1, '0000-00-00', 'ALICANTE', 5, 'user.jpg', '2024-12-05 10:12:06', 1),
 (14, 'alex2', '$2y$10$nXEFwx6xco.sedF6GIz/r.faUX4/2QwKjBBvuaUtpHxXpA5UhMu6C', 'alex2@gmail.com', 2, '2024-10-25', 'Setcases', 5, 'user.jpg', '2024-11-22 12:48:54', 1),
-(15, 'felipe', '$2y$10$zZt4xCAWKfXt81wp/ryruOc9bL/s5lTVN52WDDEh/vz3SRfyvgEO6', 'felipe@gmail.com', 1, '0000-00-00', 'cordova', 1, 'user.jpg', '2024-12-08 15:22:32', 3);
+(15, 'felipe', '$2y$10$zZt4xCAWKfXt81wp/ryruOc9bL/s5lTVN52WDDEh/vz3SRfyvgEO6', 'felipe@gmail.com', 1, '0000-00-00', 'cordova', 1, 'user.jpg', '2024-12-08 15:22:32', 3),
+(21, 'juanito', '$2y$10$U9Wnt7wYibRJhtL.YxrZI.pK/bHQY2dFbYqmHJje/XCfwVBNyg0p2', 'avm157@alu.uas.es', 1, '0000-00-00', 'petrer', 1, 'img/users/juanito/user', '2024-12-12 08:18:27', 1),
+(23, 'carol', '$2y$10$TZjErKgzOptkEQxMmnwZWeX5tn1CdICody80tZrX7vCugJxvBYOPe', 'carolina@gmail.com', 2, '0000-00-00', 'petrer', 5, 'img/users/carol/user.jpg', '2024-12-12 08:43:55', 1);
 
 --
 -- Índices para tablas volcadas
@@ -288,7 +344,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `albumes`
 --
 ALTER TABLE `albumes`
-  MODIFY `idAlbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idAlbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `estilos`
@@ -300,7 +356,7 @@ ALTER TABLE `estilos`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `idFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idFoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
@@ -318,7 +374,7 @@ ALTER TABLE `solicitudes`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restricciones para tablas volcadas
@@ -328,27 +384,27 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `albumes`
 --
 ALTER TABLE `albumes`
-  ADD CONSTRAINT `fKeyUsuarios` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`idUsuario`);
+  ADD CONSTRAINT `fKeyUsuarios` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  ADD CONSTRAINT `fKeyAlbums` FOREIGN KEY (`album`) REFERENCES `albumes` (`idAlbum`),
-  ADD CONSTRAINT `fKeyPais` FOREIGN KEY (`pais`) REFERENCES `paises` (`idPais`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `fKeyAlbums` FOREIGN KEY (`album`) REFERENCES `albumes` (`idAlbum`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fKeyPais` FOREIGN KEY (`pais`) REFERENCES `paises` (`idPais`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  ADD CONSTRAINT `fKeyAlbum` FOREIGN KEY (`album`) REFERENCES `albumes` (`idAlbum`);
+  ADD CONSTRAINT `fKeyAlbum` FOREIGN KEY (`album`) REFERENCES `albumes` (`idAlbum`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `keyEstilo` FOREIGN KEY (`estilo`) REFERENCES `estilos` (`idEstilo`),
-  ADD CONSTRAINT `keyPaises` FOREIGN KEY (`pais`) REFERENCES `paises` (`idPais`);
+  ADD CONSTRAINT `keyEstilo` FOREIGN KEY (`estilo`) REFERENCES `estilos` (`idEstilo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `keyPaises` FOREIGN KEY (`pais`) REFERENCES `paises` (`idPais`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
